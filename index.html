@@ -1,246 +1,137 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-
-  <!-- 手机端适配 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- 网站标题 -->
-  <title>Men's Fashion Intelligence</title>
-
-  <!-- 引入CSS -->
+  <title>MENSPILOT | Men's Fashion Intelligence</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+<header class="header">
+  <div class="brand">
+    <div class="brand-mark">MP</div>
+    <div>
+      <h1>MENSPILOT</h1>
+      <p>MEN'S FASHION INTELLIGENCE</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <button class="nav-btn active" data-tab="dashboard">开款工作台</button>
+    <button class="nav-btn" data-tab="references">款式参考库</button>
+    <button class="nav-btn" data-tab="keywords">关键词库</button>
+    <button class="nav-btn" data-tab="titles">标题优化器</button>
+  </nav>
+</header>
 
-  <!-- 顶部导航 -->
-  <header class="header">
-    <div class="logo">
-      <h1>MEN'S FASHION</h1>
-      <span>INTELLIGENCE PLATFORM</span>
+<main class="container">
+  <section id="dashboard" class="tab-page active">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">2026 PRODUCT DEVELOPMENT TOOL</span>
+        <h2>男装开款方向工作台</h2>
+        <p>覆盖男式套装、棉羽保暖外套、商务正装三大方向。根据类目、季节和风格快速生成开款组合、关键词和英文标题。</p>
+      </div>
+      <div class="stat-row">
+        <div><b id="catCount">0</b><span>款式方向</span></div>
+        <div><b id="kwCount">0</b><span>关键词</span></div>
+        <div><b>3</b><span>核心赛道</span></div>
+      </div>
     </div>
 
-    <nav class="nav">
-      <button class="nav-btn active" data-page="development">
-        开款方向
-      </button>
-
-      <button class="nav-btn" data-page="title">
-        标题优化
-      </button>
-
-      <button class="nav-btn" data-page="keywords">
-        关键词库
-      </button>
-    </nav>
-  </header>
-
-
-  <!-- 主体区域 -->
-  <main class="container">
-
-    <!-- 页面标题 -->
-    <section class="page-title">
-      <h2>男装智能开款工作台</h2>
-      <p>
-        基于产品类目、季节、风格和市场趋势，
-        快速获取男装开款方向与爆款标题建议
-      </p>
-    </section>
-
-
-    <!-- 工作台 -->
     <section class="dashboard">
+      <div class="panel">
+        <div class="panel-header"><h3>产品筛选</h3><span>PRODUCT FILTER</span></div>
+        <label>核心赛道</label>
+        <select id="groupFilter">
+          <option value="全部">全部</option>
+          <option value="男式套装">男式套装</option>
+          <option value="棉羽">棉羽</option>
+          <option value="正装">正装</option>
+        </select>
 
-      <!-- 左侧：输入区域 -->
-      <div class="panel input-panel">
+        <label>产品方向</label>
+        <select id="productFilter"></select>
 
-        <div class="panel-header">
-          <h3>产品信息</h3>
-          <span>PRODUCT INPUT</span>
-        </div>
+        <label>季节</label>
+        <select id="seasonFilter">
+          <option value="全年">全年 / 不限</option>
+          <option value="春夏">春夏</option>
+          <option value="春秋">春秋</option>
+          <option value="秋冬">秋冬</option>
+        </select>
 
+        <label>目标风格</label>
+        <select id="styleFilter"></select>
 
-        <!-- 产品类目 -->
-        <div class="form-group">
-          <label>产品类目</label>
-
-          <select id="category">
-            <option value="">请选择产品类目</option>
-            <option>Men's T-Shirt Set</option>
-            <option>Men's Shirt Set</option>
-            <option>Men's Jacket Set</option>
-            <option>Men's Tracksuit</option>
-            <option>Men's Sportswear Set</option>
-            <option>Men's Vest Set</option>
-          </select>
-        </div>
-
-
-        <!-- 季节 -->
-        <div class="form-group">
-          <label>季节</label>
-
-          <select id="season">
-            <option value="">请选择季节</option>
-            <option>Spring</option>
-            <option>Summer</option>
-            <option>Fall</option>
-            <option>Winter</option>
-            <option>All Season</option>
-          </select>
-        </div>
-
-
-        <!-- 风格 -->
-        <div class="form-group">
-          <label>产品风格</label>
-
-          <select id="style">
-            <option value="">请选择风格</option>
-            <option>Casual</option>
-            <option>Streetwear</option>
-            <option>Sport</option>
-            <option>Vacation</option>
-            <option>Business Casual</option>
-            <option>Minimalist</option>
-          </select>
-        </div>
-
-
-        <!-- 目标平台 -->
-        <div class="form-group">
-          <label>目标平台</label>
-
-          <select id="platform">
-            <option value="">请选择平台</option>
-            <option>TEMU</option>
-            <option>SHEIN</option>
-            <option>Amazon</option>
-          </select>
-        </div>
-
-
-        <!-- 目标人群 -->
-        <div class="form-group">
-          <label>目标人群</label>
-
-          <select id="customer">
-            <option value="">请选择目标人群</option>
-            <option>Young Men</option>
-            <option>Adult Men</option>
-            <option>Sports Men</option>
-            <option>Streetwear Men</option>
-          </select>
-        </div>
-
-
-        <!-- 分析按钮 -->
-        <button id="analyzeBtn" class="analyze-btn">
-          ✦ 开始智能分析
-        </button>
-
+        <button id="analyzeBtn" class="primary-btn">✦ 生成开款方向</button>
       </div>
 
-
-      <!-- 右侧：结果区域 -->
       <div class="panel result-panel">
-
-        <div class="panel-header">
-          <h3>推荐开款方向</h3>
-          <span>AI ANALYSIS RESULT</span>
-        </div>
-
-
-        <!-- 默认状态 -->
-        <div id="emptyState" class="empty-state">
-
-          <div class="empty-icon">✦</div>
-
-          <h3>等待开始分析</h3>
-
-          <p>
-            请在左侧选择产品信息，
-            系统将为你生成推荐的男装开款方向
-          </p>
-
-        </div>
-
-
-        <!-- 分析结果 -->
+        <div class="panel-header"><h3>推荐开款方向</h3><span>PRODUCT DEVELOPMENT RESULT</span></div>
+        <div id="resultEmpty" class="empty-state">选择左侧条件后，点击「生成开款方向」</div>
         <div id="resultContent" class="result-content hidden">
-
-          <div class="result-card">
-            <span>核心风格</span>
-            <h4 id="resultStyle">-</h4>
+          <div class="result-top">
+            <span id="resultGroup" class="badge"></span>
+            <h3 id="resultName"></h3>
+            <p id="resultEn"></p>
           </div>
-
-          <div class="result-card">
-            <span>推荐版型</span>
-            <h4 id="resultFit">-</h4>
+          <div class="result-grid">
+            <div class="result-card"><span>推荐版型</span><b id="resultFit"></b></div>
+            <div class="result-card"><span>推荐风格</span><b id="resultStyle"></b></div>
+            <div class="result-card"><span>推荐面料</span><b id="resultFabric"></b></div>
+            <div class="result-card"><span>核心细节</span><b id="resultDetails"></b></div>
           </div>
-
-          <div class="result-card">
-            <span>推荐设计</span>
-            <h4 id="resultDesign">-</h4>
-          </div>
-
-          <div class="result-card">
-            <span>推荐颜色</span>
-            <h4 id="resultColor">-</h4>
-          </div>
-
-          <div class="result-card full-card">
-            <span>核心关键词</span>
-
-            <div id="keywordTags" class="keyword-tags">
-            </div>
-          </div>
-
+          <div class="block"><h4>建议款式组合</h4><div id="referenceTags" class="chips"></div></div>
+          <div class="block"><h4>标题核心关键词</h4><div id="keywordTags" class="chips"></div></div>
+          <button id="toTitleBtn" class="secondary-btn">使用该方向生成英文标题 →</button>
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- 底部区域 -->
-    <section class="future-tools">
-
-      <h3>智能工具</h3>
-
-      <div class="tool-grid">
-
-        <div class="tool-card">
-          <div class="tool-icon">01</div>
-          <h4>开款方向分析</h4>
-          <p>分析产品趋势、风格、版型和设计方向</p>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-icon">02</div>
-          <h4>英文标题优化</h4>
-          <p>优化 TEMU、SHEIN 等平台的商品标题</p>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-icon">03</div>
-          <h4>爆款关键词库</h4>
-          <p>快速查询男装热门关键词和产品词</p>
-        </div>
-
-      </div>
-
+    <section class="section">
+      <div class="section-title"><div><span class="eyebrow">PRODUCT MATRIX</span><h2>三大核心产品赛道</h2></div></div>
+      <div id="trackCards" class="track-grid"></div>
     </section>
+  </section>
 
-  </main>
+  <section id="references" class="tab-page">
+    <div class="section-title"><div><span class="eyebrow">STYLE REFERENCE LIBRARY</span><h2>款式参考库</h2><p>点击赛道筛选，查看可直接用于开款讨论的版型、风格、面料和结构方向。</p></div></div>
+    <div id="referenceFilters" class="filter-row"></div>
+    <div id="referenceGrid" class="reference-grid"></div>
+  </section>
 
+  <section id="keywords" class="tab-page">
+    <div class="section-title"><div><span class="eyebrow">KEYWORD INTELLIGENCE</span><h2>关键词库</h2><p>已结合你上传的套装标题关键词表，并补充棉羽与正装方向词库。</p></div></div>
+    <div class="keyword-toolbar">
+      <input id="keywordSearch" placeholder="搜索关键词，例如: puffer / suit / oversized / waterproof">
+      <select id="keywordDimension"></select>
+    </div>
+    <div id="keywordGroups" class="keyword-groups"></div>
+  </section>
 
-  <!-- 引入JavaScript -->
-  <script src="app.js"></script>
-
+  <section id="titles" class="tab-page">
+    <div class="section-title"><div><span class="eyebrow">TITLE BUILDER</span><h2>英文标题优化器</h2><p>先选择产品方向，再组合核心品类词、版型、风格、面料、细节和场景。</p></div></div>
+    <div class="title-layout">
+      <div class="panel">
+        <label>产品方向</label><select id="titleProduct"></select>
+        <label>平台</label><select id="titlePlatform"><option>TEMU</option><option>SHEIN</option><option>Generic SEO</option></select>
+        <label>版型</label><select id="titleFit"></select>
+        <label>风格</label><select id="titleStyle"></select>
+        <label>面料/功能</label><select id="titleFabric"></select>
+        <label>细节</label><select id="titleDetails"></select>
+        <label>场景</label><select id="titleOccasion"></select>
+        <button id="generateTitleBtn" class="primary-btn">生成英文标题</button>
+      </div>
+      <div class="panel title-result">
+        <span class="eyebrow">GENERATED TITLE</span>
+        <h3 id="generatedTitle">等待生成...</h3>
+        <div id="titleMeta"></div>
+        <button id="copyTitleBtn" class="secondary-btn">复制标题</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
