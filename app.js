@@ -41,34 +41,8 @@ function initOpen(){
   renderOpen();
 }
 function renderOpen(){
-  $("#openGrid").innerHTML=<div class="style-image">
-        <div class="pdf-slot">
-            📄
-            <span>款式参考 PDF</span>
-        </div>
-    </div>
-
-    <h3>${item.name}</h3>
-    <p>${item.en}</p>
-
-    <div class="tags">
-        ${item.tags.map(tag => `<span>${tag}</span>`).join("")}
-    </div>
-
-    ${
-        item.pdf
-            ? `
-                <a 
-                    href="${item.pdf}" 
-                    target="_blank" 
-                    class="pdf-btn"
-                >
-                    查看款式参考 →
-                </a>
-              `
-            : ""
-    }
-`;
+  $("#openGrid").innerHTML=(OPEN_DIRECTIONS[openGroup]||[]).map(x=>`<article class="style-card"><div class="image-placeholder">IMAGE SLOT<br>${x.ref}</div><h3>${x.name}</h3><div class="en">${x.en}</div><div class="tags">${x.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></article>`).join("");
+}
 function builder(container,data,prefix){
   const names={model:"人模",pose:"姿势",style:"风格",scene:"场景",accessory:"配饰",display:"展示方式",background:"背景",focus:"重点"};
   const state={};
