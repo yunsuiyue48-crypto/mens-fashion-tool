@@ -1,27 +1,30 @@
-# MENSPILOT GitHub Pages 升级版
-
-## 文件说明
-- index.html：网页结构
-- style.css：网页样式
-- app.js：交互逻辑
-- data.js：款式、分类、关键词数据
-
-## 上传到 GitHub
-1. 打开 Repository
-2. 确保在 main 分支
-3. 将这 4 个文件上传到和原 index.html 相同的根目录
-4. 覆盖原来的 index.html、style.css、app.js
-5. 新增 data.js
-6. Commit changes
-7. 等待 GitHub Pages 自动重新部署
-8. 刷新网站
-
-## 后续添加款式
-打开 data.js，找到 APP_DATA 中的 catalog。
-每增加一个产品方向，就复制一个 catalog 对象，填写：
-id / name / en / group / season / price / styles / fits / fabrics / details / reference
-
-核心赛道：
-- 男式套装
-- 棉羽
-- 正装
+TEMU Men's Seller Workbench V3
+页面结构
+首页：所有功能入口
+类目指引：套装 / 正装 / 棉羽
+开款方向：套装 / 正装 / 棉羽，预留图片卡片
+视觉优化：人模 / 非人模 Prompt
+标题优化：从上传的中英枚举词表生成选择器
+招品 / 回品：预留后续工作流
+数据来源
+本版本已读取并转换：
+分维度枚举词_中英对照(1).xlsx
+7.5 云岁月 商家共有版yulemi-类目list(1).xlsx
+GitHub 文件结构
+index.html
+style.css
+app.js
+data/
+category-data.js
+open-direction-data.js
+visual-data.js
+title-data.js
+上传到 GitHub
+将所有文件保持原目录结构上传到 Repository 的 main 分支根目录。
+GitHub Pages 已设置为 main / root 时，提交后等待部署即可刷新网站。
+后续扩展
+新增模块时：
+在 MODULES 中增加导航配置
+在 index.html 增加 section
+新建对应 data 文件
+在 app.js 注册初始化函数
