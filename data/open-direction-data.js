@@ -3,6 +3,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "衬衫短裤套装",
       "en": "Shirt & Shorts Co-Ord",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Resort",
         "Vacation",
@@ -14,6 +15,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "T恤短裤套装",
       "en": "T-Shirt & Shorts Set",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Street",
         "Minimal",
@@ -25,6 +27,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "运动健身套装",
       "en": "Activewear Set",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Sport",
         "Tech",
@@ -36,6 +39,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "卫衣卫裤套装",
       "en": "Sweatshirt Set",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Athleisure",
         "Loose",
@@ -49,6 +53,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "休闲西装套装",
       "en": "Casual Suit Set",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Business Casual",
         "Relaxed",
@@ -69,6 +74,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "西装马甲组合",
       "en": "Waistcoat Set",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Wedding",
         "Formal",
@@ -79,6 +85,7 @@ const OPEN_DIRECTIONS = {
     {
       "name": "轻商务套装",
       "en": "Smart Casual Set",
+      "pdf": "assets/styles/sets/summer%20set.pdf"
       "tags": [
         "Commute",
         "Stretch",
