@@ -23,7 +23,7 @@ const OPEN_DIRECTION_DATA = {
         "休闲",
         "简约"
       ],
-      image: "assets/styles/sets/图片1.png",
+      image: "assets/styles/sets/肌理短裤短袖.png",
       description: "上衣与短裤采用统一或相近的肌理面料，通过面料纹理提升基础套装的设计感。",
       pdf: "assets/styles/sets/开款参考.pdf#page=6",
       pdfPage: 6
