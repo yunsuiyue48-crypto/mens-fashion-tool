@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
-<rect width="900" height="600" fill="#e9eaec"/><rect x="42" y="42" width="816" height="516" rx="26" fill="#ffffff"/>
-<rect x="90" y="100" width="720" height="270" rx="18" fill="#d6d8dc"/>
-<path d="M340 150h220l70 75-40 55v105H310V280l-40-55z" fill="#596273"/>
-<path d="M370 385h70v105h-95V405zm90 0h70l25 20v85h-95z" fill="#7a8496"/>
-<text x="90" y="430" font-family="Arial,sans-serif" font-size="22" fill="#667085">ACTIVE SET</text>
-<text x="90" y="478" font-family="Arial,sans-serif" font-size="40" font-weight="700" fill="#172033">TRAINING CO-ORD</text>
-<text x="90" y="522" font-family="Arial,sans-serif" font-size="20" fill="#667085">Gym / Sport</text>
-</svg>
