@@ -194,6 +194,7 @@ const OPEN_DIRECTION_DATA = {
         "运动",
         "夏季"
       ],
+      image: "assets/styles/sets/运动速干.png"
       description: "运动上衣搭配运动短裤，可作为健身、跑步及日常运动休闲方向。",
       pdf: "assets/styles/sets/开款参考.pdf#page=10",
       pdfPage: 10
