@@ -23,6 +23,7 @@ const OPEN_DIRECTION_DATA = {
         "休闲",
         "简约"
       ],
+      image: "assets/styles/sets/图片1.png",
       description: "上衣与短裤采用统一或相近的肌理面料，通过面料纹理提升基础套装的设计感。",
       pdf: "assets/styles/sets/开款参考.pdf#page=6",
       pdfPage: 6
@@ -40,6 +41,7 @@ const OPEN_DIRECTION_DATA = {
         "短裤",
         "夏季"
       ],
+      image: "assets/styles/sets/图片1.png",
       description: "以图案、图形或视觉设计作为核心卖点，适合年轻休闲与街头风格开发。",
       pdf: "assets/styles/sets/开款参考.pdf#page=6",
       pdfPage: 6
