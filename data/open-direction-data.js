@@ -9,7 +9,7 @@ const OPEN_DIRECTION_DATA = {
         "夏季"
       ],
       "image": "assets/styles/sets/图片1.png",
-      "pdf": ""
+      "pdf": "assets/styles/sets/summer  set.pdf"
     },
     {
       "name": "短袖衬衫+短裤套装",
