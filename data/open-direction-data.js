@@ -8,7 +8,7 @@ const OPEN_DIRECTION_DATA = {
         "休闲",
         "夏季"
       ],
-      "image": "",
+      "image": "assets/styles/sets/图片1.png",
       "pdf": ""
     },
     {
