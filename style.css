@@ -1,1 +1,165 @@
 *{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#f5f7fb;color:#1f2937}.app{margin-left:260px;min-height:100vh}.sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;background:#101828;color:#fff;padding:22px 14px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:12px;padding:8px 10px 28px}.brand-mark{width:42px;height:42px;border-radius:12px;background:#ff8a00;display:grid;place-items:center;font-size:21px;font-weight:800}.brand b{display:block}.brand span{display:block;font-size:12px;color:#98a2b3;margin-top:3px}.nav-btn{width:100%;text-align:left;border:0;background:transparent;color:#cbd5e1;padding:13px 14px;border-radius:10px;margin:3px 0;cursor:pointer;font-size:14px}.nav-btn:hover,.nav-btn.active{background:#253246;color:#fff}.nav-btn .num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#344054;margin-right:9px;font-size:11px}.sidebar-foot{margin-top:auto;color:#98a2b3;font-size:12px;line-height:1.7;padding:10px}.topbar{height:62px;background:#fff;border-bottom:1px solid #e4e7ec;display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:5}.status{font-size:12px;color:#667085;letter-spacing:.08em}main{padding:30px;max-width:1500px;margin:auto}.page{display:none}.page.active{display:block}.hero{background:linear-gradient(135deg,#101828,#253246);color:#fff;border-radius:24px;padding:56px;min-height:340px}.eyebrow{color:#ffb45c;font-size:12px;letter-spacing:.16em}.hero h1{font-size:42px;line-height:1.25;margin:18px 0}.hero em{color:#ff9d24;font-style:normal}.hero p{max-width:760px;color:#d0d5dd;line-height:1.8}.btn{border:1px solid #d0d5dd;background:#fff;color:#344054;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700}.btn.primary{background:#ff8a00;color:#fff;border-color:#ff8a00;margin-top:12px}.btn.small{padding:7px 11px;font-size:12px}.module-grid,.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:20px}.module-card,.overview-card,.reference-card,.group-card,.output-card,.upload-panel,.notice,.source-bar,.empty-state{background:#fff;border:1px solid #eaecf0;border-radius:16px;box-shadow:0 1px 2px rgba(16,24,40,.04)}.module-card{padding:22px;cursor:pointer}.module-card:hover,.overview-card:hover{transform:translateY(-2px);border-color:#ffb45c}.module-card h3{margin:12px 0 7px}.module-card p,.overview-card p{color:#667085;font-size:13px;line-height:1.7}.module-num{color:#ff8a00;font-weight:800}.page-head span{color:#ff8a00;font-weight:800;font-size:12px}.page-head h2{font-size:30px;margin:8px 0}.page-head p{color:#667085}.source-bar,.notice{padding:14px 16px;margin:16px 0;color:#475467;font-size:13px;line-height:1.7}.source-bar a{color:#b54708;font-weight:700}.overview-card{padding:20px}.overview-card h3{margin:0 0 8px}.overview-card .count-badge{display:inline-block;background:#fff3e0;color:#b54708;padding:4px 8px;border-radius:99px;font-size:12px}.path-block{margin-top:24px}.path-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:10px}.path-list{display:grid;gap:10px}.path-row{display:grid;grid-template-columns:160px 1fr 90px 120px;gap:12px;align-items:center;padding:14px 16px;background:#fff;border:1px solid #eaecf0;border-radius:12px;font-size:13px}.path-row .path{color:#475467;word-break:break-all}.season{font-size:12px;color:#667085}.jump-btn{background:#101828;color:#fff;border:0;padding:9px 10px;border-radius:8px;cursor:pointer}.open-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab-btn{padding:10px 18px;border:1px solid #d0d5dd;background:#fff;border-radius:10px;cursor:pointer}.tab-btn.active{background:#101828;color:#fff;border-color:#101828}.upload-panel{padding:18px;display:grid;grid-template-columns:1.2fr repeat(4,minmax(160px,1fr)) auto;gap:12px;align-items:end}.upload-panel label{font-size:12px;color:#475467;display:grid;gap:6px}.upload-panel input{padding:9px;border:1px solid #d0d5dd;border-radius:8px;width:100%}.upload-panel small{display:block;color:#98a2b3;margin-top:5px}.upload-preview{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}.preview-box{background:#fff;border:1px dashed #98a2b3;border-radius:12px;padding:10px;min-width:180px}.preview-box img{max-width:260px;max-height:180px;display:block}.reference-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.reference-card{overflow:hidden}.placeholder{height:210px;background:linear-gradient(135deg,#e4e7ec,#f9fafb);display:grid;place-items:center;color:#98a2b3;font-size:14px}.reference-card img{width:100%;height:210px;object-fit:cover;display:block}.reference-body{padding:16px}.reference-body h3{margin:0 0 10px}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{font-size:11px;padding:5px 8px;background:#f2f4f7;border-radius:99px;color:#475467}.card-actions{display:flex;gap:8px;margin-top:14px}.card-actions a,.card-actions button{font-size:12px;text-decoration:none;border:1px solid #d0d5dd;background:#fff;color:#344054;border-radius:8px;padding:8px 10px;cursor:pointer}.control-groups{display:grid;gap:14px}.group-card{padding:16px}.group-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.group-title h3{font-size:16px;margin:0}.group-title span{font-size:11px;color:#98a2b3}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{border:1px solid #d0d5dd;background:#fff;border-radius:9px;padding:8px 10px;cursor:pointer;font-size:13px}.choice:hover,.choice.active{border-color:#ff8a00;background:#fff7ed;color:#9a3412}.choice small{display:block;color:#98a2b3;font-size:10px;margin-top:3px}.mode-tabs{display:flex;gap:8px;margin-bottom:16px}.mode-tabs button{border:1px solid #d0d5dd;background:#fff;padding:10px 14px;border-radius:10px}.mode-tabs .active{background:#101828;color:#fff;border-color:#101828}.output-card{padding:16px;margin-top:18px}.output-title{display:flex;justify-content:space-between;align-items:center;font-weight:800;margin-bottom:10px}.output-card textarea{width:100%;min-height:150px;border:1px solid #d0d5dd;border-radius:10px;padding:12px;resize:vertical;font:13px/1.7 inherit;color:#344054;background:#fcfcfd}.count{font-size:12px;color:#98a2b3;margin-top:7px}.title-tip{padding:12px 14px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;color:#9a3412;font-size:13px;margin-bottom:14px}.empty-state{padding:50px;text-align:center;color:#667085}.modal{display:none;position:fixed;inset:0;background:rgba(16,24,40,.65);z-index:20;padding:5vh 5vw}.modal.show{display:block}.modal-card{background:#fff;height:90vh;border-radius:16px;overflow:hidden;position:relative}.modal iframe{width:100%;height:100%;border:0}.close{position:absolute;right:10px;top:8px;z-index:2;border:0;background:#101828;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:20px}@media(max-width:900px){.sidebar{position:static;width:auto;height:auto}.app{margin-left:0}.sidebar-foot{display:none}.app{min-width:0}.upload-panel{grid-template-columns:1fr}.path-row{grid-template-columns:1fr}.hero{padding:30px}.hero h1{font-size:30px}main{padding:16px}}
+/* =========================================================
+   三大类目按钮放大
+   套装 / 正装 / 棉羽
+========================================================= */
+
+.cat-big-btn {
+  min-width: 150px;
+  min-height: 52px;
+  padding: 14px 28px !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  border-radius: 14px !important;
+}
+
+
+/* 类目指引中的跳转按钮 */
+
+.jump-btn.cat-big-btn {
+  min-width: 180px;
+  min-height: 52px;
+  font-size: 16px !important;
+}
+
+
+/* 开款方向、标题优化顶部分类 */
+
+.tab-btn.cat-big-btn {
+  min-width: 140px;
+  min-height: 58px;
+  padding: 15px 36px !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+}
+
+
+/* =========================================================
+   开款方向 PDF 卡片
+========================================================= */
+
+.pdf-reference-card {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.pdf-card-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 20px;
+}
+
+
+.pdf-icon {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+.pdf-card-info h3 {
+  margin: 6px 0;
+  font-size: 22px;
+}
+
+
+.pdf-label {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+
+.reference-en {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.65;
+}
+
+
+.pdf-reference-card .reference-body {
+  margin-top: auto;
+}
+
+
+.pdf-reference-card .tags {
+  margin: 16px 0 22px;
+}
+
+
+/* =========================================================
+   放大 PDF 按钮
+========================================================= */
+
+.pdf-big-btn {
+  width: 100%;
+  min-height: 68px;
+  padding: 18px 28px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 800;
+  transition: all 0.25s ease;
+}
+
+
+.pdf-big-btn:hover {
+  transform: translateY(-3px);
+}
+
+
+.pdf-big-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   PDF 未绑定提示
+========================================================= */
+
+.pdf-empty {
+  width: 100%;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 15px;
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   无数据状态
+========================================================= */
+
+.empty-state {
+  width: 100%;
+  padding: 60px 30px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   删除开款方向原来的素材上传区域
+   隐藏本地图片、本地PDF、路径输入、上传预览
+========================================================= */
+
+#localImage,
+#localPdf,
+#repoImagePath,
+#repoPdfPath,
+#uploadPreview,
+#clearUploads {
+  display: none !important;
+}
