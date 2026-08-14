@@ -41,7 +41,7 @@ const OPEN_DIRECTION_DATA = {
         "短裤",
         "夏季"
       ],
-      image: "assets/styles/sets/图片1.png",
+      image: "assets/styles/sets/图案图形 短袖短裤.png",
       description: "以图案、图形或视觉设计作为核心卖点，适合年轻休闲与街头风格开发。",
       pdf: "assets/styles/sets/开款参考.pdf#page=6",
       pdfPage: 6
