@@ -291,6 +291,7 @@ const OPEN_DIRECTION_DATA = {
         "保暖",
         "秋冬"
       ],
+      image: "assets/styles/sets/战术服套装.png"
       description: "以外套夹克搭配长裤，强调加绒、保暖、工装和战术风格。",
       pdf: "assets/styles/sets/开款参考.pdf#page=13",
       pdfPage: 13
