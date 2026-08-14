@@ -1,12 +1,12 @@
-// ======================================================
-// 云岁月对接类目上新指引
-// 主程序 app.js
-// ======================================================
+/* =========================================
+   云岁月对接类目上新指引
+   TEMU 男装工具网站 - app.js
+   ========================================= */
 
 
-// ======================================================
-// 01. 网站模块
-// ======================================================
+/* =========================================
+   01. 功能模块
+   ========================================= */
 
 const MODULES = [
   {
@@ -22,7 +22,7 @@ const MODULES = [
   {
     id: "open",
     name: "开款方向",
-    desc: "款式参考，支持 JPG / PNG / WEBP 与 PDF"
+    desc: "套装 / 正装 / 棉羽款式参考"
   },
   {
     id: "visual",
@@ -42,182 +42,284 @@ const MODULES = [
 ];
 
 
-// ======================================================
-// 02. 基础工具
-// ======================================================
+/* =========================================
+   02. 基础工具
+   ========================================= */
 
-const $ = selector => document.querySelector(selector);
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
 
-const $$ = selector => [...document.querySelectorAll(selector)];
 
-
-// ======================================================
-// 03. 开款方向分类映射
-//
-// 兼容两种数据格式：
-//
-// 中文：
-// "套装"
-// "正装"
-// "棉羽"
-//
-// 英文：
-// sets
-// formal
-// padded
-// ======================================================
+/* =========================================
+   03. 开款方向分类映射
+   兼容中文数据和英文数据
+   ========================================= */
 
 const OPEN_CATEGORY_MAP = {
-  "套装": "sets",
-  "正装": "formal",
-  "棉羽": "padded",
-
-  "sets": "sets",
-  "formal": "formal",
-  "padded": "padded"
-};
-
-const OPEN_CATEGORY_NAME = {
-  "sets": "套装",
-  "formal": "正装",
-  "padded": "棉羽",
-
-  "套装": "套装",
-  "正装": "正装",
-  "棉羽": "棉羽"
+  "套装": {
+    keys: ["套装", "sets"],
+    label: "套装"
+  },
+  "正装": {
+    keys: ["正装", "formal"],
+    label: "正装"
+  },
+  "棉羽": {
+    keys: ["棉羽", "padded"],
+    label: "棉羽"
+  }
 };
 
 
-// ======================================================
-// 04. 当前状态
-// ======================================================
+/* 当前页面分类 */
 
-let currentOpen = "sets";
+let currentOpen = "套装";
 let currentTitle = "套装";
 
-let tempImageURL = "";
-let tempPdfURL = "";
+
+/* =========================================
+   04. 注入页面优化样式
+   不需要修改 style.css
+   ========================================= */
+
+function injectAppStyles() {
+
+  const style = document.createElement("style");
+
+  style.textContent = `
+
+    /* =====================================
+       三大类目按钮统一放大
+       ===================================== */
+
+    .tab-btn,
+    .seg,
+    .category-btn {
+      min-width: 120px !important;
+      min-height: 52px !important;
+      padding: 12px 26px !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      border-radius: 12px !important;
+      cursor: pointer;
+    }
 
 
-// ======================================================
-// 05. 获取 DOM
-// 避免元素不存在时直接报错
-// ======================================================
+    /* =====================================
+       开款方向分类按钮
+       ===================================== */
 
-function getElement(selector) {
-  return document.querySelector(selector);
+    #openTabs {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 16px !important;
+      margin: 10px 0 26px !important;
+    }
+
+    #openTabs .tab-btn {
+      min-width: 150px !important;
+      min-height: 58px !important;
+      padding: 14px 32px !important;
+      font-size: 20px !important;
+      font-weight: 800 !important;
+      border-radius: 14px !important;
+    }
+
+
+    /* =====================================
+       标题优化分类按钮
+       ===================================== */
+
+    #titleCategoryTabs {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 16px !important;
+      margin-bottom: 26px !important;
+    }
+
+    #titleCategoryTabs .tab-btn {
+      min-width: 150px !important;
+      min-height: 58px !important;
+      font-size: 20px !important;
+      font-weight: 800 !important;
+    }
+
+
+    /* =====================================
+       开款方向 PDF 卡片
+       ===================================== */
+
+    .reference-card {
+      min-height: 260px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+
+    .reference-body {
+      padding: 26px !important;
+    }
+
+    .reference-card h3 {
+      font-size: 22px !important;
+      margin-bottom: 18px !important;
+    }
+
+    .reference-card .tags {
+      margin-bottom: 24px !important;
+    }
+
+
+    /* =====================================
+       PDF 按钮放大
+       ===================================== */
+
+    .view-pdf {
+      width: 100% !important;
+      min-height: 58px !important;
+      padding: 14px 24px !important;
+      font-size: 19px !important;
+      font-weight: 800 !important;
+      border-radius: 12px !important;
+      cursor: pointer;
+    }
+
+
+    /* =====================================
+       类目路径中的跳转按钮放大
+       ===================================== */
+
+    .jump-btn {
+      min-height: 46px !important;
+      padding: 10px 18px !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      border-radius: 10px !important;
+      cursor: pointer;
+    }
+
+
+    /* =====================================
+       删除开款方向上传区域
+       ===================================== */
+
+    .open-upload-area,
+    .upload-area,
+    .upload-panel,
+    #uploadPreview {
+      display: none !important;
+    }
+
+
+    /* 手机端 */
+    @media (max-width: 768px) {
+
+      .tab-btn,
+      .seg,
+      .category-btn {
+        min-width: 100px !important;
+        min-height: 48px !important;
+        padding: 10px 18px !important;
+        font-size: 16px !important;
+      }
+
+      #openTabs .tab-btn,
+      #titleCategoryTabs .tab-btn {
+        min-width: calc(50% - 8px) !important;
+        font-size: 18px !important;
+      }
+
+      .view-pdf {
+        min-height: 54px !important;
+        font-size: 17px !important;
+      }
+
+    }
+
+  `;
+
+  document.head.appendChild(style);
 }
 
 
-// ======================================================
-// 06. 页面跳转
-// ======================================================
+/* =========================================
+   05. 页面跳转
+   ========================================= */
 
 function go(id) {
 
-  $$(".page").forEach(page => {
-    page.classList.toggle("active", page.id === id);
+  $$(".page").forEach(x => {
+    x.classList.toggle("active", x.id === id);
   });
 
-  $$(".nav-btn").forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.go === id
-    );
+  $$(".nav-btn").forEach(x => {
+    x.classList.toggle("active", x.dataset.go === id);
   });
 
-  const module = MODULES.find(item => item.id === id);
+  const m = MODULES.find(x => x.id === id);
 
-  const crumb = $("#crumb");
-
-  if (crumb) {
-
-    if (id === "home") {
-      crumb.textContent = "首页 / 工作台";
-    } else if (module) {
-      crumb.textContent = "首页 / " + module.name;
-    }
-
+  if ($("#crumb")) {
+    $("#crumb").textContent =
+      id === "home"
+        ? "首页 / 工作台"
+        : "首页 / " + m.name;
   }
 
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
-
 }
 
 
-// ======================================================
-// 07. 初始化导航
-// ======================================================
+/* =========================================
+   06. 初始化导航
+   ========================================= */
 
 function initNav() {
 
-  const mainNav = $("#mainNav");
-  const homeModules = $("#homeModules");
+  if ($("#mainNav")) {
 
-  if (mainNav) {
+    $("#mainNav").innerHTML = MODULES.map((m, i) => `
+      <button
+        class="nav-btn ${i === 0 ? "active" : ""}"
+        data-go="${m.id}"
+      >
+        <span class="num">
+          ${String(i + 1).padStart(2, "0")}
+        </span>
+        ${m.name}
+      </button>
+    `).join("");
 
-    mainNav.innerHTML = MODULES.map((module, index) => {
+  }
 
-      return `
-        <button
-          class="nav-btn ${index === 0 ? "active" : ""}"
-          data-go="${module.id}"
-        >
-          <span class="num">
-            ${String(index + 1).padStart(2, "0")}
-          </span>
 
-          ${module.name}
+  if ($("#homeModules")) {
+
+    $("#homeModules").innerHTML = MODULES.slice(1).map((m, i) => `
+      <article class="module-card" data-go="${m.id}">
+        <div class="module-num">
+          模块 ${String(i + 1).padStart(2, "0")}
+        </div>
+
+        <h3>${m.name}</h3>
+
+        <p>${m.desc}</p>
+
+        <button class="btn small">
+          进入功能
         </button>
-      `;
-
-    }).join("");
-
-  }
-
-
-  if (homeModules) {
-
-    homeModules.innerHTML = MODULES
-      .slice(1)
-      .map((module, index) => {
-
-        return `
-          <article
-            class="module-card"
-            data-go="${module.id}"
-          >
-
-            <div class="module-num">
-              模块 ${String(index + 1).padStart(2, "0")}
-            </div>
-
-            <h3>${module.name}</h3>
-
-            <p>${module.desc}</p>
-
-            <button class="btn small">
-              进入功能
-            </button>
-
-          </article>
-        `;
-
-      })
-      .join("");
+      </article>
+    `).join("");
 
   }
 
 
-  $$("[data-go]").forEach(button => {
+  $$("[data-go]").forEach(b => {
 
-    button.addEventListener("click", () => {
-
-      go(button.dataset.go);
-
+    b.addEventListener("click", () => {
+      go(b.dataset.go);
     });
 
   });
@@ -225,27 +327,101 @@ function initNav() {
 }
 
 
-// ======================================================
-// 08. 类目指引
-// ======================================================
+/* =========================================
+   07. 类目名称标准化
+   ========================================= */
+
+function normalizeOpenCategory(name) {
+
+  const value = String(name || "").trim();
+
+  if (
+    value === "套装" ||
+    value.toLowerCase() === "sets"
+  ) {
+    return "套装";
+  }
+
+  if (
+    value === "正装" ||
+    value.toLowerCase() === "formal"
+  ) {
+    return "正装";
+  }
+
+  if (
+    value === "棉羽" ||
+    value.toLowerCase() === "padded"
+  ) {
+    return "棉羽";
+  }
+
+  return value;
+
+}
+
+
+/* =========================================
+   08. 获取对应开款方向数据
+   兼容：
+   OPEN_DIRECTION_DATA.套装
+   OPEN_DIRECTION_DATA.sets
+   ========================================= */
+
+function getOpenDirectionList(categoryName) {
+
+  if (typeof OPEN_DIRECTION_DATA === "undefined") {
+    return [];
+  }
+
+  const category = normalizeOpenCategory(categoryName);
+
+  const config = OPEN_CATEGORY_MAP[category];
+
+  if (!config) {
+    return [];
+  }
+
+
+  for (const key of config.keys) {
+
+    if (
+      OPEN_DIRECTION_DATA[key] &&
+      Array.isArray(OPEN_DIRECTION_DATA[key])
+    ) {
+      return OPEN_DIRECTION_DATA[key];
+    }
+
+  }
+
+  return [];
+
+}
+
+
+/* =========================================
+   09. 类目指引首页
+   ========================================= */
 
 function renderCategoryOverview() {
 
-  const categoryOverview = $("#categoryOverview");
+  if (
+    typeof CATEGORY_DATA === "undefined" ||
+    !$("#categoryOverview")
+  ) {
+    return;
+  }
 
-  if (!categoryOverview) return;
 
+  $("#categoryOverview").innerHTML =
+    Object.entries(CATEGORY_DATA).map(([name, items]) => {
 
-  categoryOverview.innerHTML = Object
-    .entries(CATEGORY_DATA || {})
-    .map(([name, items]) => {
-
-      const safeItems = Array.isArray(items) ? items : [];
+      const chineseName = normalizeOpenCategory(name);
 
       const keywords = [
         ...new Set(
-          safeItems
-            .map(item => item.keyword)
+          items
+            .map(x => x.keyword)
             .filter(Boolean)
         )
       ].join("、");
@@ -254,10 +430,10 @@ function renderCategoryOverview() {
       return `
         <article class="overview-card">
 
-          <h3>${name}</h3>
+          <h3>${chineseName}</h3>
 
           <span class="count-badge">
-            ${safeItems.length} 条精准路径
+            ${items.length} 条精准路径
           </span>
 
           <p>
@@ -268,22 +444,21 @@ function renderCategoryOverview() {
             class="btn small"
             data-cat="${name}"
           >
-            查看 ${name} 路径
+            查看 ${chineseName} 路径
           </button>
 
         </article>
       `;
 
-    })
-    .join("");
+    }).join("");
 
 
-  $$("[data-cat]").forEach(button => {
+  $$("[data-cat]").forEach(b => {
 
-    button.addEventListener("click", () => {
+    b.addEventListener("click", () => {
 
       renderCategoryDetail(
-        button.dataset.cat,
+        b.dataset.cat,
         true
       );
 
@@ -292,36 +467,49 @@ function renderCategoryOverview() {
   });
 
 
-  renderCategoryDetail("套装", false);
+  const firstCategory =
+    CATEGORY_DATA["套装"]
+      ? "套装"
+      : (
+          CATEGORY_DATA["sets"]
+            ? "sets"
+            : Object.keys(CATEGORY_DATA)[0]
+        );
+
+  if (firstCategory) {
+    renderCategoryDetail(firstCategory, false);
+  }
 
 }
 
 
-// ======================================================
-// 09. 类目详细路径
-// ======================================================
+/* =========================================
+   10. 类目精准路径详情
+   ========================================= */
 
 function renderCategoryDetail(name, scroll) {
 
-  const categoryDetail = $("#categoryDetail");
-
-  if (!categoryDetail) return;
-
-
-  const items =
-    (CATEGORY_DATA && CATEGORY_DATA[name])
-      ? CATEGORY_DATA[name]
-      : [];
+  if (
+    typeof CATEGORY_DATA === "undefined" ||
+    !$("#categoryDetail")
+  ) {
+    return;
+  }
 
 
-  categoryDetail.innerHTML = `
+  const items = CATEGORY_DATA[name] || [];
+
+  const chineseName = normalizeOpenCategory(name);
+
+
+  $("#categoryDetail").innerHTML = `
 
     <div class="path-block">
 
       <div class="path-head">
 
         <h3>
-          ${name} · 精准上新路径
+          ${chineseName} · 精准上新路径
         </h3>
 
         <span>
@@ -333,39 +521,32 @@ function renderCategoryDetail(name, scroll) {
 
       <div class="path-list">
 
-        ${items.map(item => {
+        ${items.map(x => `
 
-          return `
+          <div class="path-row">
 
-            <div class="path-row">
+            <b>
+              ${x.keyword || chineseName}
+            </b>
 
-              <b>
-                ${item.keyword || name}
-              </b>
-
-
-              <div class="path">
-                ${item.path || "—"}
-              </div>
-
-
-              <div class="season">
-                ${item.season || "—"}
-              </div>
-
-
-              <button
-                class="jump-btn"
-                data-open-cat="${name}"
-              >
-                查看开款方向 →
-              </button>
-
+            <div class="path">
+              ${x.path || "—"}
             </div>
 
-          `;
+            <div class="season">
+              ${x.season || "—"}
+            </div>
 
-        }).join("")}
+            <button
+              class="jump-btn"
+              data-open-cat="${chineseName}"
+            >
+              查看开款方向 →
+            </button>
+
+          </div>
+
+        `).join("")}
 
       </div>
 
@@ -374,17 +555,16 @@ function renderCategoryDetail(name, scroll) {
   `;
 
 
-  $$("[data-open-cat]").forEach(button => {
+  $$("[data-open-cat]").forEach(b => {
 
-    button.addEventListener("click", () => {
+    b.addEventListener("click", () => {
 
-      // 将中文类目转换为数据实际 Key
       currentOpen =
-        OPEN_CATEGORY_MAP[button.dataset.openCat]
-        || button.dataset.openCat;
+        normalizeOpenCategory(
+          b.dataset.openCat
+        );
 
       renderOpenTabs();
-
       renderOpenGrid();
 
       go("open");
@@ -396,7 +576,7 @@ function renderCategoryDetail(name, scroll) {
 
   if (scroll) {
 
-    categoryDetail.scrollIntoView({
+    $("#categoryDetail").scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
@@ -406,131 +586,52 @@ function renderCategoryDetail(name, scroll) {
 }
 
 
-// ======================================================
-// 10. 获取开款方向实际数据 Key
-// ======================================================
-
-function getOpenDataKey(category) {
-
-  if (
-    typeof OPEN_DIRECTION_DATA === "undefined"
-  ) {
-    return "";
-  }
-
-
-  // 如果当前 Key 本身存在
-  if (OPEN_DIRECTION_DATA[category]) {
-    return category;
-  }
-
-
-  // 中文转换
-  const mappedKey =
-    OPEN_CATEGORY_MAP[category];
-
-
-  if (
-    mappedKey &&
-    OPEN_DIRECTION_DATA[mappedKey]
-  ) {
-    return mappedKey;
-  }
-
-
-  // 如果英文 Key 对应的中文数据存在
-  const chineseName =
-    OPEN_CATEGORY_NAME[category];
-
-
-  if (
-    chineseName &&
-    OPEN_DIRECTION_DATA[chineseName]
-  ) {
-    return chineseName;
-  }
-
-
-  return Object.keys(OPEN_DIRECTION_DATA)[0] || "";
-
-}
-
-
-// ======================================================
-// 11. 获取开款方向显示名称
-// ======================================================
-
-function getOpenDisplayName(key) {
-
-  return OPEN_CATEGORY_NAME[key] || key;
-
-}
-
-
-// ======================================================
-// 12. 渲染开款方向 Tabs
-// ======================================================
+/* =========================================
+   11. 开款方向分类按钮
+   固定显示中文
+   ========================================= */
 
 function renderOpenTabs() {
 
-  const openTabs = $("#openTabs");
-
-  if (!openTabs) return;
-
-
-  if (
-    typeof OPEN_DIRECTION_DATA === "undefined"
-  ) {
-    openTabs.innerHTML =
-      `<div class="empty-state">
-        暂未加载开款方向数据
-      </div>`;
-
+  if (!$("#openTabs")) {
     return;
   }
 
 
-  const dataKeys =
-    Object.keys(OPEN_DIRECTION_DATA);
+  const categories = [
+    "套装",
+    "正装",
+    "棉羽"
+  ];
 
 
-  // 自动修正当前分类
-  const actualKey =
-    getOpenDataKey(currentOpen);
+  currentOpen =
+    normalizeOpenCategory(currentOpen);
 
 
-  if (actualKey) {
-    currentOpen = actualKey;
-  }
+  $("#openTabs").innerHTML =
+    categories.map(name => `
+
+      <button
+        class="tab-btn ${name === currentOpen ? "active" : ""}"
+        data-open-tab="${name}"
+      >
+        ${name}
+      </button>
+
+    `).join("");
 
 
-  openTabs.innerHTML = dataKeys
-    .map(key => {
+  $$("[data-open-tab]").forEach(b => {
 
-      return `
-
-        <button
-          class="tab-btn ${key === currentOpen ? "active" : ""}"
-          data-open-tab="${key}"
-        >
-          ${getOpenDisplayName(key)}
-        </button>
-
-      `;
-
-    })
-    .join("");
-
-
-  $$("[data-open-tab]").forEach(button => {
-
-    button.addEventListener("click", () => {
+    b.addEventListener("click", () => {
 
       currentOpen =
-        button.dataset.openTab;
+        normalizeOpenCategory(
+          b.dataset.openTab
+        );
 
       renderOpenTabs();
-
       renderOpenGrid();
 
     });
@@ -540,309 +641,160 @@ function renderOpenTabs() {
 }
 
 
-// ======================================================
-// 13. 获取开款图片
-// ======================================================
-
-function getReferenceImage(item, index) {
-
-  // 1. 数据中已有图片
-  if (item.image) {
-    return item.image;
-  }
-
-
-  // 2. 手动填写 GitHub 图片路径
-  const repoImagePath =
-    $("#repoImagePath");
-
-  if (
-    repoImagePath &&
-    repoImagePath.value.trim()
-  ) {
-    return repoImagePath.value.trim();
-  }
-
-
-  // 3. 本地临时上传
-  // 仅用于当前浏览器预览
-  if (
-    tempImageURL &&
-    index === 0
-  ) {
-    return tempImageURL;
-  }
-
-
-  return "";
-
-}
-
-
-// ======================================================
-// 14. 获取 PDF
-// ======================================================
-
-function getReferencePdf(item, index) {
-
-  // 1. 数据文件中的 PDF
-  if (item.pdf) {
-    return item.pdf;
-  }
-
-
-  // 2. 手动填写 GitHub PDF 路径
-  const repoPdfPath =
-    $("#repoPdfPath");
-
-  if (
-    repoPdfPath &&
-    repoPdfPath.value.trim()
-  ) {
-    return repoPdfPath.value.trim();
-  }
-
-
-  // 3. 本地临时 PDF
-  if (
-    tempPdfURL &&
-    index === 0
-  ) {
-    return tempPdfURL;
-  }
-
-
-  return "";
-
-}
-
-
-// ======================================================
-// 15. 渲染开款方向卡片
-// ======================================================
+/* =========================================
+   12. 开款方向卡片
+   仅展示 PDF
+   不再展示图片上传
+   ========================================= */
 
 function renderOpenGrid() {
 
-  const openDirectionGrid =
-    $("#openDirectionGrid");
-
-  if (!openDirectionGrid) return;
-
-
-  if (
-    typeof OPEN_DIRECTION_DATA === "undefined"
-  ) {
-
-    openDirectionGrid.innerHTML = `
-      <div class="empty-state">
-        未找到 OPEN_DIRECTION_DATA，
-        请检查 data/open-direction-data.js 是否已正确加载。
-      </div>
-    `;
-
+  if (!$("#openDirectionGrid")) {
     return;
-
   }
 
 
-  const actualKey =
-    getOpenDataKey(currentOpen);
-
-
   const list =
-    OPEN_DIRECTION_DATA[actualKey]
-    || [];
-
-
-  currentOpen = actualKey;
+    getOpenDirectionList(currentOpen);
 
 
   if (!list.length) {
 
-    openDirectionGrid.innerHTML = `
+    $("#openDirectionGrid").innerHTML = `
+
       <div class="empty-state">
-        当前类目暂时没有款式参考
+
+        <h3>
+          暂未添加 ${currentOpen} 款式参考
+        </h3>
+
+        <p>
+          请在 open-direction-data.js 中添加对应的 PDF 路径。
+        </p>
+
       </div>
+
     `;
 
     return;
-
   }
 
 
-  openDirectionGrid.innerHTML =
-    list.map((item, index) => {
+  $("#openDirectionGrid").innerHTML =
+    list.map(x => {
 
-      const image =
-        getReferenceImage(item, index);
-
-      const pdf =
-        getReferencePdf(item, index);
+      const pdf = x.pdf || "";
 
       const tags =
-        Array.isArray(item.tags)
-          ? item.tags
+        Array.isArray(x.tags)
+          ? x.tags
           : [];
-
-
-      const description =
-        item.description || "";
-
-
-      const englishName =
-        item.en || "";
 
 
       return `
 
         <article class="reference-card">
 
-
-          ${
-            image
-
-              ? `
-
-                <img
-                  src="${image}"
-                  alt="${item.name || "款式参考"}"
-                  loading="lazy"
-
-                  onerror="
-                    this.outerHTML=
-                    '<div class=&quot;placeholder&quot;>
-                    图片路径无效或尚未上传
-                    </div>'
-                  "
-                >
-
-              `
-
-              : `
-
-                <div class="placeholder">
-                  待添加 JPG / PNG / WEBP 款式图片
-                </div>
-
-              `
-          }
-
-
           <div class="reference-body">
+
+            <div class="reference-type">
+              PDF 款式参考
+            </div>
 
 
             <h3>
-              ${item.name || "未命名款式"}
+              ${x.name || currentOpen + "款式参考"}
             </h3>
 
 
             ${
-              englishName
-
+              x.en
                 ? `
-                  <div class="en-name">
-                    ${englishName}
-                  </div>
-                `
-
-                : ""
-            }
-
-
-            ${
-              description
-
-                ? `
-                  <p class="reference-desc">
-                    ${description}
+                  <p class="reference-en">
+                    ${x.en}
                   </p>
                 `
-
                 : ""
             }
 
 
             <div class="tags">
 
-              ${tags.map(tag => {
-
-                return `
+              ${
+                tags.map(t => `
                   <span class="tag">
-                    ${tag}
+                    ${t}
                   </span>
-                `;
-
-              }).join("")}
+                `).join("")
+              }
 
             </div>
 
 
             <div class="card-actions">
 
-
               ${
                 pdf
-
                   ? `
-
                     <button
                       class="view-pdf"
                       data-pdf="${pdf}"
                     >
-                      查看 PDF 参考
+                      查看 ${x.name || "款式"} PDF 参考
                     </button>
-
                   `
-
                   : `
-
-                    <span class="tag">
-                      待绑定 PDF
-                    </span>
-
+                    <div class="pdf-empty">
+                      暂未绑定 PDF 款式参考
+                    </div>
                   `
               }
-
-
-              ${
-                image
-
-                  ? `
-
-                    <a
-                      href="${image}"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      查看图片
-                    </a>
-
-                  `
-
-                  : ""
-              }
-
 
             </div>
 
-
           </div>
-
 
         </article>
 
       `;
 
-    })
-    .join("");
+    }).join("");
 
 
-  // 绑定 PDF 打开事件
-  $$(".view-pdf").forEach(button => {
+  /* PDF 查看按钮 */
 
-    button.addEventListener("click", () => {
+  $$(".view-pdf").forEach(b => {
 
-      openPdf(button.dataset.pdf);
+    b.addEventListener("click", () => {
+
+      if ($("#pdfFrame")) {
+        $("#pdfFrame").src =
+          b.dataset.pdf;
+      }
+
+
+      if ($("#pdfModal")) {
+        $("#pdfModal")
+          .classList.add("show");
+      }
+
+
+      /*
+       如果没有 PDF 弹窗结构，
+       则直接打开 PDF
+      */
+
+      if (
+        !$("#pdfModal") &&
+        b.dataset.pdf
+      ) {
+
+        window.open(
+          b.dataset.pdf,
+          "_blank"
+        );
+
+      }
 
     });
 
@@ -851,443 +803,209 @@ function renderOpenGrid() {
 }
 
 
-// ======================================================
-// 16. 打开 PDF
-// ======================================================
+/* =========================================
+   13. 删除开款方向上传区域
+   ========================================= */
 
-function openPdf(pdfPath) {
+function removeOpenUploadArea() {
 
-  if (!pdfPath) {
+  /*
+    删除上传预览区域
+  */
 
-    alert("暂未绑定 PDF 文件");
+  const uploadPreview =
+    $("#uploadPreview");
 
-    return;
+  if (uploadPreview) {
 
-  }
+    const parent =
+      uploadPreview.closest(
+        ".upload-panel, .upload-area, .group-card, section"
+      );
 
-
-  const pdfFrame =
-    $("#pdfFrame");
-
-  const pdfModal =
-    $("#pdfModal");
-
-
-  if (
-    pdfFrame &&
-    pdfModal
-  ) {
-
-    pdfFrame.src = pdfPath;
-
-    pdfModal.classList.add("show");
-
-  } else {
-
-    // 如果你的 index.html 没有 PDF 弹窗
-    // 自动使用新窗口打开
-    window.open(
-      pdfPath,
-      "_blank"
-    );
+    if (parent) {
+      parent.remove();
+    } else {
+      uploadPreview.remove();
+    }
 
   }
 
-}
 
-
-// ======================================================
-// 17. 本地上传与 GitHub 路径
-// ======================================================
-
-function initUpload() {
+  /*
+    删除图片上传 input
+  */
 
   const localImage =
     $("#localImage");
 
+  if (localImage) {
+
+    const parent =
+      localImage.closest(
+        ".upload-panel, .upload-area, .group-card, section"
+      );
+
+    if (parent) {
+      parent.remove();
+    } else {
+      localImage.remove();
+    }
+
+  }
+
+
+  /*
+    删除 PDF 本地上传 input
+    因为现在统一通过
+    open-direction-data.js
+    绑定 GitHub PDF 路径
+  */
+
   const localPdf =
     $("#localPdf");
 
-
-  // ----------------------------
-  // 本地图片
-  // ----------------------------
-
-  if (localImage) {
-
-    localImage.addEventListener(
-      "change",
-      event => {
-
-        if (tempImageURL) {
-          URL.revokeObjectURL(
-            tempImageURL
-          );
-        }
-
-
-        const file =
-          event.target.files[0];
-
-
-        tempImageURL =
-          file
-            ? URL.createObjectURL(file)
-            : "";
-
-
-        renderUploadPreview();
-
-        renderOpenGrid();
-
-      }
-    );
-
-  }
-
-
-  // ----------------------------
-  // 本地 PDF
-  // ----------------------------
-
   if (localPdf) {
 
-    localPdf.addEventListener(
-      "change",
-      event => {
+    const parent =
+      localPdf.closest(
+        ".upload-panel, .upload-area, .group-card, section"
+      );
 
-        if (tempPdfURL) {
-
-          URL.revokeObjectURL(
-            tempPdfURL
-          );
-
-        }
-
-
-        const file =
-          event.target.files[0];
-
-
-        tempPdfURL =
-          file
-            ? URL.createObjectURL(file)
-            : "";
-
-
-        renderUploadPreview();
-
-        renderOpenGrid();
-
-      }
-    );
+    if (parent) {
+      parent.remove();
+    } else {
+      localPdf.remove();
+    }
 
   }
 
 
-  // ----------------------------
-  // GitHub 图片 / PDF 路径
-  // ----------------------------
+  /*
+    删除素材路径输入框
+  */
 
   [
     "repoImagePath",
-    "repoPdfPath"
+    "repoPdfPath",
+    "clearUploads"
   ].forEach(id => {
 
-    const input =
+    const element =
       $("#" + id);
 
+    if (element) {
 
-    if (input) {
+      const parent =
+        element.closest(
+          ".upload-panel, .upload-area, .group-card, section"
+        );
 
-      input.addEventListener(
-        "input",
-        () => {
-
-          renderOpenGrid();
-
-        }
-      );
+      if (parent) {
+        parent.remove();
+      } else {
+        element.remove();
+      }
 
     }
 
   });
 
-
-  // ----------------------------
-  // 清空上传
-  // ----------------------------
-
-  const clearUploads =
-    $("#clearUploads");
+}
 
 
-  if (clearUploads) {
+/* =========================================
+   14. PDF 弹窗关闭
+   ========================================= */
 
-    clearUploads.addEventListener(
-      "click",
-      () => {
+function initPdfModal() {
 
-        if (tempImageURL) {
-
-          URL.revokeObjectURL(
-            tempImageURL
-          );
-
-        }
-
-
-        if (tempPdfURL) {
-
-          URL.revokeObjectURL(
-            tempPdfURL
-          );
-
-        }
-
-
-        tempImageURL = "";
-
-        tempPdfURL = "";
-
-
-        if ($("#localImage")) {
-          $("#localImage").value = "";
-        }
-
-
-        if ($("#localPdf")) {
-          $("#localPdf").value = "";
-        }
-
-
-        if ($("#repoImagePath")) {
-          $("#repoImagePath").value = "";
-        }
-
-
-        if ($("#repoPdfPath")) {
-          $("#repoPdfPath").value = "";
-        }
-
-
-        renderUploadPreview();
-
-        renderOpenGrid();
-
-      }
-    );
-
-  }
-
-
-  // ----------------------------
-  // 关闭 PDF
-  // ----------------------------
-
-  const closePdf =
+  const closeBtn =
     $("#closePdf");
 
-
-  if (closePdf) {
-
-    closePdf.addEventListener(
-      "click",
-      () => {
-
-        const pdfModal =
-          $("#pdfModal");
-
-        const pdfFrame =
-          $("#pdfFrame");
-
-
-        if (pdfModal) {
-          pdfModal.classList.remove(
-            "show"
-          );
-        }
-
-
-        if (pdfFrame) {
-          pdfFrame.src = "";
-        }
-
-      }
-    );
-
+  if (!closeBtn) {
+    return;
   }
+
+
+  closeBtn.addEventListener(
+    "click",
+    () => {
+
+      if ($("#pdfModal")) {
+        $("#pdfModal")
+          .classList.remove("show");
+      }
+
+      if ($("#pdfFrame")) {
+        $("#pdfFrame").src = "";
+      }
+
+    }
+  );
 
 }
 
 
-// ======================================================
-// 18. 上传预览
-// ======================================================
-
-function renderUploadPreview() {
-
-  const uploadPreview =
-    $("#uploadPreview");
-
-  if (!uploadPreview) return;
-
-
-  let html = "";
-
-
-  if (tempImageURL) {
-
-    html += `
-
-      <div class="preview-box">
-
-        <b>
-          本地图片预览
-        </b>
-
-        <img
-          src="${tempImageURL}"
-          alt="本地上传图片"
-        >
-
-      </div>
-
-    `;
-
-  }
-
-
-  if (tempPdfURL) {
-
-    html += `
-
-      <div class="preview-box">
-
-        <b>
-          本地 PDF 已选择
-        </b>
-
-        <br>
-
-        <button
-          class="btn small"
-          id="previewTempPdf"
-        >
-          打开 PDF 预览
-        </button>
-
-      </div>
-
-    `;
-
-  }
-
-
-  uploadPreview.innerHTML = html;
-
-
-  const previewTempPdf =
-    $("#previewTempPdf");
-
-
-  if (previewTempPdf) {
-
-    previewTempPdf.addEventListener(
-      "click",
-      () => {
-
-        openPdf(tempPdfURL);
-
-      }
-    );
-
-  }
-
-}
-
-
-// ======================================================
-// 19. 视觉优化
-// ======================================================
+/* =========================================
+   15. 视觉优化
+   ========================================= */
 
 function renderVisual() {
 
-  const visualControls =
-    $("#visualControls");
-
   if (
-    !visualControls ||
-    typeof VISUAL_DATA === "undefined"
+    typeof VISUAL_DATA === "undefined" ||
+    !$("#visualControls")
   ) {
     return;
   }
 
 
-  visualControls.innerHTML =
+  $("#visualControls").innerHTML =
     Object.entries(VISUAL_DATA)
-      .map(([dimension, words]) => {
+      .map(([dim, words]) => `
 
-        const safeWords =
-          Array.isArray(words)
-            ? words
-            : [];
+        <section class="group-card">
 
+          <div class="group-title">
 
-        return `
+            <h3>${dim}</h3>
 
-          <section class="group-card">
+            <span>
+              可多选
+            </span>
 
-            <div class="group-title">
-
-              <h3>
-                ${dimension}
-              </h3>
-
-              <span>
-                可多选
-              </span>
-
-            </div>
+          </div>
 
 
-            <div class="choices">
+          <div class="choices">
 
-              ${safeWords.map(word => {
+            ${words.map(w => `
 
-                return `
+              <button
+                class="choice visual-choice"
+                data-dim="${dim}"
+                data-word="${w}"
+              >
+                ${w}
+              </button>
 
-                  <button
-                    class="choice visual-choice"
-                    data-dim="${dimension}"
-                    data-word="${word}"
-                  >
-                    ${word}
-                  </button>
+            `).join("")}
 
-                `;
+          </div>
 
-              }).join("")}
+        </section>
 
-            </div>
-
-          </section>
-
-        `;
-
-      })
-      .join("");
+      `).join("");
 
 
-  $$(".visual-choice").forEach(button => {
+  $$(".visual-choice").forEach(b => {
 
-    button.addEventListener(
+    b.addEventListener(
       "click",
       () => {
 
-        button.classList.toggle(
-          "active"
-        );
+        b.classList.toggle("active");
 
         buildVisual();
 
@@ -1302,119 +1020,98 @@ function renderVisual() {
 }
 
 
-// ======================================================
-// 20. 生成视觉 Prompt
-// ======================================================
-
 function buildVisual() {
 
-  const selected =
-    $$(".visual-choice.active")
-      .map(button => button.dataset.word);
-
-
-  const visualOutput =
-    $("#visualOutput");
-
-
-  if (!visualOutput) return;
-
-
-  if (!selected.length) {
-
-    visualOutput.value =
-      "请选择上方人模、姿势、场景、光线、构图等选项生成 Prompt。";
-
+  if (!$("#visualOutput")) {
     return;
-
   }
 
 
+  const selected =
+    $$(".visual-choice.active")
+      .map(b => b.dataset.word);
+
+
   const prompt =
+    selected.length
+      ? `
+专业男装电商摄影，真实成年男性模特，
+${selected.join("，")}。
+突出服装版型、面料纹理与整体搭配，
+真实自然光影，高级商业摄影质感，
+商品主体清晰，移动端电商主图构图优化，
+无品牌 Logo，无水印。
+        `.replace(/\n/g, " ").replace(/\s+/g, " ").trim()
 
-    `专业男装电商摄影，真实成年男性模特，` +
-
-    `${selected.join("，")}。` +
-
-    `重点突出男装商品主体、服装版型、面料纹理和细节工艺，` +
-
-    `人物姿态自然，商品清晰可见，` +
-
-    `真实自然光影，高级商业摄影质感，` +
-
-    `画面层次清晰，主体精准对焦，` +
-
-    `适合 TEMU 男装电商主图及详情页展示，` +
-
-    `移动端电商构图优化，无品牌 Logo，无文字，无水印。`;
+      : "请选择上方人模、姿势、场景、光线、构图等选项生成 Prompt。";
 
 
-  visualOutput.value =
+  $("#visualOutput").value =
     prompt;
 
 }
 
 
-// ======================================================
-// 21. 标题优化分类 Tabs
-// ======================================================
+/* =========================================
+   16. 标题优化分类 Tab
+   ========================================= */
 
 function renderTitleTabs() {
 
-  const titleCategoryTabs =
-    $("#titleCategoryTabs");
-
   if (
-    !titleCategoryTabs ||
-    typeof TITLE_DATA === "undefined"
+    typeof TITLE_DATA === "undefined" ||
+    !$("#titleCategoryTabs")
   ) {
     return;
   }
 
 
-  const keys =
+  const allKeys =
     Object.keys(TITLE_DATA);
 
 
-  if (
-    !TITLE_DATA[currentTitle]
-  ) {
+  const chineseOrder = [
+    "套装",
+    "正装",
+    "棉羽"
+  ];
 
+
+  const categories = [
+    ...chineseOrder.filter(x => allKeys.includes(x)),
+    ...allKeys.filter(x => !chineseOrder.includes(x))
+  ];
+
+
+  if (!TITLE_DATA[currentTitle]) {
     currentTitle =
-      keys[0] || "";
-
+      categories[0];
   }
 
 
-  titleCategoryTabs.innerHTML =
-    keys.map(key => {
+  $("#titleCategoryTabs").innerHTML =
+    categories.map(x => `
 
-      return `
+      <button
+        class="tab-btn ${x === currentTitle ? "active" : ""}"
+        data-title-tab="${x}"
+      >
+        ${normalizeOpenCategory(x)}
+      </button>
 
-        <button
-          class="tab-btn ${key === currentTitle ? "active" : ""}"
-          data-title-tab="${key}"
-        >
-          ${key}
-        </button>
-
-      `;
-
-    })
-    .join("");
+    `).join("");
 
 
-  $$("[data-title-tab]").forEach(button => {
+  $$("[data-title-tab]").forEach(b => {
 
-    button.addEventListener(
+    b.addEventListener(
       "click",
       () => {
 
         currentTitle =
-          button.dataset.titleTab;
+          b.dataset.titleTab;
 
         renderTitleTabs();
-
         renderTitleControls();
 
       }
@@ -1425,95 +1122,81 @@ function renderTitleTabs() {
 }
 
 
-// ======================================================
-// 22. 标题关键词卡片
-// ======================================================
+/* =========================================
+   17. 标题关键词卡片
+   ========================================= */
 
 function renderTitleControls() {
 
-  const titleControls =
-    $("#titleControls");
-
-  if (!titleControls) return;
+  if (
+    typeof TITLE_DATA === "undefined" ||
+    !$("#titleControls")
+  ) {
+    return;
+  }
 
 
   const data =
-    TITLE_DATA[currentTitle]
-    || {};
+    TITLE_DATA[currentTitle];
+
+  if (!data) {
+    return;
+  }
 
 
-  titleControls.innerHTML =
+  $("#titleControls").innerHTML =
     Object.entries(data)
-      .map(([dimension, items]) => {
+      .map(([dim, items]) => `
 
-        const safeItems =
-          Array.isArray(items)
-            ? items
-            : [];
+        <section class="group-card">
 
+          <div class="group-title">
 
-        return `
+            <h3>${dim}</h3>
 
-          <section class="group-card">
+            <span>
+              多选
+            </span>
 
-            <div class="group-title">
-
-              <h3>
-                ${dimension}
-              </h3>
-
-              <span>
-                可多选
-              </span>
-
-            </div>
+          </div>
 
 
-            <div class="choices">
+          <div class="choices">
 
-              ${safeItems.map(item => {
+            ${items.map(x => `
 
-                return `
+              <button
+                class="choice title-choice"
+                data-dim="${dim}"
+                data-en="${x.en || ""}"
+                data-zh="${x.zh || ""}"
+                title="${x.variants || ""}"
+              >
 
-                  <button
-                    class="choice title-choice"
-                    data-dim="${dimension}"
-                    data-en="${item.en || ""}"
-                    data-zh="${item.zh || ""}"
-                    title="${item.variants || ""}"
-                  >
+                ${x.zh || ""}
 
-                    ${item.zh || item.en || "未命名"}
+                <small>
+                  ${x.en || "—"}
+                </small>
 
-                    <small>
-                      ${item.en || "—"}
-                    </small>
+              </button>
 
-                  </button>
+            `).join("")}
 
-                `;
+          </div>
 
-              }).join("")}
+        </section>
 
-            </div>
-
-          </section>
-
-        `;
-
-      })
-      .join("");
+      `).join("");
 
 
-  $$(".title-choice").forEach(button => {
+  $$(".title-choice").forEach(b => {
 
-    button.addEventListener(
+    b.addEventListener(
       "click",
       () => {
 
-        button.classList.toggle(
-          "active"
-        );
+        b.classList.toggle("active");
 
         buildTitle();
 
@@ -1528,30 +1211,24 @@ function renderTitleControls() {
 }
 
 
-// ======================================================
-// 23. 生成标题
-// ======================================================
+/* =========================================
+   18. 生成英文标题
+   ========================================= */
 
 function buildTitle() {
 
+  if (!$("#titleOutput")) {
+    return;
+  }
+
+
   const selected =
     $$(".title-choice.active")
-      .map(button => {
-
-        return {
-
-          dim:
-            button.dataset.dim,
-
-          en:
-            button.dataset.en,
-
-          zh:
-            button.dataset.zh
-
-        };
-
-      });
+      .map(b => ({
+        dim: b.dataset.dim,
+        en: b.dataset.en,
+        zh: b.dataset.zh
+      }));
 
 
   const order = [
@@ -1559,79 +1236,47 @@ function buildTitle() {
     "品类(Category)",
     "核心品类词",
     "套装规格(Pack/Set)",
-    "套装数量",
     "目标人群(Target)",
-    "性别",
     "版型(Fit)",
-    "版型",
     "领型(Neckline)",
-    "领型",
     "闭合方式(Closure)",
-    "闭合方式",
     "袖长(Sleeve)",
-    "袖长",
     "长度(Length)",
-    "长度",
     "面料/材质(Material)",
-    "面料",
-    "材质",
     "功能特性(Feature)",
-    "功能",
     "细节(Detail)",
-    "细节",
     "图案/花色(Pattern)",
-    "图案",
-    "花色",
     "风格(Style)",
-    "风格",
     "季节(Season)",
-    "季节",
-    "节日",
     "节日(Holiday)",
     "场景(Occasion)",
-    "场景",
-    "颜色(Color)",
-    "颜色"
+    "颜色(Color)"
 
   ];
 
 
   selected.sort((a, b) => {
 
-    let indexA =
+    const ai =
       order.indexOf(a.dim);
 
-    let indexB =
+    const bi =
       order.indexOf(b.dim);
 
-
-    if (indexA === -1) {
-      indexA = 999;
-    }
-
-
-    if (indexB === -1) {
-      indexB = 999;
-    }
-
-
-    return indexA - indexB;
+    return (
+      (ai === -1 ? 999 : ai) -
+      (bi === -1 ? 999 : bi)
+    );
 
   });
 
 
   const words = [
-
     ...new Set(
-
       selected
-        .map(item =>
-          item.en || item.zh
-        )
+        .map(x => x.en || x.zh)
         .filter(Boolean)
-
     )
-
   ];
 
 
@@ -1639,29 +1284,16 @@ function buildTitle() {
     words.join(", ");
 
 
-  const titleOutput =
-    $("#titleOutput");
-
-  const titleCount =
-    $("#titleCount");
+  $("#titleOutput").value =
+    title ||
+    "请选择关键词卡片生成英文标题。";
 
 
-  if (titleOutput) {
+  if ($("#titleCount")) {
 
-    titleOutput.value =
-      title ||
-      "请选择关键词卡片生成英文标题。";
-
-  }
-
-
-  if (titleCount) {
-
-    titleCount.textContent =
+    $("#titleCount").textContent =
       title
-
         ? `当前：${words.length} 个关键词 · ${title.length} 个字符`
-
         : "";
 
   }
@@ -1669,33 +1301,35 @@ function buildTitle() {
 }
 
 
-// ======================================================
-// 24. 复制文本
-// ======================================================
+/* =========================================
+   19. 复制内容
+   ========================================= */
 
 async function copyText(id) {
 
-  const element =
-    $(id);
+  const element = $(id);
 
-  if (!element) return;
+  if (!element) {
+    return;
+  }
 
 
   const text =
     element.value;
 
-  if (!text) return;
+  if (!text) {
+    return;
+  }
 
 
   try {
 
-    await navigator.clipboard.writeText(
-      text
-    );
+    await navigator.clipboard
+      .writeText(text);
 
     alert("已复制");
 
-  } catch (error) {
+  } catch (e) {
 
     element.select();
 
@@ -1708,145 +1342,76 @@ async function copyText(id) {
 }
 
 
-// ======================================================
-// 25. 页面加载完成
-// ======================================================
+/* =========================================
+   20. 页面初始化
+   ========================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+    /* 注入按钮放大等样式 */
+    injectAppStyles();
 
-    // --------------------------
-    // 导航
-    // --------------------------
 
+    /* 初始化导航 */
     initNav();
 
 
-    // --------------------------
-    // 类目指引
-    // --------------------------
-
-    if (
-      typeof CATEGORY_DATA !== "undefined"
-    ) {
-
-      renderCategoryOverview();
-
-    }
+    /* 类目指引 */
+    renderCategoryOverview();
 
 
-    // --------------------------
-    // 开款方向
-    // --------------------------
-
-    if (
-      typeof OPEN_DIRECTION_DATA !== "undefined"
-    ) {
-
-      // 自动设置第一个存在的分类
-      const firstOpenKey =
-        Object.keys(OPEN_DIRECTION_DATA)[0];
+    /* 开款方向 */
+    renderOpenTabs();
+    renderOpenGrid();
 
 
-      if (firstOpenKey) {
-
-        currentOpen =
-          firstOpenKey;
-
-      }
+    /* 删除素材预览上传 */
+    removeOpenUploadArea();
 
 
-      renderOpenTabs();
-
-      renderOpenGrid();
-
-    }
+    /* PDF 弹窗 */
+    initPdfModal();
 
 
-    // --------------------------
-    // 上传功能
-    // --------------------------
-
-    initUpload();
+    /* 视觉优化 */
+    renderVisual();
 
 
-    // --------------------------
-    // 视觉优化
-    // --------------------------
-
-    if (
-      typeof VISUAL_DATA !== "undefined"
-    ) {
-
-      renderVisual();
-
-    }
+    /* 标题优化 */
+    renderTitleTabs();
+    renderTitleControls();
 
 
-    // --------------------------
-    // 标题优化
-    // --------------------------
-
-    if (
-      typeof TITLE_DATA !== "undefined"
-    ) {
-
-      renderTitleTabs();
-
-      renderTitleControls();
-
-    }
-
-
-    // --------------------------
-    // 复制视觉 Prompt
-    // --------------------------
+    /* 复制视觉 Prompt */
 
     const copyVisual =
       $("#copyVisual");
-
 
     if (copyVisual) {
 
       copyVisual.addEventListener(
         "click",
-        () => {
-
-          copyText(
-            "#visualOutput"
-          );
-
-        }
+        () => copyText("#visualOutput")
       );
 
     }
 
 
-    // --------------------------
-    // 复制标题
-    // --------------------------
+    /* 复制标题 */
 
     const copyTitle =
       $("#copyTitle");
-
 
     if (copyTitle) {
 
       copyTitle.addEventListener(
         "click",
-        () => {
-
-          copyText(
-            "#titleOutput"
-          );
-
-        }
+        () => copyText("#titleOutput")
       );
 
     }
-
 
   }
 );
