@@ -1,65 +1,69 @@
 /* =========================================
    云岁月对接类目上新指引
    TEMU 男装工具网站 - app.js
-
-   开款方向升级版：
-   PPT / PDF / 图片款式参考展示
 ========================================= */
 
 
 /* =========================================
-01. 功能模块
+   01. 功能模块
 ========================================= */
 
 const MODULES = [
+
   {
     id: "home",
     name: "首页",
     desc: "所有功能入口与后续扩展工作台"
   },
+
   {
     id: "category",
     name: "类目指引",
     desc: "套装 / 正装 / 棉羽精准上新路径"
   },
+
   {
     id: "open",
     name: "开款方向",
     desc: "套装 / 正装 / 棉羽款式参考"
   },
+
   {
     id: "visual",
     name: "视觉优化",
     desc: "人模电商图 Prompt 生成"
   },
+
   {
     id: "title",
     name: "标题优化",
     desc: "三大类目关键词多选组合"
   },
+
   {
     id: "sourcing",
     name: "招品 / 回品",
     desc: "预留招品、回品与趋势分析功能"
   }
+
 ];
 
 
 /* =========================================
-02. 基础工具
+   02. 基础工具
 ========================================= */
 
-const $ = s => document.querySelector(s);
+const $ = selector => document.querySelector(selector);
 
-const $$ = s => [...document.querySelectorAll(s)];
+const $$ = selector => [...document.querySelectorAll(selector)];
 
 
 /* =========================================
-03. 三大类目映射
-兼容中文和英文数据
+   03. 三大类目映射
 ========================================= */
 
 const OPEN_CATEGORY_MAP = {
+
   "套装": {
     keys: ["套装", "sets", "set"],
     label: "套装"
@@ -74,11 +78,12 @@ const OPEN_CATEGORY_MAP = {
     keys: ["棉羽", "padded", "padding", "downwear"],
     label: "棉羽"
   }
+
 };
 
 
 /* =========================================
-04. 当前分类
+   04. 当前分类
 ========================================= */
 
 let currentOpen = "套装";
@@ -87,8 +92,7 @@ let currentTitle = "套装";
 
 
 /* =========================================
-05. 注入页面样式
-不需要修改 style.css
+   05. 注入开款方向优化样式
 ========================================= */
 
 function injectAppStyles() {
@@ -99,408 +103,460 @@ function injectAppStyles() {
     oldStyle.remove();
   }
 
+
   const style = document.createElement("style");
 
   style.id = "appDynamicStyles";
 
+
   style.textContent = `
 
-/* =====================================
-   三大类目按钮统一放大
-===================================== */
-
-.tab-btn,
-.seg,
-.category-btn {
-  min-width: 130px !important;
-  min-height: 54px !important;
-  padding: 12px 28px !important;
-  font-size: 19px !important;
-  font-weight: 800 !important;
-  border-radius: 14px !important;
-  cursor: pointer !important;
-}
-
-
-/* =====================================
-   开款方向分类按钮
-===================================== */
-
-#openTabs {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 18px !important;
-  margin: 12px 0 32px !important;
-}
-
-#openTabs .tab-btn {
-  min-width: 180px !important;
-  min-height: 64px !important;
-  padding: 15px 36px !important;
-  font-size: 22px !important;
-  font-weight: 900 !important;
-  border-radius: 16px !important;
-}
-
-
-/* =====================================
-   标题优化分类按钮
-===================================== */
-
-#titleCategoryTabs {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 18px !important;
-  margin-bottom: 30px !important;
-}
-
-#titleCategoryTabs .tab-btn {
-  min-width: 160px !important;
-  min-height: 58px !important;
-  font-size: 20px !important;
-  font-weight: 800 !important;
-}
-
-
-/* =====================================
-   开款方向 PPT 展示区域
-===================================== */
-
-.open-ppt-head {
-  margin-bottom: 28px;
-}
-
-.open-ppt-head h2 {
-  font-size: 30px;
-  margin: 0 0 10px;
-}
-
-.open-ppt-head p {
-  margin: 0;
-  font-size: 16px;
-  opacity: 0.75;
-}
-
-
-/* =====================================
-   PPT 卡片网格
-===================================== */
-
-#openDirectionGrid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)) !important;
-  gap: 24px !important;
-  align-items: stretch !important;
-}
-
-
-/* =====================================
-   PPT 款式卡片
-===================================== */
-
-.reference-card {
-  min-height: 520px !important;
-  overflow: hidden !important;
-  border-radius: 20px !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
+    /* 三大类目按钮 */
 
-/* =====================================
-   卡片顶部标题
-===================================== */
-
-.ppt-card-header {
-  padding: 20px 24px 18px !important;
-  border-bottom: 1px solid rgba(128,128,128,0.18);
-}
-
-.reference-type {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 5px 12px;
-  margin-bottom: 10px;
-  font-size: 13px;
-  font-weight: 800;
-  border-radius: 999px;
-  background: rgba(100,100,100,0.12);
-}
-
-.ppt-card-header h3 {
-  margin: 0 !important;
-  font-size: 23px !important;
-  line-height: 1.35 !important;
-}
-
-.reference-en {
-  margin: 8px 0 0 !important;
-  font-size: 14px !important;
-  opacity: 0.7;
-}
-
-
-/* =====================================
-   PDF / 图片展示区
-===================================== */
-
-.ppt-preview {
-  position: relative;
-  width: 100%;
-  height: 420px;
-  overflow: hidden;
-  background: #f4f4f4;
-}
-
-.ppt-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain !important;
-  display: block;
-}
-
-.ppt-preview iframe {
-  width: 100%;
-  height: 100%;
-  border: none !important;
-  display: block;
-  background: #ffffff;
-}
-
-.pdf-preview-frame {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-
-/* =====================================
-   PDF 无法预览时的提示
-===================================== */
-
-.preview-placeholder {
-  height: 100%;
-  min-height: 360px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  text-align: center;
-}
-
-.preview-placeholder .pdf-icon {
-  font-size: 54px;
-  margin-bottom: 18px;
-}
-
-.preview-placeholder h4 {
-  margin: 0 0 10px;
-  font-size: 20px;
-}
-
-.preview-placeholder p {
-  margin: 0;
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-
-/* =====================================
-   卡片底部
-===================================== */
-
-.reference-body {
-  padding: 20px 24px 24px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 18px !important;
-}
-
-.reference-card .tags {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  margin: 0 !important;
-}
-
-.reference-card .tag {
-  padding: 7px 11px !important;
-  border-radius: 999px !important;
-}
-
-
-/* =====================================
-   PDF 按钮放大
-===================================== */
-
-.view-pdf {
-  width: 100% !important;
-  min-height: 62px !important;
-  padding: 15px 24px !important;
-  font-size: 19px !important;
-  font-weight: 900 !important;
-  border-radius: 14px !important;
-  cursor: pointer !important;
-}
-
-.card-image-link {
-  display: block;
-  width: 100%;
-  text-align: center;
-  min-height: 56px;
-  line-height: 56px;
-  border-radius: 14px;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-
-/* =====================================
-   类目路径跳转按钮
-===================================== */
-
-.jump-btn {
-  min-height: 48px !important;
-  padding: 10px 20px !important;
-  font-size: 17px !important;
-  font-weight: 800 !important;
-  border-radius: 11px !important;
-  cursor: pointer !important;
-}
-
-
-/* =====================================
-   开款方向空数据提示
-===================================== */
-
-.empty-state {
-  grid-column: 1 / -1;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  text-align: center;
-  border-radius: 20px;
-  border: 1px dashed rgba(128,128,128,0.35);
-}
-
-.empty-state h3 {
-  margin: 0 0 12px;
-  font-size: 24px;
-}
-
-.empty-state p {
-  margin: 0;
-  opacity: 0.7;
-}
-
-
-/* =====================================
-   PDF 弹窗
-===================================== */
-
-#pdfModal.show {
-  display: flex !important;
-}
-
-
-/* =====================================
-   删除旧上传区域
-===================================== */
-
-.open-upload-area,
-.upload-area,
-.upload-panel,
-#uploadPreview,
-#localImage,
-#localPdf,
-#repoImagePath,
-#repoPdfPath,
-#clearUploads {
-  display: none !important;
-}
-
-
-/* =====================================
-   手机端
-===================================== */
-
-@media (max-width: 768px) {
-
-  .tab-btn,
-  .seg,
-  .category-btn {
-    min-width: 105px !important;
-    min-height: 50px !important;
-    padding: 10px 18px !important;
-    font-size: 17px !important;
-  }
-
-  #openTabs {
-    gap: 10px !important;
-  }
-
-  #openTabs .tab-btn {
-    flex: 1 !important;
-    min-width: calc(50% - 6px) !important;
-    min-height: 56px !important;
-    font-size: 19px !important;
-  }
-
-  #titleCategoryTabs .tab-btn {
-    min-width: calc(50% - 8px) !important;
-    font-size: 18px !important;
-  }
-
-  #openDirectionGrid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .ppt-preview {
-    height: 460px;
-  }
-
-  .view-pdf {
-    min-height: 58px !important;
-    font-size: 17px !important;
-  }
-
-}
-
-`;
+    .tab-btn,
+    .seg,
+    .category-btn {
+      min-width: 130px !important;
+      min-height: 54px !important;
+      padding: 12px 28px !important;
+      font-size: 19px !important;
+      font-weight: 800 !important;
+      border-radius: 14px !important;
+      cursor: pointer !important;
+    }
+
+
+    /* 开款方向 Tabs */
+
+    #openTabs {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 18px !important;
+      margin: 12px 0 32px !important;
+    }
+
+
+    #openTabs .tab-btn {
+      min-width: 180px !important;
+      min-height: 64px !important;
+      padding: 15px 36px !important;
+      font-size: 22px !important;
+      font-weight: 900 !important;
+      border-radius: 16px !important;
+    }
+
+
+    /* 标题优化 Tabs */
+
+    #titleCategoryTabs {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 18px !important;
+      margin-bottom: 30px !important;
+    }
+
+
+    #titleCategoryTabs .tab-btn {
+      min-width: 160px !important;
+      min-height: 58px !important;
+      font-size: 20px !important;
+      font-weight: 800 !important;
+    }
+
+
+    /* 开款标题 */
+
+    .open-ppt-head {
+      grid-column: 1 / -1;
+      margin-bottom: 8px;
+    }
+
+
+    .open-ppt-head h2 {
+      font-size: 30px;
+      margin: 0 0 10px;
+    }
+
+
+    .open-ppt-head p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.75;
+    }
+
+
+    /* 开款网格 */
+
+    #openDirectionGrid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)) !important;
+      gap: 24px !important;
+      align-items: stretch !important;
+    }
+
+
+    /* 卡片 */
+
+    .reference-card {
+      min-height: 520px !important;
+      overflow: hidden !important;
+      border-radius: 20px !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+
+    /* 卡片标题 */
+
+    .ppt-card-header {
+      padding: 20px 24px 18px !important;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+    }
+
+
+    .reference-type {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 999px;
+      background: rgba(100, 100, 100, 0.12);
+    }
+
+
+    .ppt-card-header h3 {
+      margin: 0 !important;
+      font-size: 23px !important;
+      line-height: 1.35 !important;
+    }
+
+
+    .reference-en {
+      margin: 8px 0 0 !important;
+      font-size: 14px !important;
+      opacity: 0.7;
+    }
+
+
+    /* 图片和 PDF 展示区 */
+
+    .ppt-preview {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      background: #f4f4f4;
+    }
+
+
+    .ppt-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain !important;
+      display: block;
+    }
+
+
+    .ppt-preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none !important;
+      display: block;
+      background: #ffffff;
+    }
+
+
+    .pdf-preview-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+
+    /* 加载提示 */
+
+    .preview-placeholder {
+      height: 100%;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+
+    .preview-placeholder .pdf-icon {
+      font-size: 54px;
+      margin-bottom: 18px;
+    }
+
+
+    .preview-placeholder h4 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+
+    .preview-placeholder p {
+      margin: 0;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+
+    /* 卡片底部 */
+
+    .reference-body {
+      padding: 20px 24px 24px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 18px !important;
+      flex: 1;
+    }
+
+
+    .reference-card .tags {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin: 0 !important;
+    }
+
+
+    .reference-card .tag {
+      padding: 7px 11px !important;
+      border-radius: 999px !important;
+    }
+
+
+    /* PDF 按钮 */
+
+    .view-pdf {
+      width: 100% !important;
+      min-height: 62px !important;
+      padding: 15px 24px !important;
+      font-size: 19px !important;
+      font-weight: 900 !important;
+      border-radius: 14px !important;
+      cursor: pointer !important;
+    }
+
+
+    /* 图片按钮 */
+
+    .card-image-link {
+      display: block;
+      width: 100%;
+      text-align: center;
+      min-height: 56px;
+      line-height: 56px;
+      border-radius: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+
+    /* 类目跳转按钮 */
+
+    .jump-btn {
+      min-height: 48px !important;
+      padding: 10px 20px !important;
+      font-size: 17px !important;
+      font-weight: 800 !important;
+      border-radius: 11px !important;
+      cursor: pointer !important;
+    }
+
+
+    /* 空状态 */
+
+    .empty-state {
+      grid-column: 1 / -1;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px dashed rgba(128, 128, 128, 0.35);
+    }
+
+
+    .empty-state h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+
+    .empty-state p {
+      margin: 0;
+      opacity: 0.7;
+    }
+
+
+    /* PDF 弹窗 */
+
+    #pdfModal.show {
+      display: flex !important;
+    }
+
+
+    /* PDF 全屏区域 */
+
+    #pdfModal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+
+    #pdfModal .modal-card {
+      position: relative;
+      width: min(1400px, 96vw);
+      height: 90vh;
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+
+    #pdfFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+
+    #closePdf {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 10;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 42px;
+    }
+
+
+    /* 手机端 */
+
+    @media (max-width: 768px) {
+
+      .tab-btn,
+      .seg,
+      .category-btn {
+        min-width: 105px !important;
+        min-height: 50px !important;
+        padding: 10px 18px !important;
+        font-size: 17px !important;
+      }
+
+
+      #openTabs {
+        gap: 10px !important;
+      }
+
+
+      #openTabs .tab-btn {
+        flex: 1 !important;
+        min-width: calc(50% - 6px) !important;
+        min-height: 56px !important;
+        font-size: 19px !important;
+      }
+
+
+      #titleCategoryTabs .tab-btn {
+        min-width: calc(50% - 8px) !important;
+        font-size: 18px !important;
+      }
+
+
+      #openDirectionGrid {
+        grid-template-columns: 1fr !important;
+      }
+
+
+      .ppt-preview {
+        height: 460px;
+      }
+
+
+      .view-pdf {
+        min-height: 58px !important;
+        font-size: 17px !important;
+      }
+
+
+      #pdfModal {
+        padding: 10px;
+      }
+
+
+      #pdfModal .modal-card {
+        width: 100%;
+        height: 94vh;
+      }
+
+    }
+
+  `;
+
 
   document.head.appendChild(style);
+
 }
 
 
 /* =========================================
-06. 页面跳转
+   06. 页面跳转
 ========================================= */
 
 function go(id) {
 
-  $$(".page").forEach(x => {
-    x.classList.toggle("active", x.id === id);
+  $$(".page").forEach(page => {
+    page.classList.toggle(
+      "active",
+      page.id === id
+    );
   });
 
-  $$(".nav-btn").forEach(x => {
-    x.classList.toggle("active", x.dataset.go === id);
+
+  $$(".nav-btn").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.go === id
+    );
   });
 
-  const m = MODULES.find(x => x.id === id);
+
+  const module = MODULES.find(item => item.id === id);
+
 
   if ($("#crumb")) {
 
     $("#crumb").textContent =
       id === "home"
         ? "首页 / 工作台"
-        : "首页 / " + (m ? m.name : "");
+        : "首页 / " + (module ? module.name : "");
 
   }
+
 
   window.scrollTo({
     top: 0,
@@ -511,24 +567,30 @@ function go(id) {
 
 
 /* =========================================
-07. 初始化导航
+   07. 初始化导航
 ========================================= */
 
 function initNav() {
 
   if ($("#mainNav")) {
 
-    $("#mainNav").innerHTML = MODULES.map((m, i) => `
-      <button
-        class="nav-btn ${i === 0 ? "active" : ""}"
-        data-go="${m.id}"
-      >
-        <span class="num">
-          ${String(i + 1).padStart(2, "0")}
-        </span>
-        ${m.name}
-      </button>
-    `).join("");
+    $("#mainNav").innerHTML =
+      MODULES.map((module, index) => `
+
+        <button
+          class="nav-btn ${index === 0 ? "active" : ""}"
+          data-go="${module.id}"
+        >
+
+          <span class="num">
+            ${String(index + 1).padStart(2, "0")}
+          </span>
+
+          ${module.name}
+
+        </button>
+
+      `).join("");
 
   }
 
@@ -536,34 +598,36 @@ function initNav() {
   if ($("#homeModules")) {
 
     $("#homeModules").innerHTML =
-      MODULES.slice(1).map((m, i) => `
+      MODULES.slice(1).map((module, index) => `
+
         <article
           class="module-card"
-          data-go="${m.id}"
+          data-go="${module.id}"
         >
 
           <div class="module-num">
-            模块 ${String(i + 1).padStart(2, "0")}
+            模块 ${String(index + 1).padStart(2, "0")}
           </div>
 
-          <h3>${m.name}</h3>
+          <h3>${module.name}</h3>
 
-          <p>${m.desc}</p>
+          <p>${module.desc}</p>
 
           <button class="btn small">
             进入功能
           </button>
 
         </article>
+
       `).join("");
 
   }
 
 
-  $$("[data-go]").forEach(b => {
+  $$("[data-go]").forEach(button => {
 
-    b.addEventListener("click", () => {
-      go(b.dataset.go);
+    button.addEventListener("click", () => {
+      go(button.dataset.go);
     });
 
   });
@@ -572,16 +636,15 @@ function initNav() {
 
 
 /* =========================================
-08. 类目名称标准化
+   08. 类目名称标准化
 ========================================= */
 
 function normalizeOpenCategory(name) {
 
-  const value =
-    String(name || "").trim();
+  const value = String(name || "").trim();
 
-  const lower =
-    value.toLowerCase();
+  const lower = value.toLowerCase();
+
 
   if (
     value === "套装" ||
@@ -591,6 +654,7 @@ function normalizeOpenCategory(name) {
     return "套装";
   }
 
+
   if (
     value === "正装" ||
     lower === "formal" ||
@@ -598,6 +662,7 @@ function normalizeOpenCategory(name) {
   ) {
     return "正装";
   }
+
 
   if (
     value === "棉羽" ||
@@ -608,14 +673,14 @@ function normalizeOpenCategory(name) {
     return "棉羽";
   }
 
+
   return value;
 
 }
 
 
 /* =========================================
-09. 获取开款方向数据
-兼容中文和英文 KEY
+   09. 获取开款方向数据
 ========================================= */
 
 function getOpenDirectionList(categoryName) {
@@ -627,11 +692,14 @@ function getOpenDirectionList(categoryName) {
     return [];
   }
 
+
   const category =
     normalizeOpenCategory(categoryName);
 
+
   const config =
     OPEN_CATEGORY_MAP[category];
+
 
   if (!config) {
     return [];
@@ -644,7 +712,9 @@ function getOpenDirectionList(categoryName) {
       OPEN_DIRECTION_DATA[key] &&
       Array.isArray(OPEN_DIRECTION_DATA[key])
     ) {
+
       return OPEN_DIRECTION_DATA[key];
+
     }
 
   }
@@ -656,7 +726,7 @@ function getOpenDirectionList(categoryName) {
 
 
 /* =========================================
-10. 类目指引首页
+   10. 类目指引首页
 ========================================= */
 
 function renderCategoryOverview() {
@@ -676,6 +746,7 @@ function renderCategoryOverview() {
         const chineseName =
           normalizeOpenCategory(name);
 
+
         const safeItems =
           Array.isArray(items)
             ? items
@@ -683,15 +754,18 @@ function renderCategoryOverview() {
 
 
         const keywords = [
+
           ...new Set(
             safeItems
-              .map(x => x.keyword)
+              .map(item => item.keyword)
               .filter(Boolean)
           )
+
         ].join("、");
 
 
         return `
+
           <article class="overview-card">
 
             <h3>${chineseName}</h3>
@@ -712,18 +786,19 @@ function renderCategoryOverview() {
             </button>
 
           </article>
+
         `;
 
       })
       .join("");
 
 
-  $$("[data-cat]").forEach(b => {
+  $$("[data-cat]").forEach(button => {
 
-    b.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
       renderCategoryDetail(
-        b.dataset.cat,
+        button.dataset.cat,
         true
       );
 
@@ -741,17 +816,19 @@ function renderCategoryOverview() {
 
 
   if (firstCategory) {
+
     renderCategoryDetail(
       firstCategory,
       false
     );
+
   }
 
 }
 
 
 /* =========================================
-11. 类目精准路径详情
+   11. 类目精准路径详情
 ========================================= */
 
 function renderCategoryDetail(name, scroll) {
@@ -793,20 +870,20 @@ function renderCategoryDetail(name, scroll) {
 
       <div class="path-list">
 
-        ${items.map(x => `
+        ${items.map(item => `
 
           <div class="path-row">
 
             <b>
-              ${x.keyword || chineseName}
+              ${item.keyword || chineseName}
             </b>
 
             <div class="path">
-              ${x.path || "—"}
+              ${item.path || "—"}
             </div>
 
             <div class="season">
-              ${x.season || "—"}
+              ${item.season || "—"}
             </div>
 
             <button
@@ -827,16 +904,18 @@ function renderCategoryDetail(name, scroll) {
   `;
 
 
-  $$("[data-open-cat]").forEach(b => {
+  $$("[data-open-cat]").forEach(button => {
 
-    b.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
       currentOpen =
         normalizeOpenCategory(
-          b.dataset.openCat
+          button.dataset.openCat
         );
 
+
       renderOpenTabs();
+
       renderOpenGrid();
 
       go("open");
@@ -859,8 +938,7 @@ function renderCategoryDetail(name, scroll) {
 
 
 /* =========================================
-12. 开款方向分类按钮
-固定显示中文
+   12. 开款方向分类按钮
 ========================================= */
 
 function renderOpenTabs() {
@@ -894,16 +972,18 @@ function renderOpenTabs() {
     `).join("");
 
 
-  $$("[data-open-tab]").forEach(b => {
+  $$("[data-open-tab]").forEach(button => {
 
-    b.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
       currentOpen =
         normalizeOpenCategory(
-          b.dataset.openTab
+          button.dataset.openTab
         );
 
+
       renderOpenTabs();
+
       renderOpenGrid();
 
     });
@@ -914,8 +994,7 @@ function renderOpenTabs() {
 
 
 /* =========================================
-13. 获取图片路径
-支持多个字段名称
+   13. 获取图片路径
 ========================================= */
 
 function getReferenceImage(item) {
@@ -924,7 +1003,9 @@ function getReferenceImage(item) {
     return "";
   }
 
+
   return (
+
     item.image ||
     item.img ||
     item.cover ||
@@ -933,22 +1014,113 @@ function getReferenceImage(item) {
     item.jpg ||
     item.png ||
     ""
+
   );
 
 }
 
 
 /* =========================================
-14. 开款方向 PPT 展示页面
+   14. 处理资源路径
 
-支持：
-1. JPG
-2. PNG
-3. WEBP
-4. PDF
+   自动处理：
+   1. 中文文件名
+   2. 空格
+   3. PDF #page 参数
+========================================= */
 
-优先展示图片；
-没有图片则直接内嵌 PDF。
+function getAssetUrl(path) {
+
+  if (!path) {
+    return "";
+  }
+
+
+  const value = String(path).trim();
+
+
+  if (!value) {
+    return "";
+  }
+
+
+  try {
+
+    return encodeURI(value);
+
+  } catch (error) {
+
+    return value;
+
+  }
+
+}
+
+
+/* =========================================
+   15. 生成图片预览
+========================================= */
+
+function createImagePreview(image, title) {
+
+  const imageUrl = getAssetUrl(image);
+
+
+  return `
+
+    <div class="ppt-preview">
+
+      <img
+        src="${imageUrl}"
+        alt="${title}"
+        loading="lazy"
+        onerror="
+          this.style.display='none';
+          this.parentElement.innerHTML=
+            '<div class=&quot;preview-placeholder&quot;>' +
+              '<div class=&quot;pdf-icon&quot;>🖼️</div>' +
+              '<h4>图片加载失败</h4>' +
+              '<p>请检查 GitHub 中的图片文件路径和文件名是否完全一致</p>' +
+            '</div>';
+        "
+      >
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   16. 生成 PDF 预览
+========================================= */
+
+function createPdfPreview(pdf, title) {
+
+  const pdfUrl = getAssetUrl(pdf);
+
+
+  return `
+
+    <div class="ppt-preview">
+
+      <iframe
+        class="pdf-preview-frame"
+        src="${pdfUrl}"
+        title="${title}"
+        loading="lazy"
+      ></iframe>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   17. 开款方向展示
 ========================================= */
 
 function renderOpenGrid() {
@@ -960,23 +1132,6 @@ function renderOpenGrid() {
 
   const list =
     getOpenDirectionList(currentOpen);
-
-
-  /* 开款方向标题 */
-
-  const titleHtml = `
-    <div class="open-ppt-head">
-
-      <h2>
-        ${currentOpen} · 款式参考
-      </h2>
-
-      <p>
-        点击不同类目查看对应款式。支持直接浏览款式图片和 PDF 款式参考。
-      </p>
-
-    </div>
-  `;
 
 
   /* 没有数据 */
@@ -992,8 +1147,7 @@ function renderOpenGrid() {
         </h3>
 
         <p>
-          请检查 open-direction-data.js 中是否存在
-          ${currentOpen} 或对应的英文分类数据。
+          请检查 data/open-direction-data.js 是否成功加载。
         </p>
 
       </div>
@@ -1001,83 +1155,84 @@ function renderOpenGrid() {
     `;
 
     return;
+
   }
 
 
-  /* 渲染 PPT 卡片 */
+  /* 正常渲染 */
 
-  $("#openDirectionGrid").innerHTML =
-    list.map((x, index) => {
+  $("#openDirectionGrid").innerHTML = `
+
+    <div class="open-ppt-head">
+
+      <h2>
+        ${currentOpen} · 款式参考
+      </h2>
+
+      <p>
+        点击不同类目查看对应款式。优先显示款式图片，没有图片时直接显示 PDF 对应页面。
+      </p>
+
+    </div>
+
+
+    ${list.map((item, index) => {
 
       const image =
-        getReferenceImage(x);
+        getReferenceImage(item);
+
 
       const pdf =
-        x.pdf || x.pdfUrl || x.pdfURL || "";
+        item.pdf ||
+        item.pdfUrl ||
+        item.pdfURL ||
+        "";
+
+
+      const imageUrl =
+        getAssetUrl(image);
+
+
+      const pdfUrl =
+        getAssetUrl(pdf);
+
 
       const tags =
-        Array.isArray(x.tags)
-          ? x.tags
+        Array.isArray(item.tags)
+          ? item.tags
           : [];
 
 
       let previewHtml = "";
 
 
-      /* 第一优先级：展示图片 */
+      /* 第一优先级：图片 */
 
       if (image) {
 
-        previewHtml = `
-
-          <div class="ppt-preview">
-
-            <img
-              src="${image}"
-              alt="${x.name || currentOpen + "款式参考"}"
-              loading="lazy"
-              onerror="
-                this.style.display='none';
-                this.parentElement.innerHTML=
-                '<div class=&quot;preview-placeholder&quot;>' +
-                '<div class=&quot;pdf-icon&quot;>🖼️</div>' +
-                '<h4>图片加载失败</h4>' +
-                '<p>请检查图片路径是否正确</p>' +
-                '</div>';
-              "
-            >
-
-          </div>
-
-        `;
+        previewHtml =
+          createImagePreview(
+            image,
+            item.name || currentOpen + "款式参考"
+          );
 
       }
 
 
-      /* 第二优先级：直接展示 PDF */
+      /* 第二优先级：PDF */
 
       else if (pdf) {
 
-        previewHtml = `
-
-          <div class="ppt-preview">
-
-            <iframe
-              class="pdf-preview-frame"
-              src="${pdf}#toolbar=0&navpanes=0&scrollbar=1"
-              title="${x.name || currentOpen + "PDF款式参考"}"
-              loading="lazy"
-            >
-            </iframe>
-
-          </div>
-
-        `;
+        previewHtml =
+          createPdfPreview(
+            pdf,
+            item.name || currentOpen + "PDF款式参考"
+          );
 
       }
 
 
-      /* 没有任何素材 */
+      /* 没有素材 */
 
       else {
 
@@ -1096,8 +1251,7 @@ function renderOpenGrid() {
               </h4>
 
               <p>
-                请在 open-direction-data.js
-                中添加 image 或 pdf 路径
+                请在 open-direction-data.js 中添加 image 或 pdf 路径
               </p>
 
             </div>
@@ -1113,21 +1267,37 @@ function renderOpenGrid() {
 
         <article class="reference-card">
 
+
           <div class="ppt-card-header">
 
             <div class="reference-type">
-              ${image ? "款式图片参考" : "PDF 款式参考"}
+
+              ${
+                image
+                  ? "款式图片参考"
+                  : pdf
+                    ? "PDF 款式参考"
+                    : "待补充"
+              }
+
             </div>
 
+
             <h3>
-              ${x.name || currentOpen + "款式参考 " + (index + 1)}
+
+              ${
+                item.name ||
+                currentOpen + "款式参考 " + (index + 1)
+              }
+
             </h3>
 
+
             ${
-              x.en
+              item.en
                 ? `
                   <p class="reference-en">
-                    ${x.en}
+                    ${item.en}
                   </p>
                 `
                 : ""
@@ -1141,18 +1311,34 @@ function renderOpenGrid() {
 
           <div class="reference-body">
 
+
+            ${
+              item.description
+                ? `
+                  <p class="reference-desc">
+                    ${item.description}
+                  </p>
+                `
+                : ""
+            }
+
+
             ${
               tags.length
                 ? `
+
                   <div class="tags">
 
-                    ${tags.map(t => `
+                    ${tags.map(tag => `
+
                       <span class="tag">
-                        ${t}
+                        ${tag}
                       </span>
+
                     `).join("")}
 
                   </div>
+
                 `
                 : ""
             }
@@ -1160,15 +1346,19 @@ function renderOpenGrid() {
 
             <div class="card-actions">
 
+
               ${
                 pdf
                   ? `
+
                     <button
                       class="view-pdf"
-                      data-pdf="${pdf}"
+                      type="button"
+                      data-pdf="${pdfUrl}"
                     >
                       全屏查看 PDF 款式参考
                     </button>
+
                   `
                   : ""
               }
@@ -1177,36 +1367,44 @@ function renderOpenGrid() {
               ${
                 image
                   ? `
+
                     <a
-                      href="${image}"
+                      href="${imageUrl}"
                       target="_blank"
+                      rel="noopener"
                       class="card-image-link"
                     >
                       查看高清款式图片
                     </a>
+
                   `
                   : ""
               }
 
+
             </div>
 
+
           </div>
+
 
         </article>
 
       `;
 
-    }).join("");
+    }).join("")}
+
+  `;
 
 
-  /* PDF 弹窗按钮 */
+  /* PDF 全屏按钮 */
 
-  $$(".view-pdf").forEach(b => {
+  $$(".view-pdf").forEach(button => {
 
-    b.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
       const pdf =
-        b.dataset.pdf;
+        button.dataset.pdf;
 
 
       if (!pdf) {
@@ -1214,7 +1412,10 @@ function renderOpenGrid() {
       }
 
 
-      if ($("#pdfFrame") && $("#pdfModal")) {
+      if (
+        $("#pdfFrame") &&
+        $("#pdfModal")
+      ) {
 
         $("#pdfFrame").src = pdf;
 
@@ -1238,52 +1439,7 @@ function renderOpenGrid() {
 
 
 /* =========================================
-15. 删除旧上传区域
-========================================= */
-
-function removeOpenUploadArea() {
-
-  const selectors = [
-
-    "#uploadPreview",
-    "#localImage",
-    "#localPdf",
-    "#repoImagePath",
-    "#repoPdfPath",
-    "#clearUploads"
-
-  ];
-
-
-  selectors.forEach(selector => {
-
-    const element =
-      $(selector);
-
-    if (!element) {
-      return;
-    }
-
-
-    const parent =
-      element.closest(
-        ".upload-panel, .upload-area, .open-upload-area"
-      );
-
-
-    if (parent) {
-      parent.remove();
-    } else {
-      element.remove();
-    }
-
-  });
-
-}
-
-
-/* =========================================
-16. PDF 弹窗
+   18. PDF 弹窗
 ========================================= */
 
 function initPdfModal() {
@@ -1310,9 +1466,9 @@ function initPdfModal() {
 
     modal.addEventListener(
       "click",
-      e => {
+      event => {
 
-        if (e.target === modal) {
+        if (event.target === modal) {
           closePdfModal();
         }
 
@@ -1324,14 +1480,16 @@ function initPdfModal() {
 
   document.addEventListener(
     "keydown",
-    e => {
+    event => {
 
       if (
-        e.key === "Escape" &&
+        event.key === "Escape" &&
         $("#pdfModal") &&
         $("#pdfModal").classList.contains("show")
       ) {
+
         closePdfModal();
+
       }
 
     }
@@ -1343,20 +1501,24 @@ function initPdfModal() {
 function closePdfModal() {
 
   if ($("#pdfModal")) {
+
     $("#pdfModal")
       .classList.remove("show");
+
   }
 
 
   if ($("#pdfFrame")) {
+
     $("#pdfFrame").src = "";
+
   }
 
 }
 
 
 /* =========================================
-17. 视觉优化
+   19. 视觉优化
 ========================================= */
 
 function renderVisual() {
@@ -1371,14 +1533,14 @@ function renderVisual() {
 
   $("#visualControls").innerHTML =
     Object.entries(VISUAL_DATA)
-      .map(([dim, words]) => `
+      .map(([dimension, words]) => `
 
         <section class="group-card">
 
           <div class="group-title">
 
             <h3>
-              ${dim}
+              ${dimension}
             </h3>
 
             <span>
@@ -1390,14 +1552,14 @@ function renderVisual() {
 
           <div class="choices">
 
-            ${words.map(w => `
+            ${words.map(word => `
 
               <button
                 class="choice visual-choice"
-                data-dim="${dim}"
-                data-word="${w}"
+                data-dim="${dimension}"
+                data-word="${word}"
               >
-                ${w}
+                ${word}
               </button>
 
             `).join("")}
@@ -1410,13 +1572,13 @@ function renderVisual() {
       .join("");
 
 
-  $$(".visual-choice").forEach(b => {
+  $$(".visual-choice").forEach(button => {
 
-    b.addEventListener(
+    button.addEventListener(
       "click",
       () => {
 
-        b.classList.toggle("active");
+        button.classList.toggle("active");
 
         buildVisual();
 
@@ -1440,7 +1602,7 @@ function buildVisual() {
 
   const selected =
     $$(".visual-choice.active")
-      .map(b => b.dataset.word);
+      .map(button => button.dataset.word);
 
 
   const prompt =
@@ -1457,8 +1619,8 @@ ${selected.join("，")}。
 无品牌 Logo，
 无水印。
         `
-        .replace(/\\n/g, " ")
-        .replace(/\\s+/g, " ")
+        .replace(/\n/g, " ")
+        .replace(/\s+/g, " ")
         .trim()
 
       : "请选择上方人模、姿势、场景、光线、构图等选项生成 Prompt。";
@@ -1471,7 +1633,7 @@ ${selected.join("，")}。
 
 
 /* =========================================
-18. 标题优化分类 Tab
+   20. 标题优化分类 Tab
 ========================================= */
 
 function renderTitleTabs() {
@@ -1496,45 +1658,50 @@ function renderTitleTabs() {
 
 
   const categories = [
-    ...chineseOrder.filter(x =>
-      allKeys.includes(x)
+
+    ...chineseOrder.filter(item =>
+      allKeys.includes(item)
     ),
 
-    ...allKeys.filter(x =>
-      !chineseOrder.includes(x)
+    ...allKeys.filter(item =>
+      !chineseOrder.includes(item)
     )
+
   ];
 
 
   if (!TITLE_DATA[currentTitle]) {
+
     currentTitle =
       categories[0];
+
   }
 
 
   $("#titleCategoryTabs").innerHTML =
-    categories.map(x => `
+    categories.map(category => `
 
       <button
-        class="tab-btn ${x === currentTitle ? "active" : ""}"
-        data-title-tab="${x}"
+        class="tab-btn ${category === currentTitle ? "active" : ""}"
+        data-title-tab="${category}"
       >
-        ${normalizeOpenCategory(x)}
+        ${normalizeOpenCategory(category)}
       </button>
 
     `).join("");
 
 
-  $$("[data-title-tab]").forEach(b => {
+  $$("[data-title-tab]").forEach(button => {
 
-    b.addEventListener(
+    button.addEventListener(
       "click",
       () => {
 
         currentTitle =
-          b.dataset.titleTab;
+          button.dataset.titleTab;
 
         renderTitleTabs();
+
         renderTitleControls();
 
       }
@@ -1546,7 +1713,7 @@ function renderTitleTabs() {
 
 
 /* =========================================
-19. 标题关键词卡片
+   21. 标题关键词卡片
 ========================================= */
 
 function renderTitleControls() {
@@ -1570,14 +1737,14 @@ function renderTitleControls() {
 
   $("#titleControls").innerHTML =
     Object.entries(data)
-      .map(([dim, items]) => `
+      .map(([dimension, items]) => `
 
         <section class="group-card">
 
           <div class="group-title">
 
             <h3>
-              ${dim}
+              ${dimension}
             </h3>
 
             <span>
@@ -1589,26 +1756,29 @@ function renderTitleControls() {
 
           <div class="choices">
 
-            ${(Array.isArray(items) ? items : [])
-              .map(x => `
+            ${
+              (Array.isArray(items) ? items : [])
+                .map(item => `
 
-                <button
-                  class="choice title-choice"
-                  data-dim="${dim}"
-                  data-en="${x.en || ""}"
-                  data-zh="${x.zh || ""}"
-                  title="${x.variants || ""}"
-                >
+                  <button
+                    class="choice title-choice"
+                    data-dim="${dimension}"
+                    data-en="${item.en || ""}"
+                    data-zh="${item.zh || ""}"
+                    title="${item.variants || ""}"
+                  >
 
-                  ${x.zh || ""}
+                    ${item.zh || ""}
 
-                  <small>
-                    ${x.en || "—"}
-                  </small>
+                    <small>
+                      ${item.en || "—"}
+                    </small>
 
-                </button>
+                  </button>
 
-              `).join("")}
+                `)
+                .join("")
+            }
 
           </div>
 
@@ -1618,13 +1788,13 @@ function renderTitleControls() {
       .join("");
 
 
-  $$(".title-choice").forEach(b => {
+  $$(".title-choice").forEach(button => {
 
-    b.addEventListener(
+    button.addEventListener(
       "click",
       () => {
 
-        b.classList.toggle("active");
+        button.classList.toggle("active");
 
         buildTitle();
 
@@ -1640,7 +1810,7 @@ function renderTitleControls() {
 
 
 /* =========================================
-20. 生成英文标题
+   22. 生成英文标题
 ========================================= */
 
 function buildTitle() {
@@ -1652,10 +1822,12 @@ function buildTitle() {
 
   const selected =
     $$(".title-choice.active")
-      .map(b => ({
-        dim: b.dataset.dim,
-        en: b.dataset.en,
-        zh: b.dataset.zh
+      .map(button => ({
+
+        dim: button.dataset.dim,
+        en: button.dataset.en,
+        zh: button.dataset.zh
+
       }));
 
 
@@ -1701,11 +1873,13 @@ function buildTitle() {
 
 
   const words = [
+
     ...new Set(
       selected
-        .map(x => x.en || x.zh)
+        .map(item => item.en || item.zh)
         .filter(Boolean)
     )
+
   ];
 
 
@@ -1731,7 +1905,7 @@ function buildTitle() {
 
 
 /* =========================================
-21. 复制内容
+   23. 复制内容
 ========================================= */
 
 async function copyText(id) {
@@ -1756,12 +1930,11 @@ async function copyText(id) {
 
   try {
 
-    await navigator.clipboard
-      .writeText(text);
+    await navigator.clipboard.writeText(text);
 
     alert("已复制");
 
-  } catch (e) {
+  } catch (error) {
 
     element.select();
 
@@ -1775,7 +1948,7 @@ async function copyText(id) {
 
 
 /* =========================================
-22. 页面初始化
+   24. 页面初始化
 ========================================= */
 
 document.addEventListener(
@@ -1783,12 +1956,12 @@ document.addEventListener(
   () => {
 
 
-    /* 注入页面优化样式 */
+    /* 注入样式 */
 
     injectAppStyles();
 
 
-    /* 初始化导航 */
+    /* 导航 */
 
     initNav();
 
@@ -1803,11 +1976,6 @@ document.addEventListener(
     renderOpenTabs();
 
     renderOpenGrid();
-
-
-    /* 删除旧素材上传区域 */
-
-    removeOpenUploadArea();
 
 
     /* PDF 弹窗 */
@@ -1858,6 +2026,26 @@ document.addEventListener(
 
     }
 
+
+    /* 控制台检查 */
+
+    console.log("云岁月运营工作台已启动");
+
+
+    if (typeof OPEN_DIRECTION_DATA === "undefined") {
+
+      console.error(
+        "OPEN_DIRECTION_DATA 加载失败，请检查 data/open-direction-data.js"
+      );
+
+    } else {
+
+      console.log(
+        "开款方向数据加载成功：",
+        OPEN_DIRECTION_DATA
+      );
+
+    }
 
   }
 );
