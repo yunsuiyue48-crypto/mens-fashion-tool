@@ -9,6 +9,7 @@ const OPEN_DIRECTION_DATA = {
   // ==========================================
   // 01. 套装
   // ==========================================
+
   sets: [
 
     {
@@ -29,6 +30,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 6
     },
 
+
     {
       name: "短袖图案图形短裤套装",
       en: "Graphic T-Shirt & Shorts Set",
@@ -47,6 +49,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 6
     },
 
+
     {
       name: "特殊工艺T恤套装",
       en: "Special Process T-Shirt Set",
@@ -63,6 +66,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=7",
       pdfPage: 7
     },
+
 
     {
       name: "休闲衬衫短裤套装",
@@ -81,6 +85,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 7
     },
 
+
     {
       name: "短袖衬衫套装",
       en: "Short Sleeve Shirt Set",
@@ -98,6 +103,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 8
     },
 
+
     {
       name: "肌理面料衬衫短裤套装",
       en: "Textured Shirt & Shorts Set",
@@ -113,6 +119,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=8",
       pdfPage: 8
     },
+
 
     {
       name: "图案图形衬衫短裤套装",
@@ -131,6 +138,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 8
     },
 
+
     {
       name: "短袖棉麻衬衫短裤套装",
       en: "Linen Blend Shirt & Shorts Set",
@@ -147,6 +155,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=9",
       pdfPage: 9
     },
+
 
     {
       name: "短袖棉麻衬衫直筒裤套装",
@@ -165,6 +174,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 9
     },
 
+
     {
       name: "长袖棉麻衬衫直筒裤套装",
       en: "Long Sleeve Linen Shirt & Straight Pants Set",
@@ -182,6 +192,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 9
     },
 
+
     {
       name: "基础运动短裤套装",
       en: "Basic Activewear Shorts Set",
@@ -194,11 +205,12 @@ const OPEN_DIRECTION_DATA = {
         "运动",
         "夏季"
       ],
-      image: "assets/styles/sets/运动速干.png"
+      image: "assets/styles/sets/运动速干.png",
       description: "运动上衣搭配运动短裤，可作为健身、跑步及日常运动休闲方向。",
       pdf: "assets/styles/sets/开款参考.pdf#page=10",
       pdfPage: 10
     },
+
 
     {
       name: "连帽运动休闲套装",
@@ -216,6 +228,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 10
     },
 
+
     {
       name: "基础简约卫衣束脚裤套装",
       en: "Basic Sweatshirt & Jogger Set",
@@ -231,6 +244,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=11",
       pdfPage: 11
     },
+
 
     {
       name: "图案图形卫衣束脚裤套装",
@@ -249,6 +263,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 11
     },
 
+
     {
       name: "基础简约卫衣直筒裤套装",
       en: "Basic Sweatshirt & Straight Pants Set",
@@ -264,6 +279,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=12",
       pdfPage: 12
     },
+
 
     {
       name: "假两件卫衣套装",
@@ -281,6 +297,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 12
     },
 
+
     {
       name: "加绒战术夹克套装",
       en: "Fleece Lined Tactical Jacket Set",
@@ -292,7 +309,7 @@ const OPEN_DIRECTION_DATA = {
         "保暖",
         "秋冬"
       ],
-      image: "assets/styles/sets/战术服套装.png"
+      image: "assets/styles/sets/战术服套装.png",
       description: "以外套夹克搭配长裤，强调加绒、保暖、工装和战术风格。",
       pdf: "assets/styles/sets/开款参考.pdf#page=13",
       pdfPage: 13
@@ -301,10 +318,11 @@ const OPEN_DIRECTION_DATA = {
   ],
 
 
+
   // ==========================================
   // 02. 正装
-  // PDF中实际主要展示西裤参考
   // ==========================================
+
   formal: [
 
     {
@@ -323,6 +341,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 14
     },
 
+
     {
       name: "褶裥西裤",
       en: "Pleated Dress Pants",
@@ -338,6 +357,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=15",
       pdfPage: 15
     },
+
 
     {
       name: "修身商务西裤",
@@ -355,6 +375,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 16
     },
 
+
     {
       name: "格纹西裤",
       en: "Plaid Dress Pants",
@@ -370,6 +391,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=16",
       pdfPage: 16
     },
+
 
     {
       name: "直筒西裤",
@@ -387,6 +409,7 @@ const OPEN_DIRECTION_DATA = {
       pdfPage: 17
     },
 
+
     {
       name: "宽松垂感西裤",
       en: "Relaxed Draped Trousers",
@@ -402,6 +425,7 @@ const OPEN_DIRECTION_DATA = {
       pdf: "assets/styles/sets/开款参考.pdf#page=18",
       pdfPage: 18
     },
+
 
     {
       name: "设计感西裤",
@@ -422,11 +446,11 @@ const OPEN_DIRECTION_DATA = {
   ],
 
 
+
   // ==========================================
   // 03. 棉羽
-  // 当前《开款参考.pdf》中未发现明确棉服/羽绒服参考
-  // 暂时保留入口，方便后续直接增加新PDF
   // ==========================================
+
   padded: [
 
     {
