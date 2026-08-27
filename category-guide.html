@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>类目指引 - 云岁月 男装商家运营工具</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.img-zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;}
+.img-zoom-overlay.active{display:flex;}
+.img-zoom-overlay img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 0 30px rgba(255,140,66,0.5);}
+.img-zoom-close{position:absolute;top:20px;right:30px;color:#FF8C42;font-size:36px;cursor:pointer;font-weight:bold;line-height:1;}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🗺️ 类目指引</h1>
+  <div class="subtitle">男装上款路径总览 · 套装 / 棉羽 / 正装</div>
+</div>
+<div class="nav"><a href="index.html">首页</a><a href="category-guide.html" class="active">类目指引</a><a href="trending.html">开款方向</a><a href="visual.html">视觉优化</a><a href="title.html">标题优化</a><a href="recruit.html">招品回品</a></div>
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="filterCat('all',this)">📋 全部路径</div>
+    <div class="tab" onclick="filterCat('套装',this)">👔 套装</div>
+    <div class="tab" onclick="filterCat('棉羽',this)">🧥 棉羽</div>
+    <div class="tab" onclick="filterCat('正装',this)">🎩 正装</div>
+  </div>
+  <div id="allPaths">
+    
+    <div class="path-card" id="path-0">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士休闲运动服>男士休闲运动套装>男士径赛服</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士休闲运动服>男士休闲运动套装>男士径赛服')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-1">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士休闲运动服>男士休闲运动套装>男士休闲套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士休闲运动服>男士休闲运动套装>男士休闲套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-2">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士休闲运动服>男士休闲运动套装>男士运动上装和下装套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士休闲运动服>男士休闲运动套装>男士运动上装和下装套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-3">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>单板滑雪服>男士单板滑雪服>男士单板滑雪套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>单板滑雪服>男士单板滑雪服>男士单板滑雪套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-4">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>滑冰服>男士滑冰服>男士滑冰服套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>滑冰服>男士滑冰服>男士滑冰服套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-5">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>滑雪服>男士滑雪服>男士滑雪套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>滑雪服>男士滑雪服>男士滑雪套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-6">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>篮球服>男士篮球服>套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>篮球服>男士篮球服>套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-7">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>骑行服>男士骑行服>男士骑行套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>骑行服>男士骑行服>男士骑行套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-8">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>武术服装>武术运动服>男士武术运动服>套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>武术服装>武术运动服>男士武术运动服>套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-9">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>瑜伽服>男士瑜伽服>运动上装和下装套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>瑜伽服>男士瑜伽服>运动上装和下装套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-10">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>足球服>男士足球服>男士足球运动服、外套和裤子</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>足球服>男士足球服>男士足球运动服、外套和裤子')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-11">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 休闲</span>
+        <a href="trending.html?cat=套装" style="color:#444">服装、鞋靴和珠宝饰品>新奇物品>新奇服装和产品>新奇服装>男士新奇服装>男士新奇服饰套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>新奇物品>新奇服装和产品>新奇服装>男士新奇服装>男士新奇服饰套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-12">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>户外休闲>冬季运动>单板滑雪用品>服装>男士单板滑雪服>男士单板滑雪套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>冬季运动>单板滑雪用品>服装>男士单板滑雪服>男士单板滑雪套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-13">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>户外休闲>冬季运动>滑冰用品>服装>男士滑冰服>男士滑冰服套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>冬季运动>滑冰用品>服装>男士滑冰服>男士滑冰服套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-14">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>户外休闲>冬季运动>滑雪用品>服装>男士滑雪服>男士滑雪套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>冬季运动>滑雪用品>服装>男士滑雪服>男士滑雪套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-15">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>户外休闲>冬季运动>滑雪用品>服装>男士滑雪服>贴身衣</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>冬季运动>滑雪用品>服装>男士滑雪服>贴身衣')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-16">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>户外休闲>骑行用品>服装>男士骑行服>男士骑行套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>骑行用品>服装>男士骑行服>男士骑行套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-17">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>健身、训练用品>健身服>男士>男士休闲运动套装>男士径赛服</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>健身、训练用品>健身服>男士>男士休闲运动套装>男士径赛服')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-18">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>健身、训练用品>健身服>男士>男士休闲运动套装>男士休闲套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>健身、训练用品>健身服>男士>男士休闲运动套装>男士休闲套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-19">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>健身、训练用品>健身服>男士>男士休闲运动套装>男士运动上装和下装套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>健身、训练用品>健身服>男士>男士休闲运动套装>男士运动上装和下装套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-20">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>健身、训练用品>瑜伽用品>服装>男士瑜伽服>运动上装和下装套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>健身、训练用品>瑜伽用品>服装>男士瑜伽服>运动上装和下装套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-21">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>冰雪运动用品>单板滑雪用品>服装>男士单板滑雪服>男士单板滑雪套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>冰雪运动用品>单板滑雪用品>服装>男士单板滑雪服>男士单板滑雪套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-22">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>冰雪运动用品>滑冰用品>服装>男士滑冰服>男士滑冰服套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>冰雪运动用品>滑冰用品>服装>男士滑冰服>男士滑冰服套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-23">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>冰雪运动用品>滑雪用品>服装>男士滑雪服>男士滑雪套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>冰雪运动用品>滑雪用品>服装>男士滑雪服>男士滑雪套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-24">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>冰雪运动用品>滑雪用品>服装>男士滑雪服>贴身衣</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>冰雪运动用品>滑雪用品>服装>男士滑雪服>贴身衣')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-25">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>滑冰>服装>男士滑冰服>男士滑冰服套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>滑冰>服装>男士滑冰服>男士滑冰服套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-26">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>菲律宾武术装备>套装>其他（套装）</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>菲律宾武术装备>套装>其他（套装）')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-27">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>柔道用品>套装>其他（套装）</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>柔道用品>套装>其他（套装）')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-28">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>空手道用品>套装>其他（套装）</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>空手道用品>套装>其他（套装）')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-29">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>跆拳道用品>套装>其他（套装）</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>跆拳道用品>套装>其他（套装）')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-30">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>跆拳道设备>套装>其他（套装）</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>跆拳道设备>套装>其他（套装）')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-31">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>田径服>男士武术运动服>套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>其他运动类型>武术及格斗用品>田径服>男士武术运动服>套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-32">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>骑行用品>服装>男士骑行服>男士骑行套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>骑行用品>服装>男士骑行服>男士骑行套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-33">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>团队运动>篮球用品>服装>男士篮球服>套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>团队运动>篮球用品>服装>男士篮球服>套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-34">
+      <div class="path-text">
+        <span class="path-cat cat-taozhuang">套装 · 运动</span>
+        <a href="trending.html?cat=套装" style="color:#444">运动与户外用品>运动服装和器材>团队运动>垒球装备>垒球制服>垒球套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动服装和器材>团队运动>垒球装备>垒球制服>垒球套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-35">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 西服套装</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装西服套装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装西服套装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-36">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 西服套装</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装燕尾服套装>其他（男装燕尾服套装）</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装燕尾服套装>其他（男装燕尾服套装）')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-37">
+      <div class="path-text">
+        <span class="path-cat cat-mianfu">棉服</span>
+        <a href="trending.html?cat=棉服" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士棉服</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士棉服')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-38">
+      <div class="path-text">
+        <span class="path-cat cat-mianfu">棉服 · 3合1</span>
+        <a href="trending.html?cat=棉服" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>户外服饰>男士户外服饰>男士休闲夹克>男士3合1夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>户外服饰>男士户外服饰>男士休闲夹克>男士3合1夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-39">
+      <div class="path-text">
+        <span class="path-cat cat-mianfu">棉服 · 3合1</span>
+        <a href="trending.html?cat=棉服" style="color:#444">运动与户外用品>户外休闲>攀岩用品>服装>男士户外服饰>男士休闲夹克>男士3合1夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>攀岩用品>服装>男士户外服饰>男士休闲夹克>男士3合1夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-40">
+      <div class="path-text">
+        <span class="path-cat cat-mianfu">棉服 · 3合1</span>
+        <a href="trending.html?cat=棉服" style="color:#444">运动与户外用品>户外休闲>徒步和户外休闲服装>男士户外服饰>男士休闲夹克>男士3合1夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>徒步和户外休闲服装>男士户外服饰>男士休闲夹克>男士3合1夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-41">
+      <div class="path-text">
+        <span class="path-cat cat-mianfu">棉服 · 3合1</span>
+        <a href="trending.html?cat=棉服" style="color:#444">运动与户外用品>运动户外服饰>男士运动户外服饰>男士运动休闲外套>男士运动休闲夹克>徒步和户外休闲>男士3合1夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动户外服饰>男士运动户外服饰>男士运动休闲外套>男士运动休闲夹克>徒步和户外休闲>男士3合1夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-42">
+      <div class="path-text">
+        <span class="path-cat cat-mianfu">棉服 · 抓绒衣</span>
+        <a href="trending.html?cat=棉服" style="color:#444">运动与户外用品>运动户外服饰>男士运动户外服饰>男士运动休闲外套>男士运动休闲夹克>徒步和户外休闲>男士抓绒衣夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动户外服饰>男士运动户外服饰>男士运动休闲外套>男士运动休闲夹克>徒步和户外休闲>男士抓绒衣夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-43">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 休闲</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士运动装和功能夹克>羽绒服和仿羽绒服>男士仿羽绒外套</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士运动装和功能夹克>羽绒服和仿羽绒服>男士仿羽绒外套')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-44">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 休闲</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士运动装和功能夹克>羽绒服和仿羽绒服>男士羽绒外套</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士运动装和功能夹克>羽绒服和仿羽绒服>男士羽绒外套')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-45">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 休闲</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士羽绒夹克和外套>男士仿羽绒外套</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士羽绒夹克和外套>男士仿羽绒外套')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-46">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 休闲</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士羽绒夹克和外套>男士羽绒外套</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男士外套>男士羽绒夹克和外套>男士羽绒外套')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-47">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 休闲</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">服装、鞋靴和珠宝饰品>体育专用服装>户外服饰>男士户外服饰>男士休闲夹克>男士户外羽绒衣夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>体育专用服装>户外服饰>男士户外服饰>男士休闲夹克>男士户外羽绒衣夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-48">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 户外</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">运动与户外用品>户外休闲>攀岩用品>服装>男士户外服饰>男士休闲夹克>男士户外羽绒衣夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>攀岩用品>服装>男士户外服饰>男士休闲夹克>男士户外羽绒衣夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-49">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 户外</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">运动与户外用品>户外休闲>徒步和户外休闲服装>男士户外服饰>男士休闲夹克>男士户外羽绒衣夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>户外休闲>徒步和户外休闲服装>男士户外服饰>男士休闲夹克>男士户外羽绒衣夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-50">
+      <div class="path-text">
+        <span class="path-cat cat-yurong">羽绒服 · 户外</span>
+        <a href="trending.html?cat=羽绒服" style="color:#444">运动与户外用品>运动户外服饰>男士运动户外服饰>男士运动休闲外套>男士运动休闲夹克>徒步和户外休闲>男士户外羽绒衣夹克</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'运动与户外用品>运动户外服饰>男士运动户外服饰>男士运动休闲外套>男士运动休闲夹克>徒步和户外休闲>男士户外羽绒衣夹克')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-51">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 衬衫</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装上衣、T恤、衬衫>男装正装衬衫</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装上衣、T恤、衬衫>男装正装衬衫')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-52">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 衬衫</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装上衣、T恤、衬衫>男士正装衬衫</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装上衣、T恤、衬衫>男士正装衬衫')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-53">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 外套夹克</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装休闲西装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装休闲西装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-54">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 外套夹克</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男士西服单品>男装西服上装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男士西服单品>男装西服上装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-55">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 外套夹克</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装燕尾服套装>男装燕尾服上装</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装燕尾服套装>男装燕尾服上装')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-56">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 马甲</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装西装马甲</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装西装马甲')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-57">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 长裤</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男士西服单品>男装西裤</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男士西服单品>男装西裤')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-58">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 长裤</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装燕尾服套装>男装燕尾服裤</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装西服>男装燕尾服套装>男装燕尾服裤')">📋 复制路径</button>
+    </div>
+    <div class="path-card" id="path-59">
+      <div class="path-text">
+        <span class="path-cat cat-zhengzhuang">正装 · 长裤</span>
+        <a href="trending.html?cat=正装" style="color:#444">服装、鞋靴和珠宝饰品>男士时尚>男装>男装长裤>男士正装裤</a>
+      </div>
+      <button class="copy-btn" onclick="copyPathText(this,'服装、鞋靴和珠宝饰品>男士时尚>男装>男装长裤>男士正装裤')">📋 复制路径</button>
+    </div>
+  </div>
+</div>
+<div class="disclaimer">⚠️ 以上图案参考来源网络，实际开发请安全延改，避免侵权</div>
+<div class="footer">云岁月 男装商家运营工具</div>
+<script>
+function copyPathText(btn,text){
+  navigator.clipboard.writeText(text).then(function(){
+    btn.textContent='✅ 已复制';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='📋 复制路径';btn.classList.remove('copied')},2000);
+  });
+}
+var allPathsHTML=document.getElementById('allPaths').innerHTML;
+function filterCat(cat,tab){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  tab.classList.add('active');
+  var all=document.getElementById('allPaths');
+  all.innerHTML=allPathsHTML;
+  if(cat==='all'){return;}
+  var cards=all.querySelectorAll('.path-card');
+  var html='';
+  cards.forEach(function(c){
+    var catSpan=c.querySelector('.path-cat');
+    if(catSpan){
+      var catText=catSpan.textContent.trim().split('·')[0].trim();
+      var match=false;
+      if(cat==='棉羽'&&(catText==='棉服'||catText==='羽绒服'))match=true;
+      if(catText===cat)match=true;
+      if(match)html+=c.outerHTML;
+    }
+  });
+  all.innerHTML=html||'<p style="text-align:center;color:#999;padding:40px">暂无数据</p>';
+}
+</script>
+
+<script>
+(function(){
+var overlay=document.createElement('div');overlay.className='img-zoom-overlay';
+var closeBtn=document.createElement('span');closeBtn.className='img-zoom-close';closeBtn.innerHTML='&times;';
+var zoomImg=document.createElement('img');overlay.appendChild(zoomImg);overlay.appendChild(closeBtn);
+document.body.appendChild(overlay);
+function openZoom(src){zoomImg.src=src;overlay.classList.add('active');}
+function closeZoom(){overlay.classList.remove('active');}
+overlay.addEventListener('click',closeZoom);
+closeBtn.addEventListener('click',function(e){e.stopPropagation();closeZoom();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeZoom();});
+document.addEventListener('click',function(e){
+    if(e.target&&e.target.tagName==='IMG'&&e.target.src&&!e.target.dataset.noZoom){
+        var p=e.target.parentElement;
+        if(p&&p.tagName==='A'&&p.href&&p.target==='_blank')return;
+        e.preventDefault();openZoom(e.target.src);
+    }
+});
+})();
+</script>
+</body>
+</html>

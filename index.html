@@ -1,399 +1,110 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>云岁月 男装商家运营工具</title>
+<link rel="stylesheet" href="style.css">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>云岁月对接类目上新指引</title>
-
-  <link rel="stylesheet" href="style.css">
+<style>
+.img-zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;}
+.img-zoom-overlay.active{display:flex;}
+.img-zoom-overlay img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 0 30px rgba(255,140,66,0.5);}
+.img-zoom-close{position:absolute;top:20px;right:30px;color:#FF8C42;font-size:36px;cursor:pointer;font-weight:bold;line-height:1;}
+</style>
 </head>
-
 <body>
-
-  <aside class="sidebar">
-
-    <div class="brand">
-      <div class="brand-mark">云</div>
-
-      <div>
-        <b>云岁月</b>
-        <span>男装商家运营工具</span>
-      </div>
-    </div>
-
-    <nav id="mainNav"></nav>
-
-    <div class="sidebar-foot">
-      云岁月对接类目上新指引
-      <br>
-      中文版工作台 · GitHub Pages
-    </div>
-
-  </aside>
-
-
-  <div class="app">
-
-    <header class="topbar">
-      <div id="crumb">首页 / 工作台</div>
-
-      <div class="status">
-        TEMU 男装运营工作台
-      </div>
-    </header>
-
-
-    <main>
-
-
-      <!-- ================= 首页 ================= -->
-
-      <section id="home" class="page active">
-
-        <div class="hero">
-
-          <span class="eyebrow">
-            云岁月 · 商家工具
-          </span>
-
-          <h1>
-            男装上新、开款、视觉与标题
-            <br>
-            <em>一站式运营工作台</em>
-          </h1>
-
-          <p>
-            从类目精准路径开始，连接开款图片参考、视觉 Prompt 与标题关键词组合。
-            后续可继续新增数据分析、竞品分析、素材库等功能。
-          </p>
-
-          <button
-            class="btn primary"
-            data-go="category"
-          >
-            开始选择上新类目
-          </button>
-
-        </div>
-
-
-        <div
-          id="homeModules"
-          class="module-grid"
-        ></div>
-
-      </section>
-
-
-
-      <!-- ================= 类目指引 ================= -->
-
-      <section id="category" class="page">
-
-        <div class="page-head">
-
-          <span>模块 01</span>
-
-          <h2>类目指引</h2>
-
-          <p>
-            先总览，再选择精准上新路径。
-          </p>
-
-        </div>
-
-
-        <div class="source-bar">
-
-          <b>原始类目表：</b>
-
-          <a
-            href="source-files/云岁月对接路径表.xlsx"
-            download
-          >
-            下载 Excel
-          </a>
-
-          <span>｜</span>
-
-          <span>
-            已整理为网页可点击路径
-          </span>
-
-        </div>
-
-
-        <div
-          id="categoryOverview"
-          class="overview-grid"
-        ></div>
-
-
-        <div id="categoryDetail"></div>
-
-      </section>
-
-
-
-      <!-- ================= 开款方向 ================= -->
-
-      <section id="open" class="page">
-
-        <div class="page-head">
-
-          <span>模块 02</span>
-
-          <h2>开款方向</h2>
-
-          <p>
-            支持三大类款式参考。每张卡片可绑定 JPG、PNG、WEBP 图片与 PDF 款式资料。
-          </p>
-
-        </div>
-
-
-        <div
-          class="open-tabs"
-          id="openTabs"
-        ></div>
-
-
-        <div
-          id="openDirectionGrid"
-          class="reference-grid"
-        ></div>
-
-      </section>
-
-
-
-      <!-- ================= 视觉优化 ================= -->
-
-      <section id="visual" class="page">
-
-        <div class="page-head">
-
-          <span>模块 03</span>
-
-          <h2>视觉优化</h2>
-
-          <p>
-            围绕人模、服装展示、动作姿势、场景、背景、光线、风格与构图生成中文电商图片 Prompt。
-          </p>
-
-        </div>
-
-
-        <div class="mode-tabs">
-
-          <button class="active">
-            人模视觉优化
-          </button>
-
-          <button disabled>
-            非人模视觉优化（后续扩展）
-          </button>
-
-        </div>
-
-
-        <div
-          id="visualControls"
-          class="control-groups"
-        ></div>
-
-
-        <div class="output-card">
-
-          <div class="output-title">
-
-            生成的视觉 Prompt
-
-            <button
-              class="btn small"
-              id="copyVisual"
-            >
-              复制 Prompt
-            </button>
-
-          </div>
-
-
-          <textarea
-            id="visualOutput"
-            readonly
-          ></textarea>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- ================= 标题优化 ================= -->
-
-      <section id="title" class="page">
-
-        <div class="page-head">
-
-          <span>模块 04</span>
-
-          <h2>标题优化</h2>
-
-          <p>
-            套装、正装、棉羽三大类目独立词卡。
-            词库基础来自《分维度枚举词_中英对照.xlsx》，
-            保留中文释义、英文标题词与搜索变体。
-          </p>
-
-        </div>
-
-
-        <div class="source-bar">
-
-          <b>原始词库：</b>
-
-          <a
-            href="source-files/分维度枚举词_中英对照.xlsx"
-            download
-          >
-            下载《分维度枚举词_中英对照.xlsx》
-          </a>
-
-        </div>
-
-
-        <div
-          id="titleCategoryTabs"
-          class="open-tabs"
-        ></div>
-
-
-        <div class="title-tip">
-
-          所有卡片均支持多选。
-          建议按“核心品类词 → 套装规格/版型 → 风格 → 面料/细节 → 季节 → 场景 → 颜色”的顺序组合。
-
-        </div>
-
-
-        <div
-          id="titleControls"
-          class="control-groups"
-        ></div>
-
-
-        <div class="output-card">
-
-          <div class="output-title">
-
-            生成的英文标题
-
-            <button
-              class="btn small"
-              id="copyTitle"
-            >
-              复制标题
-            </button>
-
-          </div>
-
-
-          <textarea
-            id="titleOutput"
-            readonly
-          ></textarea>
-
-
-          <div
-            id="titleCount"
-            class="count"
-          ></div>
-
-        </div>
-
-      </section>
-
-
-
-      <!-- ================= 招品回品 ================= -->
-
-      <section id="sourcing" class="page">
-
-        <div class="page-head">
-
-          <span>模块 05</span>
-
-          <h2>招品 / 回品</h2>
-
-          <p>
-            预留功能入口：后续可接入招品清单、回品判断、趋势数据与选品评分。
-          </p>
-
-        </div>
-
-
-        <div class="empty-state">
-
-          该模块已预留，后续直接在
-          <code>app.js</code>
-          增加数据和页面组件即可。
-
-        </div>
-
-      </section>
-
-
-    </main>
-
+<div class="header">
+  <h1>☁️ 云岁月 男装商家运营工具</h1>
+  <div class="subtitle">套装 · 棉羽 · 正装 | 专为男装商家打造的一站式运营平台</div>
+</div>
+<div class="nav"><a href="index.html" class="active">首页</a><a href="category-guide.html">类目指引</a><a href="trending.html">开款方向</a><a href="visual.html">视觉优化</a><a href="title.html">标题优化</a><a href="recruit.html">招品回品</a></div>
+<div class="container">
+  <div class="entrance-grid">
+    <a href="category-guide.html" class="entrance-card">
+      <div class="icon">🗺️</div>
+      <div class="title">类目指引</div>
+      <div class="desc">上款路径一览 · 套装/棉羽/正装</div>
+    </a>
+    <a href="trending.html" class="entrance-card">
+      <div class="icon">🔥</div>
+      <div class="title">开款方向</div>
+      <div class="desc">热销款式参考 · 企划开款方向</div>
+    </a>
+    <a href="visual.html" class="entrance-card">
+      <div class="icon">🎨</div>
+      <div class="title">视觉优化</div>
+      <div class="desc">人模/非人模视觉指令生成</div>
+    </a>
+    <a href="title.html" class="entrance-card">
+      <div class="icon">📝</div>
+      <div class="title">标题优化</div>
+      <div class="desc">黄金公式 · 中英双语标题生成</div>
+    </a>
+    <a href="recruit.html" class="entrance-card">
+      <div class="icon">📦</div>
+      <div class="title">招品回品</div>
+      <div class="desc">招品回品参考图展示</div>
+    </a>
   </div>
 
-
-
-  <!-- ================= PDF 弹窗 ================= -->
-
-  <div id="pdfModal" class="modal">
-
-    <div class="modal-card">
-
-      <button
-        id="closePdf"
-        class="close"
-        type="button"
-      >
-        ×
-      </button>
-
-
-      <iframe
-        id="pdfFrame"
-        title="PDF 款式参考"
-      ></iframe>
-
-    </div>
-
+  <div class="compliance-box">
+    <h3>⚠️ 合规信息必知</h3>
+    <a href="包装清单和清关属性维护要点.pdf" class="compliance-item" style="text-decoration:none">
+      <div class="num">1</div>
+      <div class="text">包装清单和清关属性维护</div>
+    </a>
+    <a href="洗水唛要点.pdf" class="compliance-item" style="text-decoration:none">
+      <div class="num">2</div>
+      <div class="text">洗水唛实拍图上传与车缝规范</div>
+    </a>
   </div>
 
+  <div class="card">
+    <h2>📊 平台概览</h2>
+    <p style="color:#666;font-size:14px;line-height:2">本平台专为 Temu 男装商家设计，涵盖 <b style="color:#FF6B1A">套装</b>、<b style="color:#FF6B1A">棉羽</b>（棉服/羽绒服）、<b style="color:#FF6B1A">正装</b> 三大核心类目，提供从上款路径指引、开款方向参考、视觉优化指令生成到标题优化的全链路运营支持。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:16px">
+      <div style="text-align:center;padding:16px;background:#FFF5EE;border-radius:10px">
+        <div style="font-size:28px;font-weight:800;color:#FF6B1A">60</div>
+        <div style="font-size:13px;color:#999">上款路径</div>
+      </div>
+      <div style="text-align:center;padding:16px;background:#FFF5EE;border-radius:10px">
+        <div style="font-size:28px;font-weight:800;color:#FF6B1A">2000+</div>
+        <div style="font-size:13px;color:#999">热销款式参考</div>
+      </div>
+      <div style="text-align:center;padding:16px;background:#FFF5EE;border-radius:10px">
+        <div style="font-size:28px;font-weight:800;color:#FF6B1A">3</div>
+        <div style="font-size:13px;color:#999">区域市场覆盖</div>
+      </div>
+      <div style="text-align:center;padding:16px;background:#FFF5EE;border-radius:10px">
+        <div style="font-size:28px;font-weight:800;color:#FF6B1A">2</div>
+        <div style="font-size:13px;color:#999">时期数据对比</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="disclaimer">⚠️ 以上图案参考来源网络，实际开发请安全延改，避免侵权</div>
+<div class="footer">云岁月 男装商家运营工具</div>
 
-
-  <!-- ================= 数据文件 ================= -->
-
-  <script src="data/category-data.js"></script>
-
-  <script src="data/open-direction-data.js"></script>
-
-  <script src="data/title-data.js"></script>
-
-  <script src="data/visual-data.js"></script>
-
-
-  <!-- ================= 主程序 ================= -->
-
-  <script src="app.js"></script>
-
-
+<script>
+(function(){
+var overlay=document.createElement('div');overlay.className='img-zoom-overlay';
+var closeBtn=document.createElement('span');closeBtn.className='img-zoom-close';closeBtn.innerHTML='&times;';
+var zoomImg=document.createElement('img');overlay.appendChild(zoomImg);overlay.appendChild(closeBtn);
+document.body.appendChild(overlay);
+function openZoom(src){zoomImg.src=src;overlay.classList.add('active');}
+function closeZoom(){overlay.classList.remove('active');}
+overlay.addEventListener('click',closeZoom);
+closeBtn.addEventListener('click',function(e){e.stopPropagation();closeZoom();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeZoom();});
+document.addEventListener('click',function(e){
+    if(e.target&&e.target.tagName==='IMG'&&e.target.src&&!e.target.dataset.noZoom){
+        var p=e.target.parentElement;
+        if(p&&p.tagName==='A'&&p.href&&p.target==='_blank')return;
+        e.preventDefault();openZoom(e.target.src);
+    }
+});
+})();
+</script>
 </body>
 </html>

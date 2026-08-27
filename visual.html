@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>视觉优化 - 云岁月 男装商家运营工具</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.img-zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;}
+.img-zoom-overlay.active{display:flex;}
+.img-zoom-overlay img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 0 30px rgba(255,140,66,0.5);}
+.img-zoom-close{position:absolute;top:20px;right:30px;color:#FF8C42;font-size:36px;cursor:pointer;font-weight:bold;line-height:1;}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🎨 视觉优化</h1>
+  <div class="subtitle">男装主图视觉指令生成器 · 人模 / 非人模</div>
+</div>
+<div class="nav"><a href="index.html">首页</a><a href="category-guide.html">类目指引</a><a href="trending.html">开款方向</a><a href="visual.html" class="active">视觉优化</a><a href="title.html">标题优化</a><a href="recruit.html">招品回品</a></div>
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="switchVTab('human',this)">🙋 人模视觉优化</div>
+    <div class="tab" onclick="switchVTab('nonhuman',this)">📷 非人模视觉优化</div>
+  </div>
+
+  <!-- Human Model -->
+  <div id="human" class="tab-content active">
+    <div class="card">
+      <h2>人模视觉优化 - 主图指令生成器</h2>
+      <p style="color:#666;font-size:14px;margin-bottom:15px">选择下方选项，系统将自动生成可用于 AI 绘图的主图拍摄指令（Prompt）。</p>
+
+      <div class="highlight-box">
+        <h4>🔗 AI 主图指令生成器入口</h4>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+          <a href="https://yunsuiyue48-crypto.github.io/vision/" target="_blank" class="external-link">🎩 正装 AI 指令生成器 →</a>
+          <a href="https://yunsuiyue48-crypto.github.io/vision/" target="_blank" class="external-link" style="background:#FF6B1A">👔 套装 AI 指令生成器 →</a>
+          <a href="https://yunsuiyue48-crypto.github.io/vision/" target="_blank" class="external-link" style="background:#1565C0">🧥 棉羽 AI 指令生成器 →</a>
+        </div>
+        <p style="color:#888;font-size:13px;margin-top:8px">点击上方按钮跳转至正装 AI 指令生成器网页，可生成男装正装/套装/棉羽主图指令。</p>
+      </div>
+
+      <div class="option-group"><h4>人模</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'人模')">亚洲男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">欧美男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">拉丁男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">非洲男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">中年男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">青年男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">少年男模</span><span class="option-tag" onclick="toggleTag(this,'人模')">运动型身材</span><span class="option-tag" onclick="toggleTag(this,'人模')">标准身材</span><span class="option-tag" onclick="toggleTag(this,'人模')">偏瘦身材</span></div></div><div class="option-group"><h4>姿势</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'姿势')">正面站立</span><span class="option-tag" onclick="toggleTag(this,'姿势')">侧身45°</span><span class="option-tag" onclick="toggleTag(this,'姿势')">双手插袋</span><span class="option-tag" onclick="toggleTag(this,'姿势')">双手交叉</span><span class="option-tag" onclick="toggleTag(this,'姿势')">行走姿态</span><span class="option-tag" onclick="toggleTag(this,'姿势')">坐姿</span><span class="option-tag" onclick="toggleTag(this,'姿势')">倚靠姿势</span><span class="option-tag" onclick="toggleTag(this,'姿势')">转身回望</span><span class="option-tag" onclick="toggleTag(this,'姿势')">叉腰</span><span class="option-tag" onclick="toggleTag(this,'姿势')">单手插袋</span><span class="option-tag" onclick="toggleTag(this,'姿势')">整理领带</span><span class="option-tag" onclick="toggleTag(this,'姿势')">双手自然下垂</span></div></div><div class="option-group"><h4>风格</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'风格')">商务精英</span><span class="option-tag" onclick="toggleTag(this,'风格')">休闲时尚</span><span class="option-tag" onclick="toggleTag(this,'风格')">街头潮流</span><span class="option-tag" onclick="toggleTag(this,'风格')">运动活力</span><span class="option-tag" onclick="toggleTag(this,'风格')">复古绅士</span><span class="option-tag" onclick="toggleTag(this,'风格')">韩系简约</span><span class="option-tag" onclick="toggleTag(this,'风格')">日系文艺</span><span class="option-tag" onclick="toggleTag(this,'风格')">美式休闲</span><span class="option-tag" onclick="toggleTag(this,'风格')">意式优雅</span><span class="option-tag" onclick="toggleTag(this,'风格')">英伦经典</span><span class="option-tag" onclick="toggleTag(this,'风格')">都市现代</span><span class="option-tag" onclick="toggleTag(this,'风格')">度假风</span><span class="option-tag" onclick="toggleTag(this,'风格')">工装风</span><span class="option-tag" onclick="toggleTag(this,'风格')">极简风</span><span class="option-tag" onclick="toggleTag(this,'风格')">轻奢风</span></div></div><div class="option-group"><h4>场景</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'场景')">纯白背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">纯灰背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">纯黑背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">摄影棚</span><span class="option-tag" onclick="toggleTag(this,'场景')">城市街道</span><span class="option-tag" onclick="toggleTag(this,'场景')">办公室</span><span class="option-tag" onclick="toggleTag(this,'场景')">咖啡馆</span><span class="option-tag" onclick="toggleTag(this,'场景')">户外公园</span><span class="option-tag" onclick="toggleTag(this,'场景')">海边</span><span class="option-tag" onclick="toggleTag(this,'场景')">工业风loft</span><span class="option-tag" onclick="toggleTag(this,'场景')">现代家居</span><span class="option-tag" onclick="toggleTag(this,'场景')">商务大楼</span><span class="option-tag" onclick="toggleTag(this,'场景')">灯光影棚</span><span class="option-tag" onclick="toggleTag(this,'场景')">渐变背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">简约工作室</span><span class="option-tag" onclick="toggleTag(this,'场景')">街头巷尾</span><span class="option-tag" onclick="toggleTag(this,'场景')">时尚走廊</span><span class="option-tag" onclick="toggleTag(this,'场景')">抽象背景</span></div></div><div class="option-group"><h4>配饰</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'配饰')">领带</span><span class="option-tag" onclick="toggleTag(this,'配饰')">领结</span><span class="option-tag" onclick="toggleTag(this,'配饰')">手表</span><span class="option-tag" onclick="toggleTag(this,'配饰')">墨镜</span><span class="option-tag" onclick="toggleTag(this,'配饰')">皮带</span><span class="option-tag" onclick="toggleTag(this,'配饰')">公文包</span><span class="option-tag" onclick="toggleTag(this,'配饰')">围巾</span><span class="option-tag" onclick="toggleTag(this,'配饰')">帽子</span><span class="option-tag" onclick="toggleTag(this,'配饰')">皮鞋</span><span class="option-tag" onclick="toggleTag(this,'配饰')">运动鞋</span><span class="option-tag" onclick="toggleTag(this,'配饰')">背包</span><span class="option-tag" onclick="toggleTag(this,'配饰')">项链</span><span class="option-tag" onclick="toggleTag(this,'配饰')">戒指</span><span class="option-tag" onclick="toggleTag(this,'配饰')">耳钉</span><span class="option-tag" onclick="toggleTag(this,'配饰')">袖扣</span><span class="option-tag" onclick="toggleTag(this,'配饰')">胸针</span></div></div><div class="option-group"><h4>光线色调</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'光线色调')">自然光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">暖色调</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">冷色调</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">侧光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">逆光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">顶光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">柔光箱</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">硬光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">日落金光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">影棚标准光</span></div></div><div class="option-group"><h4>拍摄视角</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">平视</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">俯视</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">仰视</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">特写</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">全景</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">半身</span></div></div>
+      <button class="btn" onclick="generateHumanPrompt()" style="margin-top:15px">✨ 生成 Prompt</button>
+      <div class="prompt-box" id="humanPrompt">选择上方选项后点击「生成 Prompt」按钮...</div>
+      <button class="btn btn-outline btn-sm" onclick="copyPrompt('humanPrompt')">📋 复制 Prompt</button>
+    </div>
+  </div>
+
+  <!-- Non-Human Model -->
+  <div id="nonhuman" class="tab-content">
+    <div class="card">
+      <h2>非人模视觉优化 - 主图指令生成器</h2>
+      <p style="color:#666;font-size:14px;margin-bottom:15px">选择展示类型、场景、风格等选项，生成非人模主图拍摄指令（Prompt）。</p>
+      <div class="option-group"><h4>展示类型</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'展示类型')">平铺</span><span class="option-tag" onclick="toggleTag(this,'展示类型')">OOTD平铺</span><span class="option-tag" onclick="toggleTag(this,'展示类型')">搭配平铺</span><span class="option-tag" onclick="toggleTag(this,'展示类型')">3D立体</span><span class="option-tag" onclick="toggleTag(this,'展示类型')">挂拍</span><span class="option-tag" onclick="toggleTag(this,'展示类型')">折叠</span><span class="option-tag" onclick="toggleTag(this,'展示类型')">礼盒</span></div></div><div class="option-group"><h4>场景</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'场景')">纯白背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">木桌面</span><span class="option-tag" onclick="toggleTag(this,'场景')">大理石台面</span><span class="option-tag" onclick="toggleTag(this,'场景')">布艺背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">工业风桌面</span><span class="option-tag" onclick="toggleTag(this,'场景')">北欧风背景</span><span class="option-tag" onclick="toggleTag(this,'场景')">简约灰色</span><span class="option-tag" onclick="toggleTag(this,'场景')">纯色卡纸</span><span class="option-tag" onclick="toggleTag(this,'场景')">亚克力板</span><span class="option-tag" onclick="toggleTag(this,'场景')">纹理背景</span></div></div><div class="option-group"><h4>风格</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'风格')">简约现代</span><span class="option-tag" onclick="toggleTag(this,'风格')">商务质感</span><span class="option-tag" onclick="toggleTag(this,'风格')">休闲自然</span><span class="option-tag" onclick="toggleTag(this,'风格')">高端轻奢</span><span class="option-tag" onclick="toggleTag(this,'风格')">日系简约</span><span class="option-tag" onclick="toggleTag(this,'风格')">韩系清新</span><span class="option-tag" onclick="toggleTag(this,'风格')">美式复古</span><span class="option-tag" onclick="toggleTag(this,'风格')">工业风</span><span class="option-tag" onclick="toggleTag(this,'风格')">极简主义</span><span class="option-tag" onclick="toggleTag(this,'风格')">运动活力</span></div></div><div class="option-group"><h4>道具</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'道具')">衣架</span><span class="option-tag" onclick="toggleTag(this,'道具')">模特架</span><span class="option-tag" onclick="toggleTag(this,'道具')">鞋子</span><span class="option-tag" onclick="toggleTag(this,'道具')">配饰</span><span class="option-tag" onclick="toggleTag(this,'道具')">绿植</span><span class="option-tag" onclick="toggleTag(this,'道具')">书籍</span><span class="option-tag" onclick="toggleTag(this,'道具')">咖啡杯</span><span class="option-tag" onclick="toggleTag(this,'道具')">手表</span><span class="option-tag" onclick="toggleTag(this,'道具')">墨镜</span><span class="option-tag" onclick="toggleTag(this,'道具')">皮带</span><span class="option-tag" onclick="toggleTag(this,'道具')">领带</span><span class="option-tag" onclick="toggleTag(this,'道具')">公文包</span><span class="option-tag" onclick="toggleTag(this,'道具')">香水</span><span class="option-tag" onclick="toggleTag(this,'道具')">手机</span><span class="option-tag" onclick="toggleTag(this,'道具')">纹理布料</span></div></div><div class="option-group"><h4>拍摄视角</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">正面平拍</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">45°俯拍</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">垂直俯拍</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">侧面拍摄</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">微距特写</span><span class="option-tag" onclick="toggleTag(this,'拍摄视角')">全景</span></div></div><div class="option-group"><h4>光线色调</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'光线色调')">自然柔光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">暖色调灯光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">冷色调灯光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">侧光</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">柔光箱</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">均匀照明</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">阳光感</span><span class="option-tag" onclick="toggleTag(this,'光线色调')">影棚标准光</span></div></div><div class="option-group"><h4>细节展示</h4><div class="option-tags"><span class="option-tag" onclick="toggleTag(this,'细节展示')">面料特写</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">纽扣细节</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">领口细节</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">袖口细节</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">缝线细节</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">内衬展示</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">标签展示</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">拉链细节</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">口袋细节</span><span class="option-tag" onclick="toggleTag(this,'细节展示')">版型轮廓</span></div></div>
+      <button class="btn" onclick="generateNonHumanPrompt()" style="margin-top:15px">✨ 生成 Prompt</button>
+      <div class="prompt-box" id="nonHumanPrompt">选择上方选项后点击「生成 Prompt」按钮...</div>
+      <button class="btn btn-outline btn-sm" onclick="copyPrompt('nonHumanPrompt')">📋 复制 Prompt</button>
+    </div>
+  </div>
+</div>
+<div class="disclaimer">⚠️ 以上图案参考来源网络，实际开发请安全延改，避免侵权</div>
+<div class="footer">云岁月 男装商家运营工具</div>
+<script>
+function switchVTab(id,tab){
+  document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+function toggleTag(el,group){
+  el.classList.toggle('selected');
+}
+function getSelected(containerId){
+  var groups={};
+  var container=document.getElementById(containerId);
+  container.querySelectorAll('.option-group').forEach(function(g){
+    var name=g.querySelector('h4').textContent;
+    var selected=[];
+    g.querySelectorAll('.option-tag.selected').forEach(function(t){selected.push(t.textContent)});
+    if(selected.length)groups[name]=selected;
+  });
+  return groups;
+}
+function generateHumanPrompt(){
+  var g=getSelected('human');
+  var parts=[];
+  if(g['人模'])parts.push('Model: '+g['人模'].join(', '));
+  if(g['姿势'])parts.push('Pose: '+g['姿势'].join(', '));
+  if(g['风格'])parts.push('Style: '+g['风格'].join(', '));
+  if(g['场景'])parts.push('Scene/Background: '+g['场景'].join(', '));
+  if(g['配饰'])parts.push('Accessories: '+g['配饰'].join(', '));
+  if(g['光线色调'])parts.push('Lighting: '+g['光线色调'].join(', '));
+  if(g['拍摄视角'])parts.push('Camera Angle: '+g['拍摄视角'].join(', '));
+  var prompt='A high-quality e-commerce product photo of men\'s clothing.\n'+parts.join('\n')+'\n\nHigh resolution, professional photography, sharp focus, commercial quality, 4K, detailed texture.';
+  document.getElementById('humanPrompt').textContent=prompt;
+}
+function generateNonHumanPrompt(){
+  var g=getSelected('nonhuman');
+  var parts=[];
+  if(g['展示类型'])parts.push('Display Type: '+g['展示类型'].join(', '));
+  if(g['场景'])parts.push('Scene: '+g['场景'].join(', '));
+  if(g['风格'])parts.push('Style: '+g['风格'].join(', '));
+  if(g['道具'])parts.push('Props: '+g['道具'].join(', '));
+  if(g['拍摄视角'])parts.push('Camera Angle: '+g['拍摄视角'].join(', '));
+  if(g['光线色调'])parts.push('Lighting: '+g['光线色调'].join(', '));
+  if(g['细节展示'])parts.push('Detail Shots: '+g['细节展示'].join(', '));
+  var prompt='A high-quality e-commerce product photo (non-model).\n'+parts.join('\n')+'\n\nHigh resolution, professional flat lay photography, sharp focus, commercial quality, 4K, detailed fabric texture.';
+  document.getElementById('nonHumanPrompt').textContent=prompt;
+}
+function copyPrompt(id){
+  var text=document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    alert('Prompt 已复制到剪贴板！');
+  });
+}
+</script>
+
+<script>
+(function(){
+var overlay=document.createElement('div');overlay.className='img-zoom-overlay';
+var closeBtn=document.createElement('span');closeBtn.className='img-zoom-close';closeBtn.innerHTML='&times;';
+var zoomImg=document.createElement('img');overlay.appendChild(zoomImg);overlay.appendChild(closeBtn);
+document.body.appendChild(overlay);
+function openZoom(src){zoomImg.src=src;overlay.classList.add('active');}
+function closeZoom(){overlay.classList.remove('active');}
+overlay.addEventListener('click',closeZoom);
+closeBtn.addEventListener('click',function(e){e.stopPropagation();closeZoom();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeZoom();});
+document.addEventListener('click',function(e){
+    if(e.target&&e.target.tagName==='IMG'&&e.target.src&&!e.target.dataset.noZoom){
+        var p=e.target.parentElement;
+        if(p&&p.tagName==='A'&&p.href&&p.target==='_blank')return;
+        e.preventDefault();openZoom(e.target.src);
+    }
+});
+})();
+</script>
+</body>
+</html>

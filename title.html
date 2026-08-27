@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>标题优化 - 云岁月 男装商家运营工具</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.golden-formula{background:linear-gradient(135deg,#FF8C42,#FF6B1A);color:#fff;padding:20px 30px;border-radius:12px;margin:20px 0;text-align:center;font-size:18px;font-weight:700;box-shadow:0 4px 15px rgba(255,140,66,0.3);}
+.golden-formula .label{font-size:14px;opacity:0.9;margin-bottom:8px;}
+.golden-formula .formula{font-size:16px;line-height:1.8;}
+.cat-tabs{display:flex;gap:10px;margin:20px 0;justify-content:center;flex-wrap:wrap;}
+.cat-tab{padding:12px 30px;border-radius:10px;cursor:pointer;font-weight:700;font-size:15px;background:#fff;border:2px solid #FFE0CC;color:#FF6B1A;transition:all 0.3s;}
+.cat-tab.active{background:linear-gradient(135deg,#FF8C42,#FF6B1A);color:#fff;border-color:transparent;}
+.kw-panel{display:none;}
+.kw-panel.active{display:block;}
+.kw-section{margin-bottom:24px;}
+.kw-section h4{color:#FF6B1A;border-bottom:2px solid #FFE0CC;padding-bottom:8px;margin-bottom:12px;}
+.kw-section h4 .count{background:#FF6B1A;color:#fff;border-radius:10px;padding:2px 10px;font-size:12px;margin-left:8px;}
+.kw-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.kw-card{background:#fff;border:2px solid #EEE;border-radius:8px;padding:8px 14px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;min-width:120px;}
+.kw-card:hover{border-color:#FF8C42;background:#FFF8F3;}
+.kw-card.selected{background:linear-gradient(135deg,#FF8C42,#FF6B1A);color:#fff;border-color:transparent;}
+.kw-card.selected .kw-en,.kw-card.selected .kw-cn{color:#fff;}
+.kw-en{font-size:13px;font-weight:600;color:#333;}
+.kw-cn{font-size:11px;color:#888;margin-top:2px;}
+.result-box{background:#fff;border:2px solid #FFE0CC;border-radius:12px;padding:20px;margin:20px 0;}
+.result-box h3{color:#FF6B1A;margin-bottom:12px;}
+#titleCN,#titleEN{background:#FFF8F3;border:1px solid #FFE0CC;border-radius:8px;padding:12px;font-size:14px;min-height:40px;margin-bottom:10px;line-height:1.6;}
+.copy-title-btn{background:linear-gradient(135deg,#FF8C42,#FF6B1A);color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;margin-top:8px;}
+.copy-title-btn:hover{opacity:0.9;}
+</style>
+
+<style>
+.img-zoom-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;}
+.img-zoom-overlay.active{display:flex;}
+.img-zoom-overlay img{max-width:90%;max-height:90%;border-radius:8px;box-shadow:0 0 30px rgba(255,140,66,0.5);}
+.img-zoom-close{position:absolute;top:20px;right:30px;color:#FF8C42;font-size:36px;cursor:pointer;font-weight:bold;line-height:1;}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📝 标题优化</h1>
+  <div class="subtitle">男装爆款标题生成器 · 中英双语 · 黄金公式</div>
+</div>
+<div class="nav"><a href="index.html">首页</a><a href="category-guide.html">类目指引</a><a href="trending.html">开款方向</a><a href="visual.html">视觉优化</a><a href="title.html" class="active">标题优化</a><a href="recruit.html">招品回品</a></div>
+<div class="container">
+  <div class="golden-formula">
+    <div class="label">📌 标题黄金公式</div>
+    <div class="formula">[件套规格 (2pcs/3pcs)] + [人群/品类] + [版型/风格] + [材质/图案] + [领型细节] + [包含部件说明] + [多场景/卖点]</div>
+  </div>
+
+  <div class="cat-tabs">
+    <div class="cat-tab active" onclick="switchCat('suit',this)">👔 套装 (310)</div>
+    <div class="cat-tab" onclick="switchCat('puffer',this)">🧥 棉羽 (81)</div>
+    <div class="cat-tab" onclick="switchCat('formal',this)">🎩 正装 (87)</div>
+  </div>
+
+  <div class="kw-panel active" id="panel-suit">
+    <p style="text-align:center;color:#888;font-size:13px;margin-bottom:16px;">💡 点击下方关键词卡片选择，然后生成标题。关键词参考 Temu 站内热销链接精选。</p>
+      <div class="kw-section" id="suit-件套规格">
+        <h4>件套规格 <span class="count">9</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','2pcs / 2 Pieces','两件套')"><span class="kw-en">2pcs / 2 Pieces</span><span class="kw-cn">两件套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','3pcs / 3 Pieces','三件套')"><span class="kw-en">3pcs / 3 Pieces</span><span class="kw-cn">三件套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','2 Piece Set','两件式套装')"><span class="kw-en">2 Piece Set</span><span class="kw-cn">两件式套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','2 Piece Outfit','两件式穿搭')"><span class="kw-en">2 Piece Outfit</span><span class="kw-cn">两件式穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','Co-Ord Set','同色系搭配套装')"><span class="kw-en">Co-Ord Set</span><span class="kw-cn">同色系搭配套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','Matching Set','配套套装')"><span class="kw-en">Matching Set</span><span class="kw-cn">配套套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','Hoodie & Pants Set','连帽衫+裤子组合')"><span class="kw-en">Hoodie & Pants Set</span><span class="kw-cn">连帽衫+裤子组合</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','Blazer & Pants','西服+裤子')"><span class="kw-en">Blazer & Pants</span><span class="kw-cn">西服+裤子</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','件套规格','Pack of 2','2件装')"><span class="kw-en">Pack of 2</span><span class="kw-cn">2件装</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-品类">
+        <h4>核心品类词 <span class="count">71</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Two Piece Set','两件套')"><span class="kw-en">Two Piece Set</span><span class="kw-cn">两件套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Shirt & Shorts Set','衬衫短裤套装')"><span class="kw-en">Shirt & Shorts Set</span><span class="kw-cn">衬衫短裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','2pcs Co-Ord Set','同色系搭配套装')"><span class="kw-en">2pcs Co-Ord Set</span><span class="kw-cn">同色系搭配套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Outfits Set','休闲穿搭套装')"><span class="kw-en">Outfits Set</span><span class="kw-cn">休闲穿搭套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Tracksuit / Sweatsuit','运动休闲套装')"><span class="kw-en">Tracksuit / Sweatsuit</span><span class="kw-cn">运动休闲套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Polo & Shorts Set','POLO衬衫短裤套')"><span class="kw-en">Polo & Shorts Set</span><span class="kw-cn">POLO衬衫短裤套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Solid Color','纯色')"><span class="kw-en">Solid Color</span><span class="kw-cn">纯色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Striped / Color Block','条纹/撞色')"><span class="kw-en">Striped / Color Block</span><span class="kw-cn">条纹/撞色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Textured Check/Grid','纹理格子')"><span class="kw-en">Textured Check/Grid</span><span class="kw-cn">纹理格子</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Tropical Palm Print','热带棕榈印花')"><span class="kw-en">Tropical Palm Print</span><span class="kw-cn">热带棕榈印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Graphic Letter Print','字母印花')"><span class="kw-en">Graphic Letter Print</span><span class="kw-cn">字母印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Suit Set','套装')"><span class="kw-en">Suit Set</span><span class="kw-cn">套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Blazer And Pants Set','西服裤套装')"><span class="kw-en">Blazer And Pants Set</span><span class="kw-cn">西服裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Jacket And Pants','夹克裤子')"><span class="kw-en">Jacket And Pants</span><span class="kw-cn">夹克裤子</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Tuxedo','礼服/无尾服')"><span class="kw-en">Tuxedo</span><span class="kw-cn">礼服/无尾服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','2pcs Suit','两件套西装')"><span class="kw-en">2pcs Suit</span><span class="kw-cn">两件套西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','3pcs Suit','三件套西装')"><span class="kw-en">3pcs Suit</span><span class="kw-cn">三件套西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Striped / Pinstripe','条纹/细条纹')"><span class="kw-en">Striped / Pinstripe</span><span class="kw-cn">条纹/细条纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Jacquard','提花/暗纹')"><span class="kw-en">Jacquard</span><span class="kw-cn">提花/暗纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Checkered / Plaid','格纹')"><span class="kw-en">Checkered / Plaid</span><span class="kw-cn">格纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Sequin Embroidery','亮片绣花')"><span class="kw-en">Sequin Embroidery</span><span class="kw-cn">亮片绣花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Tracksuit Set','运动/追踪套装')"><span class="kw-en">Tracksuit Set</span><span class="kw-cn">运动/追踪套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Sweatsuit Set','卫衣卫裤套装')"><span class="kw-en">Sweatsuit Set</span><span class="kw-cn">卫衣卫裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Athletic 2pcs Set','2件套运动装')"><span class="kw-en">Athletic 2pcs Set</span><span class="kw-cn">2件套运动装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Activewear Set','健身/重训套装')"><span class="kw-en">Activewear Set</span><span class="kw-cn">健身/重训套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Jogging Suit','慢跑套装')"><span class="kw-en">Jogging Suit</span><span class="kw-cn">慢跑套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Hoodie & Joggers','连帽衫+慢跑裤')"><span class="kw-en">Hoodie & Joggers</span><span class="kw-cn">连帽衫+慢跑裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Color Block','撞色/拼接')"><span class="kw-en">Color Block</span><span class="kw-cn">撞色/拼接</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Side Stripe','侧边条纹/边线')"><span class="kw-en">Side Stripe</span><span class="kw-cn">侧边条纹/边线</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Letter / Graphic Print','字母/图案印花')"><span class="kw-en">Letter / Graphic Print</span><span class="kw-cn">字母/图案印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Camo / Camouflage','迷彩印花')"><span class="kw-en">Camo / Camouflage</span><span class="kw-cn">迷彩印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Outdoor Suit Set','户外套装')"><span class="kw-en">Outdoor Suit Set</span><span class="kw-cn">户外套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Tactical Suit','战术/军迷套装')"><span class="kw-en">Tactical Suit</span><span class="kw-cn">战术/军迷套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Hiking Set','徒步登山套装')"><span class="kw-en">Hiking Set</span><span class="kw-cn">徒步登山套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Softshell Suit','软壳保暖套装')"><span class="kw-en">Softshell Suit</span><span class="kw-cn">软壳保暖套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Windbreaker Set','防风衣裤套装')"><span class="kw-en">Windbreaker Set</span><span class="kw-cn">防风衣裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Jacket & Cargo Pants','夹克+工装裤')"><span class="kw-en">Jacket & Cargo Pants</span><span class="kw-cn">夹克+工装裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Camouflage / Camo','迷彩/战术伪装')"><span class="kw-en">Camouflage / Camo</span><span class="kw-cn">迷彩/战术伪装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Tactical Tan / Khaki','战术卡其/沙色')"><span class="kw-en">Tactical Tan / Khaki</span><span class="kw-cn">战术卡其/沙色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Olive Green','橄榄军绿')"><span class="kw-en">Olive Green</span><span class="kw-cn">橄榄军绿</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Men\'s 2 Piece Set','男士两件套')"><span class="kw-en">Men's 2 Piece Set</span><span class="kw-cn">男士两件套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Jacket And Pants Set','夹克裤套装')"><span class="kw-en">Jacket And Pants Set</span><span class="kw-cn">夹克裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Men\'s Co-Ord Set','男士套装')"><span class="kw-en">Men's Co-Ord Set</span><span class="kw-cn">男士套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Sweat Suit Set','卫衣套装')"><span class="kw-en">Sweat Suit Set</span><span class="kw-cn">卫衣套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Sports Set','运动套装')"><span class="kw-en">Sports Set</span><span class="kw-cn">运动套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Athletic Tracksuit','运动训练套装')"><span class="kw-en">Athletic Tracksuit</span><span class="kw-cn">运动训练套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','T Shirt And Shorts Set','T恤短裤套装')"><span class="kw-en">T Shirt And Shorts Set</span><span class="kw-cn">T恤短裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Men\'s T Shirt Set','男士T恤套装')"><span class="kw-en">Men's T Shirt Set</span><span class="kw-cn">男士T恤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Summer Set','夏季套装')"><span class="kw-en">Summer Set</span><span class="kw-cn">夏季套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Matching Set','成套搭配')"><span class="kw-en">Matching Set</span><span class="kw-cn">成套搭配</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Casual Set','休闲套装')"><span class="kw-en">Casual Set</span><span class="kw-cn">休闲套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Shirt Shorts Set','上衣短裤套装')"><span class="kw-en">Shirt Shorts Set</span><span class="kw-cn">上衣短裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Two Piece Outfit','两件穿搭')"><span class="kw-en">Two Piece Outfit</span><span class="kw-cn">两件穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','Lounge Set','家居休闲套装')"><span class="kw-en">Lounge Set</span><span class="kw-cn">家居休闲套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','两件套西装','')"><span class="kw-en">两件套西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','正装/商务套装','')"><span class="kw-en">正装/商务套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','两件套(通用)','')"><span class="kw-en">两件套(通用)</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','运动/追踪套装','')"><span class="kw-en">运动/追踪套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','衬衫短裤套装','')"><span class="kw-en">衬衫短裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','【高频】','')"><span class="kw-en">【高频】</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','西服裤套装','')"><span class="kw-en">西服裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','卫衣卫裤套装','')"><span class="kw-en">卫衣卫裤套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','户外套装','')"><span class="kw-en">户外套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','战术/军迷套装','')"><span class="kw-en">战术/军迷套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','三件套西装','')"><span class="kw-en">三件套西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','夹克+工装裤','')"><span class="kw-en">夹克+工装裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','【热门】','')"><span class="kw-en">【热门】</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','礼服/无尾服','')"><span class="kw-en">礼服/无尾服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','徒步登山套装','')"><span class="kw-en">徒步登山套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','软壳保暖套装','')"><span class="kw-en">软壳保暖套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','品类','POLO衬衫短裤套','')"><span class="kw-en">POLO衬衫短裤套</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-版型">
+        <h4>版型/剪裁 <span class="count">41</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Relaxed Fit','宽松休闲版')"><span class="kw-en">Relaxed Fit</span><span class="kw-cn">宽松休闲版</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Loose Fit','廓形/宽松')"><span class="kw-en">Loose Fit</span><span class="kw-cn">廓形/宽松</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Oversized','落肩/超大号')"><span class="kw-en">Oversized</span><span class="kw-cn">落肩/超大号</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Regular Fit','标准合体')"><span class="kw-en">Regular Fit</span><span class="kw-cn">标准合体</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Athletic Fit','运动剪裁')"><span class="kw-en">Athletic Fit</span><span class="kw-cn">运动剪裁</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Straight Leg','直筒裤型')"><span class="kw-en">Straight Leg</span><span class="kw-cn">直筒裤型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Vacation / Holiday','度假/假期')"><span class="kw-en">Vacation / Holiday</span><span class="kw-cn">度假/假期</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Beach / Poolside','海滩/泳池边')"><span class="kw-en">Beach / Poolside</span><span class="kw-cn">海滩/泳池边</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Cruise / Island','游轮/岛屿穿搭')"><span class="kw-en">Cruise / Island</span><span class="kw-cn">游轮/岛屿穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Outdoor Activities','户外活动')"><span class="kw-en">Outdoor Activities</span><span class="kw-cn">户外活动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Travel / Outing','旅行/郊游')"><span class="kw-en">Travel / Outing</span><span class="kw-cn">旅行/郊游</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Slim Fit','修身版型')"><span class="kw-en">Slim Fit</span><span class="kw-cn">修身版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Tailored','剪裁合体')"><span class="kw-en">Tailored</span><span class="kw-cn">剪裁合体</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Wedding','婚礼')"><span class="kw-en">Wedding</span><span class="kw-cn">婚礼</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Ceremony','典礼/仪式')"><span class="kw-en">Ceremony</span><span class="kw-cn">典礼/仪式</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Business','商务')"><span class="kw-en">Business</span><span class="kw-cn">商务</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Party','派对/晚会')"><span class="kw-en">Party</span><span class="kw-cn">派对/晚会</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Groomsmen','伴郎/婚礼团')"><span class="kw-en">Groomsmen</span><span class="kw-cn">伴郎/婚礼团</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Tapered Leg','锥形收口裤腿')"><span class="kw-en">Tapered Leg</span><span class="kw-cn">锥形收口裤腿</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Gym Workout','健身房重训')"><span class="kw-en">Gym Workout</span><span class="kw-cn">健身房重训</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Running / Jogging','跑步/慢跑')"><span class="kw-en">Running / Jogging</span><span class="kw-cn">跑步/慢跑</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Fitness Training','综合体能训练')"><span class="kw-en">Fitness Training</span><span class="kw-cn">综合体能训练</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Outdoor Sports','户外运动')"><span class="kw-en">Outdoor Sports</span><span class="kw-cn">户外运动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Basketball / Sports','篮球/球类活动')"><span class="kw-en">Basketball / Sports</span><span class="kw-cn">篮球/球类活动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Tactical Fit','战术机能剪裁')"><span class="kw-en">Tactical Fit</span><span class="kw-cn">战术机能剪裁</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Hiking / Trekking','徒步/越野')"><span class="kw-en">Hiking / Trekking</span><span class="kw-cn">徒步/越野</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Camping','露营')"><span class="kw-en">Camping</span><span class="kw-cn">露营</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Fishing','钓鱼/垂钓')"><span class="kw-en">Fishing</span><span class="kw-cn">钓鱼/垂钓</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Climbing / Mountain','登山/攀岩')"><span class="kw-en">Climbing / Mountain</span><span class="kw-cn">登山/攀岩</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Hunting / Outdoor','打猎/户外运动')"><span class="kw-en">Hunting / Outdoor</span><span class="kw-cn">打猎/户外运动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Oversized Fit','Oversize')"><span class="kw-en">Oversized Fit</span><span class="kw-cn">Oversize</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Full Zip','全拉链')"><span class="kw-en">Full Zip</span><span class="kw-cn">全拉链</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Zip Up Jacket','拉链夹克')"><span class="kw-en">Zip Up Jacket</span><span class="kw-cn">拉链夹克</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Streetwear','Lightweight & Soft')"><span class="kw-en">Streetwear</span><span class="kw-cn">Lightweight & Soft</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Resort Wear / VCAY','Breathable Cotton')"><span class="kw-en">Resort Wear / VCAY</span><span class="kw-cn">Breathable Cotton</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Old Money Style','Stretchy / Stretch')"><span class="kw-en">Old Money Style</span><span class="kw-cn">Stretchy / Stretch</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Sporty Casual','Linen Blend')"><span class="kw-en">Sporty Casual</span><span class="kw-cn">Linen Blend</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Minimalist','Quick Dry')"><span class="kw-en">Minimalist</span><span class="kw-cn">Quick Dry</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Y2K Style','Textured Fabric')"><span class="kw-en">Y2K Style</span><span class="kw-cn">Textured Fabric</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Vintage / Retro','French Terry')"><span class="kw-en">Vintage / Retro</span><span class="kw-cn">French Terry</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','版型','Hawaiian / Tropical','Ice Silk / Cooling')"><span class="kw-en">Hawaiian / Tropical</span><span class="kw-cn">Ice Silk / Cooling</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-风格">
+        <h4>风格定位 <span class="count">42</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Old Money Streetwear','老钱街头风')"><span class="kw-en">Old Money Streetwear</span><span class="kw-cn">老钱街头风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Resort Wear / VCAY','度假风')"><span class="kw-en">Resort Wear / VCAY</span><span class="kw-cn">度假风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Casual Cool','随性酷感')"><span class="kw-en">Casual Cool</span><span class="kw-cn">随性酷感</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Minimalist','极简风')"><span class="kw-en">Minimalist</span><span class="kw-cn">极简风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Hawaiian / Tropical','夏威夷/热带风')"><span class="kw-en">Hawaiian / Tropical</span><span class="kw-cn">夏威夷/热带风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Preppy / Retro','学院/复古风')"><span class="kw-en">Preppy / Retro</span><span class="kw-cn">学院/复古风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Daily Wear','日常穿搭')"><span class="kw-en">Daily Wear</span><span class="kw-cn">日常穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Streetwear','街头潮流')"><span class="kw-en">Streetwear</span><span class="kw-cn">街头潮流</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','City Break','城市休闲/短途')"><span class="kw-en">City Break</span><span class="kw-cn">城市休闲/短途</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Lounge / Home','居家/懒人穿搭')"><span class="kw-en">Lounge / Home</span><span class="kw-cn">居家/懒人穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Weekend / Date','周末/约会')"><span class="kw-en">Weekend / Date</span><span class="kw-cn">周末/约会</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Business Commute','商务通勤')"><span class="kw-en">Business Commute</span><span class="kw-cn">商务通勤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Old Money Style','老钱风/高智感')"><span class="kw-en">Old Money Style</span><span class="kw-cn">老钱风/高智感</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Formal','正式/正装')"><span class="kw-en">Formal</span><span class="kw-cn">正式/正装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Business Casual','商务休闲')"><span class="kw-en">Business Casual</span><span class="kw-cn">商务休闲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Vintage','复古风')"><span class="kw-en">Vintage</span><span class="kw-cn">复古风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Summer / Spring','春夏穿搭')"><span class="kw-en">Summer / Spring</span><span class="kw-cn">春夏穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Vacation / Beach','度假/海滩')"><span class="kw-en">Vacation / Beach</span><span class="kw-cn">度假/海滩</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Outfits','休闲出游穿搭')"><span class="kw-en">Outfits</span><span class="kw-cn">休闲出游穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Techwear','科技风/机能风')"><span class="kw-en">Techwear</span><span class="kw-cn">科技风/机能风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Y2K / Vintage','Y2K/复古运动')"><span class="kw-en">Y2K / Vintage</span><span class="kw-cn">Y2K/复古运动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Sporty Casual','运动休闲风')"><span class="kw-en">Sporty Casual</span><span class="kw-cn">运动休闲风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Retro Athletic','怀旧运动风')"><span class="kw-en">Retro Athletic</span><span class="kw-cn">怀旧运动风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Airport Outfit','机场/出行搭')"><span class="kw-en">Airport Outfit</span><span class="kw-cn">机场/出行搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Loungewear','居家/懒人休假')"><span class="kw-en">Loungewear</span><span class="kw-cn">居家/懒人休假</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Travel / Vacation','旅行/郊游')"><span class="kw-en">Travel / Vacation</span><span class="kw-cn">旅行/郊游</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Weekend Off-Duty','周末出游穿搭')"><span class="kw-en">Weekend Off-Duty</span><span class="kw-cn">周末出游穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Gorpcore','山系户外风')"><span class="kw-en">Gorpcore</span><span class="kw-cn">山系户外风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Utility Style','实用工装风')"><span class="kw-en">Utility Style</span><span class="kw-cn">实用工装风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Outdoor Adventure','户外探险风')"><span class="kw-en">Outdoor Adventure</span><span class="kw-cn">户外探险风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Military Style','军旅战术风')"><span class="kw-en">Military Style</span><span class="kw-cn">军旅战术风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Minimalist Outdoor','极简户外')"><span class="kw-en">Minimalist Outdoor</span><span class="kw-cn">极简户外</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Travel / Adventure','旅行探险')"><span class="kw-en">Travel / Adventure</span><span class="kw-cn">旅行探险</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Commute','都市通勤/骑行')"><span class="kw-en">Commute</span><span class="kw-cn">都市通勤/骑行</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Rainy Days','阴雨天出行')"><span class="kw-en">Rainy Days</span><span class="kw-cn">阴雨天出行</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Road Trip','自驾游/郊游')"><span class="kw-en">Road Trip</span><span class="kw-cn">自驾游/郊游</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Casual','休闲')"><span class="kw-en">Casual</span><span class="kw-cn">休闲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Sportswear','运动休闲')"><span class="kw-en">Sportswear</span><span class="kw-cn">运动休闲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Urban Style','城市风')"><span class="kw-en">Urban Style</span><span class="kw-cn">城市风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Hip Hop Style','嘻哈风')"><span class="kw-en">Hip Hop Style</span><span class="kw-cn">嘻哈风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Y2K Style','千禧复古')"><span class="kw-en">Y2K Style</span><span class="kw-cn">千禧复古</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','风格','Vintage Style','复古风')"><span class="kw-en">Vintage Style</span><span class="kw-cn">复古风</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-材质">
+        <h4>材质/面料 <span class="count">40</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Textured Fabric','纹理感面料')"><span class="kw-en">Textured Fabric</span><span class="kw-cn">纹理感面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Waffle Knit','华夫格针织')"><span class="kw-en">Waffle Knit</span><span class="kw-cn">华夫格针织</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Linen Blend','亚麻混纺')"><span class="kw-en">Linen Blend</span><span class="kw-cn">亚麻混纺</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Crochet / Mesh','钩针/镂空网眼')"><span class="kw-en">Crochet / Mesh</span><span class="kw-cn">钩针/镂空网眼</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Breathable Linen','透气亚麻')"><span class="kw-en">Breathable Linen</span><span class="kw-cn">透气亚麻</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Quick Dry','易干/速干')"><span class="kw-en">Quick Dry</span><span class="kw-cn">易干/速干</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','2pcs / 2 Pieces','2件套')"><span class="kw-en">2pcs / 2 Pieces</span><span class="kw-cn">2件套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','2 Piece Outfit','2件套穿搭')"><span class="kw-en">2 Piece Outfit</span><span class="kw-cn">2件套穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Set With Pockets','带口袋套装')"><span class="kw-en">Set With Pockets</span><span class="kw-cn">带口袋套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Short Sleeve & Shorts','短袖+短裤组合')"><span class="kw-en">Short Sleeve & Shorts</span><span class="kw-cn">短袖+短裤组合</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Shirt & Long Pants','衬衫+长裤组合')"><span class="kw-en">Shirt & Long Pants</span><span class="kw-cn">衬衫+长裤组合</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Lightweight','轻薄透气')"><span class="kw-en">Lightweight</span><span class="kw-cn">轻薄透气</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Stretchy / Stretch','带弹性/微弹')"><span class="kw-en">Stretchy / Stretch</span><span class="kw-cn">带弹性/微弹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Wrinkle-Free','防皱免烫')"><span class="kw-en">Wrinkle-Free</span><span class="kw-cn">防皱免烫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Elastane','弹性氨纶混纺')"><span class="kw-en">Elastane</span><span class="kw-cn">弹性氨纶混纺</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Woven Fabric','梭织面料')"><span class="kw-en">Woven Fabric</span><span class="kw-cn">梭织面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','3pcs / 3 Pieces','三件套')"><span class="kw-en">3pcs / 3 Pieces</span><span class="kw-cn">三件套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','2 Piece Set','2件套组合')"><span class="kw-en">2 Piece Set</span><span class="kw-cn">2件套组合</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','With Vest','带马甲(三件)')"><span class="kw-en">With Vest</span><span class="kw-cn">带马甲(三件)</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Pack of 2','2件装')"><span class="kw-en">Pack of 2</span><span class="kw-cn">2件装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Fleece Lined','加绒保暖')"><span class="kw-en">Fleece Lined</span><span class="kw-cn">加绒保暖</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Heavyweight Cotton','重磅纯棉/厚实')"><span class="kw-en">Heavyweight Cotton</span><span class="kw-cn">重磅纯棉/厚实</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Moisture-Wicking','排汗透气')"><span class="kw-en">Moisture-Wicking</span><span class="kw-cn">排汗透气</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Stretchy Tech Fabric','高弹力科技面料')"><span class="kw-en">Stretchy Tech Fabric</span><span class="kw-cn">高弹力科技面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Track Jacket & Pants','夹克+长裤组')"><span class="kw-en">Track Jacket & Pants</span><span class="kw-cn">夹克+长裤组</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Hoodie & Sweatpants','连帽衫+卫裤')"><span class="kw-en">Hoodie & Sweatpants</span><span class="kw-cn">连帽衫+卫裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Matching Set','同色系套装')"><span class="kw-en">Matching Set</span><span class="kw-cn">同色系套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Waterproof','防水')"><span class="kw-en">Waterproof</span><span class="kw-cn">防水</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Windproof','防风')"><span class="kw-en">Windproof</span><span class="kw-cn">防风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Softshell / Fleece','软壳/加绒保暖')"><span class="kw-en">Softshell / Fleece</span><span class="kw-cn">软壳/加绒保暖</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Ripstop Fabric','防撕裂面料')"><span class="kw-en">Ripstop Fabric</span><span class="kw-cn">防撕裂面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Breathable','透气不闷')"><span class="kw-en">Breathable</span><span class="kw-cn">透气不闷</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Wear-Resistant','超耐磨/防刮')"><span class="kw-en">Wear-Resistant</span><span class="kw-cn">超耐磨/防刮</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Jacket & Pants Set','夹克加长裤组')"><span class="kw-en">Jacket & Pants Set</span><span class="kw-cn">夹克加长裤组</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Packable Set','可折叠便携套')"><span class="kw-en">Packable Set</span><span class="kw-cn">可折叠便携套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Polyester','聚酯纤维')"><span class="kw-en">Polyester</span><span class="kw-cn">聚酯纤维</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Cotton Blend','棉混纺')"><span class="kw-en">Cotton Blend</span><span class="kw-cn">棉混纺</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Fleece','摇粒绒')"><span class="kw-en">Fleece</span><span class="kw-cn">摇粒绒</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Thermal Lined','保暖内里')"><span class="kw-en">Thermal Lined</span><span class="kw-cn">保暖内里</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','材质','Nylon','尼龙')"><span class="kw-en">Nylon</span><span class="kw-cn">尼龙</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-图案">
+        <h4>图案/花型 <span class="count">16</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Solid Color','纯色')"><span class="kw-en">Solid Color</span><span class="kw-cn">纯色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Striped / Color Block','条纹/撞色')"><span class="kw-en">Striped / Color Block</span><span class="kw-cn">条纹/撞色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Textured Check/Grid','纹理格子')"><span class="kw-en">Textured Check/Grid</span><span class="kw-cn">纹理格子</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Tropical Palm Print','热带棕榈印花')"><span class="kw-en">Tropical Palm Print</span><span class="kw-cn">热带棕榈印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Graphic Letter Print','字母印花')"><span class="kw-en">Graphic Letter Print</span><span class="kw-cn">字母印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Striped / Pinstripe','条纹/细条纹')"><span class="kw-en">Striped / Pinstripe</span><span class="kw-cn">条纹/细条纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Jacquard','提花/暗纹')"><span class="kw-en">Jacquard</span><span class="kw-cn">提花/暗纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Checkered / Plaid','格纹')"><span class="kw-en">Checkered / Plaid</span><span class="kw-cn">格纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Sequin Embroidery','亮片绣花')"><span class="kw-en">Sequin Embroidery</span><span class="kw-cn">亮片绣花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Color Block','撞色/拼接')"><span class="kw-en">Color Block</span><span class="kw-cn">撞色/拼接</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Side Stripe','侧边条纹/边线')"><span class="kw-en">Side Stripe</span><span class="kw-cn">侧边条纹/边线</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Letter / Graphic Print','字母/图案印花')"><span class="kw-en">Letter / Graphic Print</span><span class="kw-cn">字母/图案印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Camo / Camouflage','迷彩印花')"><span class="kw-en">Camo / Camouflage</span><span class="kw-cn">迷彩印花</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Camouflage / Camo','迷彩/战术伪装')"><span class="kw-en">Camouflage / Camo</span><span class="kw-cn">迷彩/战术伪装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Tactical Tan / Khaki','战术卡其/沙色')"><span class="kw-en">Tactical Tan / Khaki</span><span class="kw-cn">战术卡其/沙色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','图案','Olive Green','橄榄军绿')"><span class="kw-en">Olive Green</span><span class="kw-cn">橄榄军绿</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-领型细节">
+        <h4>领型/细节 <span class="count">40</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Drawstring Waist','抽绳松紧腰')"><span class="kw-en">Drawstring Waist</span><span class="kw-cn">抽绳松紧腰</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Cuban Collar','古巴领/开领')"><span class="kw-en">Cuban Collar</span><span class="kw-cn">古巴领/开领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Button-Down / Front','扣子门襟')"><span class="kw-en">Button-Down / Front</span><span class="kw-cn">扣子门襟</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Lapel Neck','翻领')"><span class="kw-en">Lapel Neck</span><span class="kw-cn">翻领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Quarter Zip','半拉链')"><span class="kw-en">Quarter Zip</span><span class="kw-cn">半拉链</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Chest Pocket','胸前口袋')"><span class="kw-en">Chest Pocket</span><span class="kw-cn">胸前口袋</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Cozy / Comfortable','舒适易穿')"><span class="kw-en">Cozy / Comfortable</span><span class="kw-cn">舒适易穿</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Lightweight & Soft','轻薄柔软')"><span class="kw-en">Lightweight & Soft</span><span class="kw-cn">轻薄柔软</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','All-Match / Versatile','百搭实用')"><span class="kw-en">All-Match / Versatile</span><span class="kw-cn">百搭实用</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Summer Essential','夏季必备')"><span class="kw-en">Summer Essential</span><span class="kw-cn">夏季必备</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Trendy & Stylish','潮流出彩')"><span class="kw-en">Trendy & Stylish</span><span class="kw-cn">潮流出彩</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Lapel Collar / Neck','翻领/平驳领')"><span class="kw-en">Lapel Collar / Neck</span><span class="kw-cn">翻领/平驳领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Double-Breasted','双排扣')"><span class="kw-en">Double-Breasted</span><span class="kw-cn">双排扣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Single-Breasted','单排扣')"><span class="kw-en">Single-Breasted</span><span class="kw-cn">单排扣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Peak Lapels','枪驳领')"><span class="kw-en">Peak Lapels</span><span class="kw-cn">枪驳领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Button Front','前纽扣门襟')"><span class="kw-en">Button Front</span><span class="kw-cn">前纽扣门襟</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Bias Pocket','斜插口袋')"><span class="kw-en">Bias Pocket</span><span class="kw-cn">斜插口袋</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Suitable For...','适用于...')"><span class="kw-en">Suitable For...</span><span class="kw-cn">适用于...</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Includes Jacket & Pants','包含上衣与裤子')"><span class="kw-en">Includes Jacket & Pants</span><span class="kw-cn">包含上衣与裤子</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Valentine\'s Day Gift','节日/男士礼品')"><span class="kw-en">Valentine's Day Gift</span><span class="kw-cn">节日/男士礼品</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Fashionable / Elegant','时尚/优雅高级')"><span class="kw-en">Fashionable / Elegant</span><span class="kw-cn">时尚/优雅高级</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Versatile / All-Match','百搭好搭配')"><span class="kw-en">Versatile / All-Match</span><span class="kw-cn">百搭好搭配</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Full Zip / Zip-Up','全拉链开襟')"><span class="kw-en">Full Zip / Zip-Up</span><span class="kw-cn">全拉链开襟</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Stand Collar','立领/防风领')"><span class="kw-en">Stand Collar</span><span class="kw-cn">立领/防风领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Hooded / Hoodie','连帽设计')"><span class="kw-en">Hooded / Hoodie</span><span class="kw-cn">连帽设计</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Zipper Pockets','拉链侧口袋')"><span class="kw-en">Zipper Pockets</span><span class="kw-cn">拉链侧口袋</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Ribbed Cuffs & Hem','罗纹袖口/下摆')"><span class="kw-en">Ribbed Cuffs & Hem</span><span class="kw-cn">罗纹袖口/下摆</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Comfortable / Cozy','舒适软糯')"><span class="kw-en">Comfortable / Cozy</span><span class="kw-cn">舒适软糯</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Durable & Soft','耐洗耐穿柔软')"><span class="kw-en">Durable & Soft</span><span class="kw-cn">耐洗耐穿柔软</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Machine Washable','可机洗')"><span class="kw-en">Machine Washable</span><span class="kw-cn">可机洗</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Gift for Him','男士/节日礼品')"><span class="kw-en">Gift for Him</span><span class="kw-cn">男士/节日礼品</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Cargo Pockets','工装大口袋')"><span class="kw-en">Cargo Pockets</span><span class="kw-cn">工装大口袋</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Adjustable Cuffs','可调节袖口')"><span class="kw-en">Adjustable Cuffs</span><span class="kw-cn">可调节袖口</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Zipper Closure','防风拉链门襟')"><span class="kw-en">Zipper Closure</span><span class="kw-cn">防风拉链门襟</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Reinforced Knees','膝部加厚防磨')"><span class="kw-en">Reinforced Knees</span><span class="kw-cn">膝部加厚防磨</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','All-Weather','全天候适用')"><span class="kw-en">All-Weather</span><span class="kw-cn">全天候适用</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Heavy-Duty / Durable','重磅耐用')"><span class="kw-en">Heavy-Duty / Durable</span><span class="kw-cn">重磅耐用</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Thermal Protection','抵御严寒/保暖')"><span class="kw-en">Thermal Protection</span><span class="kw-cn">抵御严寒/保暖</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','Multi-Functional','多功能/实用')"><span class="kw-en">Multi-Functional</span><span class="kw-cn">多功能/实用</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','领型细节','High Performance','高性能防护')"><span class="kw-en">High Performance</span><span class="kw-cn">高性能防护</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-场景">
+        <h4>多场景/卖点 <span class="count">36</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Vacation / Holiday','度假/假期')"><span class="kw-en">Vacation / Holiday</span><span class="kw-cn">度假/假期</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Daily Wear','日常穿搭')"><span class="kw-en">Daily Wear</span><span class="kw-cn">日常穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Beach / Poolside','海滩/泳池边')"><span class="kw-en">Beach / Poolside</span><span class="kw-cn">海滩/泳池边</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Streetwear','街头潮流')"><span class="kw-en">Streetwear</span><span class="kw-cn">街头潮流</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Cruise / Island','游轮/岛屿穿搭')"><span class="kw-en">Cruise / Island</span><span class="kw-cn">游轮/岛屿穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','City Break','城市休闲/短途')"><span class="kw-en">City Break</span><span class="kw-cn">城市休闲/短途</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Outdoor Activities','户外活动')"><span class="kw-en">Outdoor Activities</span><span class="kw-cn">户外活动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Lounge / Home','居家/懒人穿搭')"><span class="kw-en">Lounge / Home</span><span class="kw-cn">居家/懒人穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Travel / Outing','旅行/郊游')"><span class="kw-en">Travel / Outing</span><span class="kw-cn">旅行/郊游</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Weekend / Date','周末/约会')"><span class="kw-en">Weekend / Date</span><span class="kw-cn">周末/约会</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Wedding','婚礼')"><span class="kw-en">Wedding</span><span class="kw-cn">婚礼</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Ceremony','典礼/仪式')"><span class="kw-en">Ceremony</span><span class="kw-cn">典礼/仪式</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Summer / Spring','春夏穿搭')"><span class="kw-en">Summer / Spring</span><span class="kw-cn">春夏穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Business','商务')"><span class="kw-en">Business</span><span class="kw-cn">商务</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Vacation / Beach','度假/海滩')"><span class="kw-en">Vacation / Beach</span><span class="kw-cn">度假/海滩</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Party','派对/晚会')"><span class="kw-en">Party</span><span class="kw-cn">派对/晚会</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Groomsmen','伴郎/婚礼团')"><span class="kw-en">Groomsmen</span><span class="kw-cn">伴郎/婚礼团</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Outfits','休闲出游穿搭')"><span class="kw-en">Outfits</span><span class="kw-cn">休闲出游穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Gym Workout','健身房重训')"><span class="kw-en">Gym Workout</span><span class="kw-cn">健身房重训</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Running / Jogging','跑步/慢跑')"><span class="kw-en">Running / Jogging</span><span class="kw-cn">跑步/慢跑</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Airport Outfit','机场/出行搭')"><span class="kw-en">Airport Outfit</span><span class="kw-cn">机场/出行搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Fitness Training','综合体能训练')"><span class="kw-en">Fitness Training</span><span class="kw-cn">综合体能训练</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Loungewear','居家/懒人休假')"><span class="kw-en">Loungewear</span><span class="kw-cn">居家/懒人休假</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Outdoor Sports','户外运动')"><span class="kw-en">Outdoor Sports</span><span class="kw-cn">户外运动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Travel / Vacation','旅行/郊游')"><span class="kw-en">Travel / Vacation</span><span class="kw-cn">旅行/郊游</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Basketball / Sports','篮球/球类活动')"><span class="kw-en">Basketball / Sports</span><span class="kw-cn">篮球/球类活动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Weekend Off-Duty','周末出游穿搭')"><span class="kw-en">Weekend Off-Duty</span><span class="kw-cn">周末出游穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Hiking / Trekking','徒步/越野')"><span class="kw-en">Hiking / Trekking</span><span class="kw-cn">徒步/越野</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Travel / Adventure','旅行探险')"><span class="kw-en">Travel / Adventure</span><span class="kw-cn">旅行探险</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Camping','露营')"><span class="kw-en">Camping</span><span class="kw-cn">露营</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Fishing','钓鱼/垂钓')"><span class="kw-en">Fishing</span><span class="kw-cn">钓鱼/垂钓</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Commute','都市通勤/骑行')"><span class="kw-en">Commute</span><span class="kw-cn">都市通勤/骑行</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Climbing / Mountain','登山/攀岩')"><span class="kw-en">Climbing / Mountain</span><span class="kw-cn">登山/攀岩</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Rainy Days','阴雨天出行')"><span class="kw-en">Rainy Days</span><span class="kw-cn">阴雨天出行</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Hunting / Outdoor','打猎/户外运动')"><span class="kw-en">Hunting / Outdoor</span><span class="kw-cn">打猎/户外运动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','场景','Road Trip','自驾游/郊游')"><span class="kw-en">Road Trip</span><span class="kw-cn">自驾游/郊游</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="suit-卖点">
+        <h4>功能卖点 <span class="count">15</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Lightweight Wrinkle-Free','轻薄防皱免烫')"><span class="kw-en">Lightweight Wrinkle-Free</span><span class="kw-cn">轻薄防皱免烫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Breathable & Comfortable','透气舒适')"><span class="kw-en">Breathable & Comfortable</span><span class="kw-cn">透气舒适</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Quick Dry','吸湿速干')"><span class="kw-en">Quick Dry</span><span class="kw-cn">吸湿速干</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Stretch Fabric','弹力面料')"><span class="kw-en">Stretch Fabric</span><span class="kw-cn">弹力面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Fleece Lined','加绒保暖')"><span class="kw-en">Fleece Lined</span><span class="kw-cn">加绒保暖</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Water Resistant','防泼水')"><span class="kw-en">Water Resistant</span><span class="kw-cn">防泼水</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Windproof','防风')"><span class="kw-en">Windproof</span><span class="kw-cn">防风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Anti-Pilling','防起球')"><span class="kw-en">Anti-Pilling</span><span class="kw-cn">防起球</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Thermal Protection','蓄热锁温')"><span class="kw-en">Thermal Protection</span><span class="kw-cn">蓄热锁温</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Wrinkle-Resistant','抗皱免烫')"><span class="kw-en">Wrinkle-Resistant</span><span class="kw-cn">抗皱免烫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Machine Washable','可机洗')"><span class="kw-en">Machine Washable</span><span class="kw-cn">可机洗</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Non-Iron','免烫')"><span class="kw-en">Non-Iron</span><span class="kw-cn">免烫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Durable','耐磨耐穿')"><span class="kw-en">Durable</span><span class="kw-cn">耐磨耐穿</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Skin-Friendly','亲肤')"><span class="kw-en">Skin-Friendly</span><span class="kw-cn">亲肤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'suit','卖点','Heavyweight','重磅厚实')"><span class="kw-en">Heavyweight</span><span class="kw-cn">重磅厚实</span></div>
+        </div>
+      </div>
+  </div>
+
+  <div class="kw-panel" id="panel-puffer">
+    <p style="text-align:center;color:#888;font-size:13px;margin-bottom:16px;">💡 点击下方关键词卡片选择，然后生成标题。关键词参考 Temu 站内热销链接精选。</p>
+      <div class="kw-section" id="puffer-件套规格">
+        <h4>件套规格 <span class="count">2</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','件套规格','1 Piece','单件')"><span class="kw-en">1 Piece</span><span class="kw-cn">单件</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','件套规格','2pcs Set','两件套')"><span class="kw-en">2pcs Set</span><span class="kw-cn">两件套</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-品类">
+        <h4>核心品类词 <span class="count">19</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Down Jacket','羽绒服')"><span class="kw-en">Down Jacket</span><span class="kw-cn">羽绒服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Puffer Jacket','蓬松棉服')"><span class="kw-en">Puffer Jacket</span><span class="kw-cn">蓬松棉服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Padded Jacket','填充棉服')"><span class="kw-en">Padded Jacket</span><span class="kw-cn">填充棉服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Quilted Jacket','绗缝棉服')"><span class="kw-en">Quilted Jacket</span><span class="kw-cn">绗缝棉服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Padded Coat','棉服大衣')"><span class="kw-en">Padded Coat</span><span class="kw-cn">棉服大衣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Lightweight Down Jacket','轻薄羽绒服')"><span class="kw-en">Lightweight Down Jacket</span><span class="kw-cn">轻薄羽绒服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Heavy Down Coat','厚款羽绒服')"><span class="kw-en">Heavy Down Coat</span><span class="kw-cn">厚款羽绒服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Packable Down Jacket','可收纳羽绒服')"><span class="kw-en">Packable Down Jacket</span><span class="kw-cn">可收纳羽绒服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Down Vest','羽绒马甲')"><span class="kw-en">Down Vest</span><span class="kw-cn">羽绒马甲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Puffer Vest','棉服马甲')"><span class="kw-en">Puffer Vest</span><span class="kw-cn">棉服马甲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Parka','派克服/防寒大衣')"><span class="kw-en">Parka</span><span class="kw-cn">派克服/防寒大衣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Bomber Jacket','飞行员夹克')"><span class="kw-en">Bomber Jacket</span><span class="kw-cn">飞行员夹克</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Fleece Jacket','摇粒绒外套')"><span class="kw-en">Fleece Jacket</span><span class="kw-cn">摇粒绒外套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Softshell Jacket','软壳外套')"><span class="kw-en">Softshell Jacket</span><span class="kw-cn">软壳外套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Insulated Jacket','保暖外套')"><span class="kw-en">Insulated Jacket</span><span class="kw-cn">保暖外套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Thermal Coat','保暖大衣')"><span class="kw-en">Thermal Coat</span><span class="kw-cn">保暖大衣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Winter Coat','冬季大衣')"><span class="kw-en">Winter Coat</span><span class="kw-cn">冬季大衣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Hooded Down Jacket','连帽羽绒服')"><span class="kw-en">Hooded Down Jacket</span><span class="kw-cn">连帽羽绒服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','品类','Stand Collar Puffer','立领棉服')"><span class="kw-en">Stand Collar Puffer</span><span class="kw-cn">立领棉服</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-版型">
+        <h4>版型/剪裁 <span class="count">7</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Regular Fit','标准版型')"><span class="kw-en">Regular Fit</span><span class="kw-cn">标准版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Oversized Fit','宽松大版')"><span class="kw-en">Oversized Fit</span><span class="kw-cn">宽松大版</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Relaxed Fit','休闲宽松')"><span class="kw-en">Relaxed Fit</span><span class="kw-cn">休闲宽松</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Slim Fit','修身版型')"><span class="kw-en">Slim Fit</span><span class="kw-cn">修身版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Cropped','短款')"><span class="kw-en">Cropped</span><span class="kw-cn">短款</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Mid-Length','中长款')"><span class="kw-en">Mid-Length</span><span class="kw-cn">中长款</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','版型','Long','长款')"><span class="kw-en">Long</span><span class="kw-cn">长款</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-风格">
+        <h4>风格定位 <span class="count">12</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Streetwear','街头风')"><span class="kw-en">Streetwear</span><span class="kw-cn">街头风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Casual','休闲')"><span class="kw-en">Casual</span><span class="kw-cn">休闲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Minimalist','极简风')"><span class="kw-en">Minimalist</span><span class="kw-cn">极简风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Techwear','科技机能风')"><span class="kw-en">Techwear</span><span class="kw-cn">科技机能风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Urban Style','城市风')"><span class="kw-en">Urban Style</span><span class="kw-cn">城市风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Vintage','复古风')"><span class="kw-en">Vintage</span><span class="kw-cn">复古风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Hip Hop Style','嘻哈风')"><span class="kw-en">Hip Hop Style</span><span class="kw-cn">嘻哈风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Outdoor Style','户外风')"><span class="kw-en">Outdoor Style</span><span class="kw-cn">户外风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Korean Style','韩系')"><span class="kw-en">Korean Style</span><span class="kw-cn">韩系</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','American Style','美式')"><span class="kw-en">American Style</span><span class="kw-cn">美式</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Y2K','千禧风')"><span class="kw-en">Y2K</span><span class="kw-cn">千禧风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','风格','Old Money Style','老钱风')"><span class="kw-en">Old Money Style</span><span class="kw-cn">老钱风</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-材质">
+        <h4>材质/面料 <span class="count">10</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Down Filling','羽绒填充')"><span class="kw-en">Down Filling</span><span class="kw-cn">羽绒填充</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','90% White Duck Down','90%白鸭绒')"><span class="kw-en">90% White Duck Down</span><span class="kw-cn">90%白鸭绒</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Cotton Padding','棉填充')"><span class="kw-en">Cotton Padding</span><span class="kw-cn">棉填充</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Polyester','聚酯纤维')"><span class="kw-en">Polyester</span><span class="kw-cn">聚酯纤维</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Nylon','尼龙')"><span class="kw-en">Nylon</span><span class="kw-cn">尼龙</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Softshell','软壳面料')"><span class="kw-en">Softshell</span><span class="kw-cn">软壳面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Fleece Lined','摇粒绒内里')"><span class="kw-en">Fleece Lined</span><span class="kw-cn">摇粒绒内里</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Fur Trim','毛领装饰')"><span class="kw-en">Fur Trim</span><span class="kw-cn">毛领装饰</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Waterproof Fabric','防水面料')"><span class="kw-en">Waterproof Fabric</span><span class="kw-cn">防水面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','材质','Ripstop','防撕裂面料')"><span class="kw-en">Ripstop</span><span class="kw-cn">防撕裂面料</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-领型细节">
+        <h4>领型/细节 <span class="count">10</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Hooded','连帽')"><span class="kw-en">Hooded</span><span class="kw-cn">连帽</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Stand Collar','立领')"><span class="kw-en">Stand Collar</span><span class="kw-cn">立领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Full Zip','全拉链')"><span class="kw-en">Full Zip</span><span class="kw-cn">全拉链</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Drawstring Waist','抽绳腰')"><span class="kw-en">Drawstring Waist</span><span class="kw-cn">抽绳腰</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Elastic Hem','弹力下摆')"><span class="kw-en">Elastic Hem</span><span class="kw-cn">弹力下摆</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Ribbed Cuffs','罗纹袖口')"><span class="kw-en">Ribbed Cuffs</span><span class="kw-cn">罗纹袖口</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Fur Collar','毛领')"><span class="kw-en">Fur Collar</span><span class="kw-cn">毛领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Detachable Hood','可拆卸帽')"><span class="kw-en">Detachable Hood</span><span class="kw-cn">可拆卸帽</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Multiple Pockets','多口袋')"><span class="kw-en">Multiple Pockets</span><span class="kw-cn">多口袋</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','领型细节','Side Pockets','侧袋')"><span class="kw-en">Side Pockets</span><span class="kw-cn">侧袋</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-图案">
+        <h4>图案/花型 <span class="count">5</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','图案','Solid Color','纯色')"><span class="kw-en">Solid Color</span><span class="kw-cn">纯色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','图案','Color Block','拼色')"><span class="kw-en">Color Block</span><span class="kw-cn">拼色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','图案','Camouflage','迷彩')"><span class="kw-en">Camouflage</span><span class="kw-cn">迷彩</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','图案','Quilted Pattern','绗缝纹理')"><span class="kw-en">Quilted Pattern</span><span class="kw-cn">绗缝纹理</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','图案','Letter Print','字母印花')"><span class="kw-en">Letter Print</span><span class="kw-cn">字母印花</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-场景">
+        <h4>多场景/卖点 <span class="count">8</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Winter','冬季')"><span class="kw-en">Winter</span><span class="kw-cn">冬季</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Daily Wear','日常穿搭')"><span class="kw-en">Daily Wear</span><span class="kw-cn">日常穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Outdoor Activities','户外活动')"><span class="kw-en">Outdoor Activities</span><span class="kw-cn">户外活动</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Commuting','通勤')"><span class="kw-en">Commuting</span><span class="kw-cn">通勤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Travel','旅行')"><span class="kw-en">Travel</span><span class="kw-cn">旅行</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Skiing','滑雪')"><span class="kw-en">Skiing</span><span class="kw-cn">滑雪</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Camping','露营')"><span class="kw-en">Camping</span><span class="kw-cn">露营</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','场景','Cold Weather','寒冷天气')"><span class="kw-en">Cold Weather</span><span class="kw-cn">寒冷天气</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="puffer-卖点">
+        <h4>功能卖点 <span class="count">8</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Windproof','防风')"><span class="kw-en">Windproof</span><span class="kw-cn">防风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Water Resistant','防泼水')"><span class="kw-en">Water Resistant</span><span class="kw-cn">防泼水</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Thermal','保暖')"><span class="kw-en">Thermal</span><span class="kw-cn">保暖</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Lightweight','轻量')"><span class="kw-en">Lightweight</span><span class="kw-cn">轻量</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Packable','可收纳')"><span class="kw-en">Packable</span><span class="kw-cn">可收纳</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Breathable','透气')"><span class="kw-en">Breathable</span><span class="kw-cn">透气</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Anti-Static','防静电')"><span class="kw-en">Anti-Static</span><span class="kw-cn">防静电</span></div>
+<div class="kw-card" onclick="toggleKW(this,'puffer','卖点','Machine Washable','可机洗')"><span class="kw-en">Machine Washable</span><span class="kw-cn">可机洗</span></div>
+        </div>
+      </div>
+  </div>
+
+  <div class="kw-panel" id="panel-formal">
+    <p style="text-align:center;color:#888;font-size:13px;margin-bottom:16px;">💡 点击下方关键词卡片选择，然后生成标题。核心品类参考对接路径表，含正装衬衫、燕尾服衬衫、西裤、西装马甲、西服套装等。</p>
+      <div class="kw-section" id="formal-件套规格">
+        <h4>件套规格 <span class="count">3</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','件套规格','2pcs Suit','两件套西装')"><span class="kw-en">2pcs Suit</span><span class="kw-cn">两件套西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','件套规格','3pcs Suit','三件套西装')"><span class="kw-en">3pcs Suit</span><span class="kw-cn">三件套西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','件套规格','2 Piece Set','两件式')"><span class="kw-en">2 Piece Set</span><span class="kw-cn">两件式</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-品类">
+        <h4>核心品类词 <span class="count">23</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Suit Set','西服套装')"><span class="kw-en">Suit Set</span><span class="kw-cn">西服套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Dress Shirt','正装衬衫')"><span class="kw-en">Dress Shirt</span><span class="kw-cn">正装衬衫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Tuxedo Shirt','燕尾服衬衫')"><span class="kw-en">Tuxedo Shirt</span><span class="kw-cn">燕尾服衬衫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Suit Pants / Dress Pants','西裤')"><span class="kw-en">Suit Pants / Dress Pants</span><span class="kw-cn">西裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Suit Vest / Waistcoat','西装马甲')"><span class="kw-en">Suit Vest / Waistcoat</span><span class="kw-cn">西装马甲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Blazer','西服上装')"><span class="kw-en">Blazer</span><span class="kw-cn">西服上装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Tuxedo','礼服/燕尾服')"><span class="kw-en">Tuxedo</span><span class="kw-cn">礼服/燕尾服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Formal Suit','正装套装')"><span class="kw-en">Formal Suit</span><span class="kw-cn">正装套装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Business Suit','商务西装')"><span class="kw-en">Business Suit</span><span class="kw-cn">商务西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Wedding Suit','婚礼西装')"><span class="kw-en">Wedding Suit</span><span class="kw-cn">婚礼西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Groomsmen Suit','伴郎西装')"><span class="kw-en">Groomsmen Suit</span><span class="kw-cn">伴郎西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Tailcoat','燕尾服')"><span class="kw-en">Tailcoat</span><span class="kw-cn">燕尾服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Morning Coat','晨礼服')"><span class="kw-en">Morning Coat</span><span class="kw-cn">晨礼服</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Dinner Jacket','晚宴外套')"><span class="kw-en">Dinner Jacket</span><span class="kw-cn">晚宴外套</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Double-Breasted Suit','双排扣西装')"><span class="kw-en">Double-Breasted Suit</span><span class="kw-cn">双排扣西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Single-Breasted Suit','单排扣西装')"><span class="kw-en">Single-Breasted Suit</span><span class="kw-cn">单排扣西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Slim Fit Suit','修身西装')"><span class="kw-en">Slim Fit Suit</span><span class="kw-cn">修身西装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Pleated Pants','褶裥西裤')"><span class="kw-en">Pleated Pants</span><span class="kw-cn">褶裥西裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Flat Front Pants','无褶西裤')"><span class="kw-en">Flat Front Pants</span><span class="kw-cn">无褶西裤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Tuxedo Jacket','燕尾服上装')"><span class="kw-en">Tuxedo Jacket</span><span class="kw-cn">燕尾服上装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Spread Collar Shirt','宽角领衬衫')"><span class="kw-en">Spread Collar Shirt</span><span class="kw-cn">宽角领衬衫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','Wing Collar Shirt','翼领衬衫')"><span class="kw-en">Wing Collar Shirt</span><span class="kw-cn">翼领衬衫</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','品类','French Cuff Shirt','法式袖衬衫')"><span class="kw-en">French Cuff Shirt</span><span class="kw-cn">法式袖衬衫</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-版型">
+        <h4>版型/剪裁 <span class="count">7</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Slim Fit','修身版型')"><span class="kw-en">Slim Fit</span><span class="kw-cn">修身版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Regular Fit','标准版型')"><span class="kw-en">Regular Fit</span><span class="kw-cn">标准版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Tailored Fit','剪裁合体')"><span class="kw-en">Tailored Fit</span><span class="kw-cn">剪裁合体</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Relaxed Fit','宽松版型')"><span class="kw-en">Relaxed Fit</span><span class="kw-cn">宽松版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Athletic Fit','运动版型')"><span class="kw-en">Athletic Fit</span><span class="kw-cn">运动版型</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Straight Leg','直筒')"><span class="kw-en">Straight Leg</span><span class="kw-cn">直筒</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','版型','Tapered Leg','锥形收口')"><span class="kw-en">Tapered Leg</span><span class="kw-cn">锥形收口</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-风格">
+        <h4>风格定位 <span class="count">8</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Business Commute','商务通勤')"><span class="kw-en">Business Commute</span><span class="kw-cn">商务通勤</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Old Money Style','老钱风/高智感')"><span class="kw-en">Old Money Style</span><span class="kw-cn">老钱风/高智感</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Formal','正式/正装')"><span class="kw-en">Formal</span><span class="kw-cn">正式/正装</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Business Casual','商务休闲')"><span class="kw-en">Business Casual</span><span class="kw-cn">商务休闲</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Minimalist','极简风')"><span class="kw-en">Minimalist</span><span class="kw-cn">极简风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Vintage','复古风')"><span class="kw-en">Vintage</span><span class="kw-cn">复古风</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Classic','经典')"><span class="kw-en">Classic</span><span class="kw-cn">经典</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','风格','Modern','现代')"><span class="kw-en">Modern</span><span class="kw-cn">现代</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-材质">
+        <h4>材质/面料 <span class="count">10</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Wool Blend','羊毛混纺')"><span class="kw-en">Wool Blend</span><span class="kw-cn">羊毛混纺</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','100% Wool','纯羊毛')"><span class="kw-en">100% Wool</span><span class="kw-cn">纯羊毛</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Polyester','聚酯纤维')"><span class="kw-en">Polyester</span><span class="kw-cn">聚酯纤维</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Cotton Blend','棉混纺')"><span class="kw-en">Cotton Blend</span><span class="kw-cn">棉混纺</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Linen Blend','亚麻混纺')"><span class="kw-en">Linen Blend</span><span class="kw-cn">亚麻混纺</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Wrinkle-Free Fabric','免烫面料')"><span class="kw-en">Wrinkle-Free Fabric</span><span class="kw-cn">免烫面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Stretch Fabric','弹力面料')"><span class="kw-en">Stretch Fabric</span><span class="kw-cn">弹力面料</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Tweed','粗花呢')"><span class="kw-en">Tweed</span><span class="kw-cn">粗花呢</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Velvet','丝绒')"><span class="kw-en">Velvet</span><span class="kw-cn">丝绒</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','材质','Gabardine','华达呢')"><span class="kw-en">Gabardine</span><span class="kw-cn">华达呢</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-领型细节">
+        <h4>领型/细节 <span class="count">12</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Notch Lapel','平驳领')"><span class="kw-en">Notch Lapel</span><span class="kw-cn">平驳领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Peak Lapel','戗驳领')"><span class="kw-en">Peak Lapel</span><span class="kw-cn">戗驳领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Shawl Lapel','青果领')"><span class="kw-en">Shawl Lapel</span><span class="kw-cn">青果领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Double-Breasted','双排扣')"><span class="kw-en">Double-Breasted</span><span class="kw-cn">双排扣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Single-Breasted','单排扣')"><span class="kw-en">Single-Breasted</span><span class="kw-cn">单排扣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Two-Button','两粒扣')"><span class="kw-en">Two-Button</span><span class="kw-cn">两粒扣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Three-Button','三粒扣')"><span class="kw-en">Three-Button</span><span class="kw-cn">三粒扣</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Spread Collar','宽角领')"><span class="kw-en">Spread Collar</span><span class="kw-cn">宽角领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Wing Collar','翼领')"><span class="kw-en">Wing Collar</span><span class="kw-cn">翼领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Button-Down Collar','扣领')"><span class="kw-en">Button-Down Collar</span><span class="kw-cn">扣领</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','French Cuff','法式袖口')"><span class="kw-en">French Cuff</span><span class="kw-cn">法式袖口</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','领型细节','Barrel Cuff','筒形袖口')"><span class="kw-en">Barrel Cuff</span><span class="kw-cn">筒形袖口</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-图案">
+        <h4>图案/花型 <span class="count">8</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Solid Color','纯色')"><span class="kw-en">Solid Color</span><span class="kw-cn">纯色</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Pinstripe','细条纹')"><span class="kw-en">Pinstripe</span><span class="kw-cn">细条纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Striped','条纹')"><span class="kw-en">Striped</span><span class="kw-cn">条纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Jacquard','提花/暗纹')"><span class="kw-en">Jacquard</span><span class="kw-cn">提花/暗纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Checkered / Plaid','格纹')"><span class="kw-en">Checkered / Plaid</span><span class="kw-cn">格纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Glen Check','格伦格纹')"><span class="kw-en">Glen Check</span><span class="kw-cn">格伦格纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Herringbone','人字纹')"><span class="kw-en">Herringbone</span><span class="kw-cn">人字纹</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','图案','Houndstooth','千鸟格')"><span class="kw-en">Houndstooth</span><span class="kw-cn">千鸟格</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-场景">
+        <h4>多场景/卖点 <span class="count">10</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Wedding','婚礼')"><span class="kw-en">Wedding</span><span class="kw-cn">婚礼</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Business','商务')"><span class="kw-en">Business</span><span class="kw-cn">商务</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Ceremony','典礼/仪式')"><span class="kw-en">Ceremony</span><span class="kw-cn">典礼/仪式</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Party','派对/晚会')"><span class="kw-en">Party</span><span class="kw-cn">派对/晚会</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Groomsmen','伴郎/婚礼团')"><span class="kw-en">Groomsmen</span><span class="kw-cn">伴郎/婚礼团</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Office','办公/职场')"><span class="kw-en">Office</span><span class="kw-cn">办公/职场</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Interview','面试')"><span class="kw-en">Interview</span><span class="kw-cn">面试</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Daily Wear','日常穿搭')"><span class="kw-en">Daily Wear</span><span class="kw-cn">日常穿搭</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Banquet','宴会')"><span class="kw-en">Banquet</span><span class="kw-cn">宴会</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','场景','Graduation','毕业典礼')"><span class="kw-en">Graduation</span><span class="kw-cn">毕业典礼</span></div>
+        </div>
+      </div>
+      <div class="kw-section" id="formal-卖点">
+        <h4>功能卖点 <span class="count">6</span></h4>
+        <div class="kw-grid">
+<div class="kw-card" onclick="toggleKW(this,'formal','卖点','Wrinkle-Free','免烫抗皱')"><span class="kw-en">Wrinkle-Free</span><span class="kw-cn">免烫抗皱</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','卖点','Lightweight','轻薄透气')"><span class="kw-en">Lightweight</span><span class="kw-cn">轻薄透气</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','卖点','Stretch Comfort','弹力舒适')"><span class="kw-en">Stretch Comfort</span><span class="kw-cn">弹力舒适</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','卖点','Machine Washable','可机洗')"><span class="kw-en">Machine Washable</span><span class="kw-cn">可机洗</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','卖点','Breathable','透气')"><span class="kw-en">Breathable</span><span class="kw-cn">透气</span></div>
+<div class="kw-card" onclick="toggleKW(this,'formal','卖点','Durable','耐磨耐穿')"><span class="kw-en">Durable</span><span class="kw-cn">耐磨耐穿</span></div>
+        </div>
+      </div>
+  </div>
+
+  <div class="result-box">
+    <h3>📋 生成标题</h3>
+    <div style="margin-bottom:12px;">
+      <strong style="color:#FF6B1A;">中文标题：</strong>
+      <div id="titleCN">请在上方选择关键词...</div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <strong style="color:#FF6B1A;">English Title:</strong>
+      <div id="titleEN">Select keywords above...</div>
+    </div>
+    <button class="copy-title-btn" onclick="copyTitle()">📋 复制中英双语标题</button>
+    <button class="copy-title-btn" style="background:#fff;color:#FF6B1A;border:2px solid #FF8C42;" onclick="clearAll()">🔄 清空重选</button>
+  </div>
+</div>
+<div class="disclaimer">⚠️ 以上图案参考来源网络，实际开发请安全延改，避免侵权</div>
+<div class="footer">云岁月 男装商家运营工具</div>
+<script>
+var currentCat='suit';
+var selected={};
+
+function switchCat(cat,tab){
+  document.querySelectorAll('.cat-tab').forEach(function(t){t.classList.remove('active')});
+  tab.classList.add('active');
+  document.querySelectorAll('.kw-panel').forEach(function(p){p.classList.remove('active')});
+  document.getElementById('panel-'+cat).classList.add('active');
+  currentCat=cat;
+  if(!selected[cat])selected[cat]={};
+  updateTitle();
+}
+
+function toggleKW(card,cat,dim,en,cn){
+  if(!selected[cat])selected[cat]={};
+  if(!selected[cat][dim])selected[cat][dim]=[];
+  var idx=-1;
+  for(var i=0;i<selected[cat][dim].length;i++){
+    if(selected[cat][dim][i].en===en){idx=i;break;}
+  }
+  if(idx>=0){
+    selected[cat][dim].splice(idx,1);
+    card.classList.remove('selected');
+  }else{
+    selected[cat][dim].push({en:en,cn:cn});
+    card.classList.add('selected');
+  }
+  updateTitle();
+}
+
+function getSel(cat,dim){
+  if(!selected[cat]||!selected[cat][dim])return[];
+  return selected[cat][dim];
+}
+
+function joinEN(arr){
+  return arr.map(function(x){return x.en}).join(' ');
+}
+
+function joinCN(arr){
+  return arr.map(function(x){return x.cn||x.en}).join(' ');
+}
+
+function updateTitle(){
+  var cat=currentCat;
+  var s=selected[cat]||{};
+  var parts_en=[];
+  var parts_cn=[];
+  
+  var piece=getSel(cat,'\u4ef6\u5957\u89c4\u683c');
+  var cat_kw=getSel(cat,'\u54c1\u7c7b');
+  var fit=getSel(cat,'\u7248\u578b');
+  var style=getSel(cat,'\u98ce\u683c');
+  var mat=getSel(cat,'\u6750\u8d28');
+  var pat=getSel(cat,'\u56fe\u6848');
+  var detail=getSel(cat,'\u9886\u578b\u7ec6\u8282');
+  var scene=getSel(cat,'\u573a\u666f');
+  var sell=getSel(cat,'\u5356\u70b9');
+  
+  if(piece.length)parts_en.push(joinEN(piece));
+  parts_en.push("Men's");
+  if(cat_kw.length)parts_en.push(joinEN(cat_kw));
+  if(fit.length)parts_en.push(joinEN(fit));
+  if(style.length)parts_en.push(joinEN(style));
+  if(mat.length)parts_en.push(joinEN(mat));
+  if(pat.length)parts_en.push(joinEN(pat));
+  if(detail.length)parts_en.push(joinEN(detail));
+  if(scene.length)parts_en.push('Suitable For '+joinEN(scene));
+  if(sell.length)parts_en.push(joinEN(sell));
+  
+  if(piece.length)parts_cn.push(joinCN(piece));
+  parts_cn.push('\u7537\u58eb');
+  if(cat_kw.length)parts_cn.push(joinCN(cat_kw));
+  if(fit.length)parts_cn.push(joinCN(fit));
+  if(style.length)parts_cn.push(joinCN(style));
+  if(mat.length)parts_cn.push(joinCN(mat));
+  if(pat.length)parts_cn.push(joinCN(pat));
+  if(detail.length)parts_cn.push(joinCN(detail));
+  if(scene.length)parts_cn.push('\u9002\u5408'+joinCN(scene));
+  if(sell.length)parts_cn.push(joinCN(sell));
+  
+  var en_title=parts_en.filter(function(p){return p&&p.trim()}).join(', ');
+  var cn_title=parts_cn.filter(function(p){return p&&p.trim()}).join(' ');
+  
+  document.getElementById('titleEN').textContent=en_title||'Select keywords above...';
+  document.getElementById('titleCN').textContent=cn_title||'\u8bf7\u5728\u4e0a\u65b9\u9009\u62e9\u5173\u952e\u8bcd...';
+}
+
+function copyTitle(){
+  var en=document.getElementById('titleEN').textContent;
+  var cn=document.getElementById('titleCN').textContent;
+  var text='\u3010English Title\u3011\n'+en+'\n\n\u3010\u4e2d\u6587\u6807\u9898\u3011\n'+cn;
+  navigator.clipboard.writeText(text).then(function(){
+    alert('\u2705 \u6807\u9898\u5df2\u590d\u5236\u5230\u526a\u8d34\u677f\uff01');
+  });
+}
+
+function clearAll(){
+  selected={};
+  document.querySelectorAll('.kw-card.selected').forEach(function(c){c.classList.remove('selected')});
+  updateTitle();
+}
+</script>
+
+<script>
+(function(){
+var overlay=document.createElement('div');overlay.className='img-zoom-overlay';
+var closeBtn=document.createElement('span');closeBtn.className='img-zoom-close';closeBtn.innerHTML='&times;';
+var zoomImg=document.createElement('img');overlay.appendChild(zoomImg);overlay.appendChild(closeBtn);
+document.body.appendChild(overlay);
+function openZoom(src){zoomImg.src=src;overlay.classList.add('active');}
+function closeZoom(){overlay.classList.remove('active');}
+overlay.addEventListener('click',closeZoom);
+closeBtn.addEventListener('click',function(e){e.stopPropagation();closeZoom();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeZoom();});
+document.addEventListener('click',function(e){
+    if(e.target&&e.target.tagName==='IMG'&&e.target.src&&!e.target.dataset.noZoom){
+        var p=e.target.parentElement;
+        if(p&&p.tagName==='A'&&p.href&&p.target==='_blank')return;
+        e.preventDefault();openZoom(e.target.src);
+    }
+});
+})();
+</script>
+</body>
+</html>
