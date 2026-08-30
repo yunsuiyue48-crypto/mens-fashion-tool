@@ -77,7 +77,7 @@ a{text-decoration:none;color:inherit}
 .subcat-card .icon{font-size:32px;margin-bottom:8px}
 .subcat-card .name{font-size:15px;font-weight:700;color:#333}
 .subcat-card .desc{font-size:12px;color:#999;margin-top:4px}
-.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
 .img-grid img{width:100%;border-radius:8px;transition:transform 0.3s;cursor:pointer;border:1px solid #f0f0f0}
 .img-grid img:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
 .period-section{margin-bottom:30px}
@@ -93,6 +93,17 @@ a{text-decoration:none;color:inherit}
 @media(max-width:768px){
   .nav a{padding:10px 14px;font-size:13px}
   .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
-  .img-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .img-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
   .entrance-grid{grid-template-columns:1fr 1fr}
 }
+
+/* 侧边导航栏 */
+.main-layout{display:flex;gap:10px;align-items:flex-start}
+.side-nav{position:sticky;top:20px;width:140px;min-width:140px;flex-shrink:0;background:#FFF8F3;border:2px solid #FFE0C2;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(255,107,26,0.1);max-height:calc(100vh - 40px);overflow-y:auto;z-index:100}
+.side-nav-title{font-size:13px;font-weight:bold;color:#FF6B1A;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #FFE0C2}
+.side-nav-item{display:block;padding:6px 10px;margin:3px 0;font-size:12px;color:#555;text-decoration:none;border-radius:8px;transition:all 0.2s;cursor:pointer}
+.side-nav-item:hover{background:#FF6B1A;color:white;transform:translateX(3px)}
+.content-area{flex:1;min-width:0}
+.content-area .img-grid,.content-area div[style*="grid-template-columns"]{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))!important;gap:8px!important}
+.content-area .img-grid img{object-fit:cover;aspect-ratio:3/4}
+@media(max-width:900px){.main-layout{flex-direction:column}.side-nav{position:static;width:100%;min-width:auto;max-height:none}.content-area{width:100%}.content-area .img-grid,.content-area div[style*="grid-template-columns"]{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))!important}}
