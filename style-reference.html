@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>选款参考 · POLO 衫 5 大风格选款参考</title>
+<style>
+  :root {
+    --orange: #A9502F;
+    --orange-soft: #F3E4DC;
+    --ink: #1B1A17;
+    --ink-2: #5B564C;
+    --line: #DCD5C9;
+    --bg: #F6F3EE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1360px; margin: 0 auto; padding: 0 28px 80px; }
+
+  header.hero {
+    background: linear-gradient(135deg, #FAF7F2 0%, #ffffff 45%, #F2E8DC 100%);
+    border-bottom: 1px solid var(--line);
+    padding: 52px 0 36px; margin-bottom: 8px;
+  }
+  header.hero .wrap { padding-bottom: 0; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; letter-spacing: .16em; color: var(--orange);
+    background: var(--orange-soft); border: 1px solid #E5C9AE; border-radius: 999px;
+    padding: 5px 14px; margin-bottom: 16px; font-weight: 600;
+  }
+  h1 { font-size: 32px; line-height: 1.35; margin: 0 0 14px; letter-spacing: -.4px; }
+  h1 em { font-style: normal; color: var(--orange); }
+  .lead { color: var(--ink-2); font-size: 15px; line-height: 1.8; max-width: 860px; margin: 0; }
+  .stats { display: flex; gap: 34px; margin-top: 26px; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 26px; color: var(--orange); line-height: 1.2; }
+  .stat span { font-size: 12.5px; color: var(--ink-2); }
+
+  nav.sticky {
+    position: sticky; top: 0; z-index: 40; margin-top: 26px;
+    background: rgba(255,255,255,.94); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.sticky .inner { max-width: 1360px; margin: 0 auto; padding: 0 28px; display: flex; gap: 8px; overflow-x: auto; }
+  nav.sticky a {
+    flex: none; padding: 14px 4px; margin-right: 18px; font-size: 13.5px; color: var(--ink-2);
+    text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap;
+  }
+  nav.sticky a:hover { color: var(--orange); border-color: var(--orange); }
+
+  section.cat { padding-top: 54px; }
+  .cat-head { border-left: 4px solid var(--orange); padding-left: 16px; margin-bottom: 22px; }
+  .cat-title { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .cat-title h2 { font-size: 22px; margin: 0; letter-spacing: -.2px; }
+  .key {
+    display: inline-flex; width: 28px; height: 28px; border-radius: 8px; background: var(--orange);
+    color: #fff; font-size: 15px; align-items: center; justify-content: center;
+    margin-right: 10px; vertical-align: 2px;
+  }
+  .badge { font-size: 11.5px; padding: 3px 10px; border-radius: 999px; background: #EBE7DF; color: var(--ink-2); border: 1px solid #DCD5C9; }
+  .badge.free { background: var(--orange-soft); color: #A9502F; border-color: #DFBE9E; font-weight: 600; }
+  .count { font-size: 12.5px; color: var(--ink-2); }
+  .sub { margin: 8px 0 0; color: var(--ink-2); font-size: 13.5px; }
+
+  .cat-meta {
+    display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 14px; margin-bottom: 26px;
+  }
+  .meta-block {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px;
+  }
+  .meta-block h5 {
+    margin: 0 0 10px; font-size: 12px; letter-spacing: .08em; color: var(--orange); font-weight: 700;
+  }
+  .meta-block ul { margin: 0; padding-left: 17px; }
+  .meta-block li { font-size: 12.6px; line-height: 1.75; color: var(--ink-2); word-break: break-all; }
+  .scene { margin: 0; font-size: 12.6px; line-height: 1.75; color: var(--ink-2); }
+
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  @media (max-width: 1180px) { .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } .cat-meta { grid-template-columns: 1fr; } }
+  @media (max-width: 780px)  { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s;
+  }
+  .card:hover { box-shadow: 0 10px 26px rgba(255,122,0,.13); transform: translateY(-2px); }
+  .thumb { position: relative; background: #F2EFE9; cursor: zoom-in; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .no {
+    position: absolute; top: 10px; left: 10px; background: var(--orange); color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 6px; letter-spacing: .04em;
+  }
+  .zoom {
+    position: absolute; right: 10px; bottom: 10px; font-size: 11px; color: #fff;
+    background: rgba(0,0,0,.42); padding: 3px 9px; border-radius: 999px; opacity: 0; transition: opacity .2s;
+  }
+  .thumb:hover .zoom { opacity: 1; }
+
+  .card .body { padding: 13px 14px 15px; display: flex; flex-direction: column; gap: 6px; }
+  .card h4 { margin: 0; font-size: 14.5px; }
+  .colorway { margin: 0; font-size: 12px; color: var(--orange); font-weight: 600; }
+  .cut { margin: 0; font-size: 12px; color: var(--ink-2); line-height: 1.65; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+  .tag { font-size: 11px; background: #F1EEE8; color: #52525c; padding: 3px 7px; border-radius: 5px; }
+  .copy { margin-top: 6px; border-top: 1px dashed var(--line); padding-top: 9px; }
+  .copy p { margin: 0; font-size: 11.6px; line-height: 1.65; }
+  .copy .en { color: #3d3d46; }
+  .copy .cn { color: var(--ink-2); margin-top: 5px; }
+
+  .note { background: #F8F3EA; border: 1px solid #E7CBB2; border-radius: 12px; padding: 14px 18px; margin-top: 46px; font-size: 12.6px; color: #8A5A34; line-height: 1.8; }
+  footer { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; color: #8B8578; text-align: center; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(18,18,20,.9); display: none; z-index: 999; align-items: center; justify-content: center; flex-direction: column; padding: 40px; }
+  .lightbox.on { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 82vh; object-fit: contain; border-radius: 8px; background: #fff; }
+  .lightbox .cap { color: #fff; font-size: 13.5px; margin-top: 14px; letter-spacing: .02em; }
+  .lightbox .close { position: absolute; top: 22px; right: 30px; color: #fff; font-size: 30px; cursor: pointer; line-height: 1; }
+
+  /* ---------- 站点导航 / 页脚（内联，避免与站点全局样式冲突） ---------- */
+  :root{ --paper:#F6F3EE; --paper2:#EFEBE4; --muted:#7C7568; --rust:#A9502F; --rust-soft:#F3E4DC; }
+  .ys-nav{position:sticky;top:0;z-index:900;background:rgba(246,243,238,.94);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif}
+  .ys-nav .in{max-width:1320px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:26px}
+  .ys-nav .brand{font-size:13px;letter-spacing:.2em;font-weight:700;white-space:nowrap;color:var(--ink)}
+  .ys-nav .brand em{color:var(--rust);font-style:normal}
+  .ys-nav .links{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}
+  .ys-nav .links a{font-size:13px;color:var(--muted);padding:7px 11px;border-radius:6px;
+    letter-spacing:.03em;transition:.18s;text-decoration:none;border-bottom:none}
+  .ys-nav .links a:hover{color:var(--ink);background:var(--paper2);border-color:transparent}
+  .ys-nav .links a.on{color:var(--rust);font-weight:600;background:var(--rust-soft)}
+  @media(max-width:900px){
+    .ys-nav .in{height:auto;padding:10px 16px;flex-direction:column;align-items:flex-start;gap:6px}
+    .ys-nav .links{margin-left:0}
+  }
+  .disclaimer{text-align:center;padding:14px 20px;color:#8A6A34;font-size:12.5px;
+    background:#FFF9EC;border-top:1px solid #E4D3AE;margin-top:30px;letter-spacing:.02em}
+  .footer{text-align:center;padding:22px;color:var(--muted);font-size:12px;
+    background:var(--paper);border-top:1px solid var(--line);letter-spacing:.1em}
+</style>
+</head>
+<body>
+<div class="ys-nav"><div class="in">
+  <div class="brand">云岁月 <em>POLO</em></div>
+  <div class="links">
+    <a href="index.html">首页</a>
+    <a href="category-guide.html">类目指引</a>
+    <a href="style-reference.html" class="on">选款参考</a>
+    <a href="appearance.html">品相图鉴</a>
+    <a href="top-goods.html">TOP商品</a>
+    <a href="visual.html">视觉优化</a>
+    <a href="title.html">标题优化</a>
+    <a href="recruit.html">招品回品</a>
+    <a href="ideas.html">爆款延改</a>
+  </div>
+</div></div>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">MEN'S POLO · 选款参考</span>
+    <h1>男装 Polo 衫 · <em>5 大风格</em>选款参考</h1>
+    <p class="lead">按 Temu 类目路径归类的在售实拍款式参考，每款附对应上架路径、面料与结构卖点、可直接复用的主图话术（中英双语）。供设计与供应商对接使用，点击任意图片可放大查看细节。</p>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>风格大类</span></div>
+      <div class="stat"><b>50</b><span>示例款式</span></div>
+      <div class="stat"><b>3</b><span>免审类目</span></div>
+      <div class="stat"><b>10</b><span>类目路径（原表 17 条合并去重）</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky"><div class="inner"><a href="#cat-A">A · 经典珠地基础款</a><a href="#cat-B">B · 高尔夫功能款</a><a href="#cat-C">C · 户外速干款</a><a href="#cat-D">D · 新奇趣味印花款</a><a href="#cat-E">E · 网球 / 运动休闲条纹款</a></div></nav>
+
+<div class="wrap">
+
+    <section class="cat" id="cat-A">
+      <div class="cat-head">
+        <div class="cat-title">
+          <h2><span class="key">A</span>经典珠地基础款</h2>
+          <span class="badge free">免审</span>
+          <span class="count">10 款示例</span>
+        </div>
+        <p class="sub">走量基本盘 · 免审类目</p>
+      </div>
+      <div class="cat-meta">
+        <div class="meta-block">
+          <h5>对应上架路径</h5>
+          <ul><li>服装、鞋靴和珠宝饰品 &gt; 男士时尚 &gt; 男装 &gt; 男装上衣、T恤、衬衫 &gt; 男装Polo衫</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>面料 / 结构卖点</h5>
+          <ul><li>珠地网眼棉 200–220gsm（pique）</li><li>双针压线罗纹领 + 领座定型条</li><li>2 粒扣门襟 + 备用扣，侧开衩下摆</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>类目打法</h5>
+          <p class="scene">日常通勤、商务休闲、校园、礼品定制打底。全类目里流量最大、审核门槛最低的一档，适合作为店铺引流款和爆款复制母版。</p>
+        </div>
+      </div>
+      <div class="grid">
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A01.jpeg" data-title="A01 · 纯白标准款">
+          <img src="sr_images/A01.jpeg" alt="A01 纯白标准款" loading="lazy">
+          <span class="no">A01</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>纯白标准款</h4>
+          <p class="colorway">白色 · 短袖</p>
+          <p class="cut">经典翻领 2 粒扣，常规直筒版型，胸围放宽 4–6cm，肩线自然落点</p>
+          <div class="tags"><span class="tag">珠地网眼透气不闷汗</span><span class="tag">领口双针压线不变形</span><span class="tag">经向缩水率控制 ≤3%</span></div>
+          <div class="copy">
+            <p class="en">Classic Pique Polo Shirt for Men — 100% Cotton, Breathable Short Sleeve Collared Golf Shirt</p>
+            <p class="cn">经典珠地棉Polo衫 男士短袖翻领 商务休闲百搭 透气不闷汗</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A02.jpeg" data-title="A02 · 橄榄芥末款">
+          <img src="sr_images/A02.jpeg" alt="A02 橄榄芥末款" loading="lazy">
+          <span class="no">A02</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>橄榄芥末款</h4>
+          <p class="colorway">芥末黄 / 橄榄绿 · 短袖</p>
+          <p class="cut">同款版型换色，肩缝双线加固，门襟 3 粒扣</p>
+          <div class="tags"><span class="tag">低饱和莫兰迪色系</span><span class="tag">色牢度 4 级以上</span><span class="tag">领型挺括不塌陷</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Solid Pique Polo Shirt — Soft Cotton Golf Polo, Mustard &amp; Olive Everyday Casual Top</p>
+            <p class="cn">男士纯色珠地Polo衫 芥末黄橄榄绿 通勤简约短袖翻领T恤</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A03.jpeg" data-title="A03 · 小标珠地款">
+          <img src="sr_images/A03.jpeg" alt="A03 小标珠地款" loading="lazy">
+          <span class="no">A03</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>小标珠地款</h4>
+          <p class="colorway">奶油淡黄 · 短袖</p>
+          <p class="cut">左胸 8mm 织唛小标点缀，袖口罗纹收口，修身微收腰</p>
+          <div class="tags"><span class="tag">胸前织唛小标提升质感</span><span class="tag">袖口罗纹不松垮</span><span class="tag">轻薄透气适合春夏</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Slim Fit Pique Polo with Chest Logo — Lightweight Cotton Casual Collared Shirt</p>
+            <p class="cn">男士修身珠地Polo衫 胸口小标点缀 轻薄透气短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A04.jpeg" data-title="A04 · 亮黄吸睛款">
+          <img src="sr_images/A04.jpeg" alt="A04 亮黄吸睛款" loading="lazy">
+          <span class="no">A04</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>亮黄吸睛款</h4>
+          <p class="colorway">明黄 · 短袖</p>
+          <p class="cut">标准版型，撞色门襟线，下摆侧开衩 5cm</p>
+          <div class="tags"><span class="tag">高饱和亮色出片率高</span><span class="tag">侧开衩活动不勒胯</span><span class="tag">领口内衬吸汗条</span></div>
+          <div class="copy">
+            <p class="en">Bright Yellow Men&#x27;s Polo Shirt — Vibrant Solid Color Short Sleeve Pique Polo Top</p>
+            <p class="cn">亮黄色男士Polo衫 高饱和纯色短袖 翻领休闲百搭</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A05.jpeg" data-title="A05 · 罗纹肌理款">
+          <img src="sr_images/A05.jpeg" alt="A05 罗纹肌理款" loading="lazy">
+          <span class="no">A05</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>罗纹肌理款</h4>
+          <p class="colorway">象牙白 · 短袖</p>
+          <p class="cut">竖向罗纹针织组织，弹性回复好，修身版型</p>
+          <div class="tags"><span class="tag">竖罗纹拉伸回弹 ≥5%</span><span class="tag">竖向肌理显瘦</span><span class="tag">领口不易卷边</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Ribbed Knit Polo Shirt — Ivory Textured Short Sleeve Slim Fit Collared Tee</p>
+            <p class="cn">男士罗纹肌理Polo衫 象牙白竖纹弹力 修身短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A06.jpeg" data-title="A06 · 亮橙活力款">
+          <img src="sr_images/A06.jpeg" alt="A06 亮橙活力款" loading="lazy">
+          <span class="no">A06</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>亮橙活力款</h4>
+          <p class="colorway">亮橙 · 短袖</p>
+          <p class="cut">标准版型，橙色为当季主推色，门襟 3 粒扣</p>
+          <div class="tags"><span class="tag">橙色当季主推色</span><span class="tag">珠地网眼速干</span><span class="tag">耐洗不易泛白</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Orange Pique Polo Shirt — Vibrant Casual Short Sleeve Collared Top for Summer</p>
+            <p class="cn">亮橙色男士珠地Polo衫 夏季活力纯色 短袖翻领休闲上衣</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A07.jpeg" data-title="A07 · 白底小标款">
+          <img src="sr_images/A07.jpeg" alt="A07 白底小标款" loading="lazy">
+          <span class="no">A07</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>白底小标款</h4>
+          <p class="colorway">纯白 · 短袖</p>
+          <p class="cut">左胸织标，肩部斜裁拼接，袖口双线收边</p>
+          <div class="tags"><span class="tag">肩部斜裁更贴身形</span><span class="tag">白坯布做好防透处理</span><span class="tag">织标不掉色不扎肤</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Pique Polo with Chest Badge — Classic Collared Short Sleeve Casual Shirt</p>
+            <p class="cn">男士白色珠地Polo衫 胸口织标 经典翻领短袖 通勤打底</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A08.jpeg" data-title="A08 · 藏青长袖款">
+          <img src="sr_images/A08.jpeg" alt="A08 藏青长袖款" loading="lazy">
+          <span class="no">A08</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>藏青长袖款</h4>
+          <p class="colorway">藏青 · 长袖</p>
+          <p class="cut">长袖版型，罗纹袖口，领口加定型内衬</p>
+          <div class="tags"><span class="tag">长袖四季可穿</span><span class="tag">罗纹袖口收束利落</span><span class="tag">藏青显正式适合通勤</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Navy Long Sleeve Polo Shirt — Classic Collared Cotton Top for Business Casual</p>
+            <p class="cn">男士藏青长袖Polo衫 罗纹袖口 商务通勤翻领上衣</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A09.jpeg" data-title="A09 · 黑罗纹款">
+          <img src="sr_images/A09.jpeg" alt="A09 黑罗纹款" loading="lazy">
+          <span class="no">A09</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑罗纹款</h4>
+          <p class="colorway">黑色 · 短袖</p>
+          <p class="cut">黑色竖罗纹，门襟隐藏式纽扣，修身版型</p>
+          <div class="tags"><span class="tag">黑色最百搭补货快</span><span class="tag">隐藏门襟更利落</span><span class="tag">罗纹垂坠不起球</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Black Ribbed Polo Shirt — Slim Fit Hidden Placket Short Sleeve Collared Top</p>
+            <p class="cn">男士黑色罗纹Polo衫 修身隐藏门襟 短袖翻领百搭</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="A">
+        <div class="thumb" data-img="sr_images/A10.jpeg" data-title="A10 · 酒红沉稳款">
+          <img src="sr_images/A10.jpeg" alt="A10 酒红沉稳款" loading="lazy">
+          <span class="no">A10</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>酒红沉稳款</h4>
+          <p class="colorway">酒红 / 勃艮第 · 短袖</p>
+          <p class="cut">酒红纯色，领座双线压合，下摆平直</p>
+          <div class="tags"><span class="tag">酒红秋冬最好卖</span><span class="tag">领座双线压合抗变形</span><span class="tag">面料亲肤不扎</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Burgundy Pique Polo Shirt — Rich Solid Color Collared Short Sleeve Casual Top</p>
+            <p class="cn">男士酒红珠地Polo衫 复古沉稳纯色 短袖翻领休闲</p>
+          </div>
+        </div>
+      </article></div>
+    </section>
+    <section class="cat" id="cat-B">
+      <div class="cat-head">
+        <div class="cat-title">
+          <h2><span class="key">B</span>高尔夫功能款</h2>
+          <span class="badge free">免审</span>
+          <span class="count">10 款示例</span>
+        </div>
+        <p class="sub">印花差异化 · 免审类目</p>
+      </div>
+      <div class="cat-meta">
+        <div class="meta-block">
+          <h5>对应上架路径</h5>
+          <ul><li>服装、鞋靴和珠宝饰品 &gt; 体育专用服装 &gt; 高尔夫服 &gt; 男士高尔夫服 &gt; 男士高尔夫T恤 &gt; Polo 衫</li><li>运动与户外用品 &gt; 运动服装和器材 &gt; 高尔夫用品 &gt; 服装 &gt; 男士高尔夫服 &gt; 男士高尔夫T恤 &gt; Polo 衫</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>面料 / 结构卖点</h5>
+          <ul><li>速干涤氨（poly-spandex）150–170gsm</li><li>UPF 30+ 抗紫外线、4 面弹</li><li>吸湿排汗 + 抗起球整理</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>类目打法</h5>
+          <p class="scene">球场穿着与观赛穿搭。纯色速干已被大牌锁死，印花 + 撞色领 + 提花肌理是这一档唯一能做出溢价的路线。</p>
+        </div>
+      </div>
+      <div class="grid">
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B01.jpeg" data-title="B01 · 白底几何暗纹款">
+          <img src="sr_images/B01.jpeg" alt="B01 白底几何暗纹款" loading="lazy">
+          <span class="no">B01</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>白底几何暗纹款</h4>
+          <p class="colorway">白色 / 浅灰几何暗纹 · 短袖</p>
+          <p class="cut">细密几何暗纹提花，撞色领座，门襟 3 粒扣</p>
+          <div class="tags"><span class="tag">暗纹提花有肌理不出挑</span><span class="tag">4 面弹挥杆不绷</span><span class="tag">吸湿排汗快干</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Golf Polo Shirt — Geometric Jacquard Pattern, Moisture Wicking Performance Collared Shirt</p>
+            <p class="cn">男士高尔夫Polo衫 几何暗纹提花 吸湿速干 弹力短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B02.jpeg" data-title="B02 · 深蓝细纹款">
+          <img src="sr_images/B02.jpeg" alt="B02 深蓝细纹款" loading="lazy">
+          <span class="no">B02</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>深蓝细纹款</h4>
+          <p class="colorway">深蓝 · 短袖</p>
+          <p class="cut">深蓝底色叠细横纹，标准高尔夫版型，袖口包边</p>
+          <div class="tags"><span class="tag">深蓝最不易退换</span><span class="tag">细横纹显质感</span><span class="tag">袖口包边不卷边</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Navy Golf Polo — Fine Texture Performance Shirt, Short Sleeve Collared Golf Top</p>
+            <p class="cn">男士深蓝高尔夫Polo衫 细纹理弹力 速干短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B03.jpeg" data-title="B03 · 粉紫碎花款">
+          <img src="sr_images/B03.jpeg" alt="B03 粉紫碎花款" loading="lazy">
+          <span class="no">B03</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>粉紫碎花款</h4>
+          <p class="colorway">粉紫底红色碎花 · 短袖</p>
+          <p class="cut">满版印花，撞色领口，轻薄速干</p>
+          <div class="tags"><span class="tag">满版印花辨识度高</span><span class="tag">轻薄透气适合夏季</span><span class="tag">色牢度抗汗渍</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Floral Print Golf Polo Shirt — Quick Dry Performance Polo, Short Sleeve Casual Golf Top</p>
+            <p class="cn">男士碎花印花高尔夫Polo衫 速干轻薄 短袖翻领球场穿搭</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B04.jpeg" data-title="B04 · 泼墨艺术款">
+          <img src="sr_images/B04.jpeg" alt="B04 泼墨艺术款" loading="lazy">
+          <span class="no">B04</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>泼墨艺术款</h4>
+          <p class="colorway">黑底白泼墨彩点 · 短袖</p>
+          <p class="cut">泼墨艺术印花，黑底撞色，门襟 3 粒扣</p>
+          <div class="tags"><span class="tag">泼墨印花出片</span><span class="tag">黑底显瘦</span><span class="tag">抗皱免烫好打理</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Splatter Print Golf Polo — Black Artistic Paint Pattern Performance Short Sleeve Polo</p>
+            <p class="cn">男士泼墨印花高尔夫Polo衫 黑色艺术图案 速干短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B05.jpeg" data-title="B05 · 四色组合装">
+          <img src="sr_images/B05.jpeg" alt="B05 四色组合装" loading="lazy">
+          <span class="no">B05</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>四色组合装</h4>
+          <p class="colorway">薄荷绿 / 青绿 / 深蓝 / 黑 · 短袖</p>
+          <p class="cut">4 件组合装，同版型换色，撞色领口</p>
+          <div class="tags"><span class="tag">4件组合客单更高</span><span class="tag">一单覆盖多场景</span><span class="tag">同版型降低退换</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Golf Polo Shirts 4 Pack — Moisture Wicking Performance Polos, Multi Color Value Set</p>
+            <p class="cn">男士高尔夫Polo衫4件装 多色组合 速干弹力 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B06.jpeg" data-title="B06 · 淡紫细网眼款">
+          <img src="sr_images/B06.jpeg" alt="B06 淡紫细网眼款" loading="lazy">
+          <span class="no">B06</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>淡紫细网眼款</h4>
+          <p class="colorway">淡紫 · 短袖</p>
+          <p class="cut">细密网眼组织，撞色领，修身版型</p>
+          <div class="tags"><span class="tag">淡紫当季流行色</span><span class="tag">细网眼透气快干</span><span class="tag">修身版显身材</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Lavender Golf Polo Shirt — Fine Mesh Performance Polo, Short Sleeve Collared Active Top</p>
+            <p class="cn">男士淡紫细网眼Polo衫 透气速干 修身短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B07.jpeg" data-title="B07 · 红蓝白碎花款">
+          <img src="sr_images/B07.jpeg" alt="B07 红蓝白碎花款" loading="lazy">
+          <span class="no">B07</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>红蓝白碎花款</h4>
+          <p class="colorway">红蓝白碎花 · 短袖</p>
+          <p class="cut">复古碎花印花，撞色门襟，常规版型</p>
+          <div class="tags"><span class="tag">复古碎花不撞款</span><span class="tag">撞色门襟有细节</span><span class="tag">轻薄不闷热</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Retro Floral Golf Polo — Vintage Print Performance Shirt, Short Sleeve Collared Polo</p>
+            <p class="cn">男士复古碎花高尔夫Polo衫 撞色门襟 轻薄速干短袖</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B08.jpeg" data-title="B08 · 黑色拉链款">
+          <img src="sr_images/B08.jpeg" alt="B08 黑色拉链款" loading="lazy">
+          <span class="no">B08</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑色拉链款</h4>
+          <p class="colorway">黑色 · 短袖</p>
+          <p class="cut">短拉链门襟（无纽扣），立领半开，运动版型</p>
+          <div class="tags"><span class="tag">拉链门襟穿脱快</span><span class="tag">立领半开更运动</span><span class="tag">速干面料抗皱</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Zip Golf Polo Shirt — Quarter Zip Performance Polo, Black Short Sleeve Athletic Top</p>
+            <p class="cn">男士拉链高尔夫Polo衫 半开立领 黑色速干 短袖运动上衣</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B09.jpeg" data-title="B09 · 白底彩泼款">
+          <img src="sr_images/B09.jpeg" alt="B09 白底彩泼款" loading="lazy">
+          <span class="no">B09</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>白底彩泼款</h4>
+          <p class="colorway">白底粉色彩色泼墨 · 短袖</p>
+          <p class="cut">白底泼墨印花，撞色领，轻薄速干</p>
+          <div class="tags"><span class="tag">白底更年轻</span><span class="tag">泼墨不撞款</span><span class="tag">轻薄速干适合夏季</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Splatter Print Golf Polo — Colorful Paint Pattern Performance Short Sleeve Polo</p>
+            <p class="cn">男士白底泼墨印花Polo衫 彩色艺术图案 速干短袖</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="B">
+        <div class="thumb" data-img="sr_images/B10.jpeg" data-title="B10 · 纯白打底款">
+          <img src="sr_images/B10.jpeg" alt="B10 纯白打底款" loading="lazy">
+          <span class="no">B10</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>纯白打底款</h4>
+          <p class="colorway">纯白 · 短袖</p>
+          <p class="cut">纯白基础款，撞色领座，标准高尔夫版型</p>
+          <div class="tags"><span class="tag">纯白最好搭球裤</span><span class="tag">撞色领座有层次</span><span class="tag">速干兼日常可穿</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Golf Polo Shirt — Classic Performance Polo, Moisture Wicking Short Sleeve Collared Top</p>
+            <p class="cn">男士纯白高尔夫Polo衫 经典速干 短袖翻领球场日常两用</p>
+          </div>
+        </div>
+      </article></div>
+    </section>
+    <section class="cat" id="cat-C">
+      <div class="cat-head">
+        <div class="cat-title">
+          <h2><span class="key">C</span>户外速干款</h2>
+          <span class="badge">常规审核</span>
+          <span class="count">10 款示例</span>
+        </div>
+        <p class="sub">长袖为主 · 攀岩/徒步/户外衬衫三路通用</p>
+      </div>
+      <div class="cat-meta">
+        <div class="meta-block">
+          <h5>对应上架路径</h5>
+          <ul><li>服装、鞋靴和珠宝饰品 &gt; 体育专用服装 &gt; 户外服饰 &gt; 男士户外服饰 &gt; 男士户外衬衫 &gt; Polo 衫</li><li>运动与户外用品 &gt; 户外休闲 &gt; 徒步和户外休闲服装 &gt; 男士户外服饰 &gt; 男士户外衬衫 &gt; Polo 衫</li><li>运动与户外用品 &gt; 户外休闲 &gt; 攀岩用品 &gt; 服装 &gt; 男士户外服饰 &gt; 男士户外衬衫 &gt; Polo 衫</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>面料 / 结构卖点</h5>
+          <ul><li>速干锦涤（nylon-poly）130–150gsm</li><li>UPF 50+，抗 UV 涂层</li><li>抗菌防臭整理 + 轻量易收纳</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>类目打法</h5>
+          <p class="scene">徒步、攀岩、钓鱼、自驾。这一档主图必须把 UPF / quick dry / moisture wicking 三个词做进画面，长袖占比高于其他类目。</p>
+        </div>
+      </div>
+      <div class="grid">
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C01.jpeg" data-title="C01 · 黑拉链速干款">
+          <img src="sr_images/C01.jpeg" alt="C01 黑拉链速干款" loading="lazy">
+          <span class="no">C01</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑拉链速干款</h4>
+          <p class="colorway">黑色 · 短袖</p>
+          <p class="cut">前中拉链门襟，运动版型，肩袖一体剪裁</p>
+          <div class="tags"><span class="tag">拉链门襟不磨下巴</span><span class="tag">一体肩袖背包不磨</span><span class="tag">速干抗菌防臭</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Hiking Polo Shirt — Zip Neck Quick Dry Short Sleeve, UPF 50+ Outdoor Performance Top</p>
+            <p class="cn">男士户外速干Polo衫 拉链门襟 短袖 UPF50+ 徒步登山</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C02.jpeg" data-title="C02 · 黑挺括款">
+          <img src="sr_images/C02.jpeg" alt="C02 黑挺括款" loading="lazy">
+          <span class="no">C02</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑挺括款</h4>
+          <p class="colorway">黑色 · 短袖</p>
+          <p class="cut">纽扣门襟，挺括棉感速干布，常规户外版型</p>
+          <div class="tags"><span class="tag">棉感速干不硬</span><span class="tag">纽扣门襟更日常</span><span class="tag">耐磨抗起球</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Outdoor Polo Shirt — Quick Dry Cotton-Feel Short Sleeve, Hiking &amp; Travel Collared Top</p>
+            <p class="cn">男士户外Polo衫 棉感速干 短袖翻领 徒步旅行</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C03.jpeg" data-title="C03 · 浅蓝波点款">
+          <img src="sr_images/C03.jpeg" alt="C03 浅蓝波点款" loading="lazy">
+          <span class="no">C03</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>浅蓝波点款</h4>
+          <p class="colorway">浅蓝波点 · 短袖</p>
+          <p class="cut">波点印花，轻薄速干，撞色领</p>
+          <div class="tags"><span class="tag">波点图案户外少见</span><span class="tag">轻薄可压缩收纳</span><span class="tag">浅色反光降温</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Light Blue Polka Dot Hiking Polo — Lightweight Quick Dry Short Sleeve Outdoor Shirt</p>
+            <p class="cn">男士浅蓝波点户外Polo衫 轻薄速干 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C04.jpeg" data-title="C04 · 深灰运动款">
+          <img src="sr_images/C04.jpeg" alt="C04 深灰运动款" loading="lazy">
+          <span class="no">C04</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>深灰运动款</h4>
+          <p class="colorway">深灰 / 黑 · 短袖</p>
+          <p class="cut">深灰拼黑，纽扣门襟，运动速干版型</p>
+          <div class="tags"><span class="tag">深灰耐脏适合户外</span><span class="tag">拼色袖更运动</span><span class="tag">速干透气不粘身</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Dark Grey Performance Polo — Quick Dry Short Sleeve Outdoor Hiking Collared Shirt</p>
+            <p class="cn">男士深灰运动Polo衫 速干透气 短袖翻领 户外徒步</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C05.jpeg" data-title="C05 · 宝蓝长袖款">
+          <img src="sr_images/C05.jpeg" alt="C05 宝蓝长袖款" loading="lazy">
+          <span class="no">C05</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>宝蓝长袖款</h4>
+          <p class="colorway">宝蓝 · 长袖</p>
+          <p class="cut">长袖 UPF50+，罗纹袖口，翻领 3 粒扣</p>
+          <div class="tags"><span class="tag">长袖防晒刚需</span><span class="tag">UPF50+ 抗紫外线</span><span class="tag">罗纹袖口防蚊虫</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Long Sleeve Hiking Polo Shirt — UPF 50+ Sun Protection Quick Dry Outdoor Collared Top</p>
+            <p class="cn">男士长袖户外Polo衫 UPF50+防晒 速干徒步翻领上衣</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C06.jpeg" data-title="C06 · 花纱蓝长袖款">
+          <img src="sr_images/C06.jpeg" alt="C06 花纱蓝长袖款" loading="lazy">
+          <span class="no">C06</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>花纱蓝长袖款</h4>
+          <p class="colorway">蓝色花纱 · 长袖</p>
+          <p class="cut">花纱肌理，长袖，撞色领座</p>
+          <div class="tags"><span class="tag">花纱肌理遮脏</span><span class="tag">长袖四季适用</span><span class="tag">弹力活动不受限</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Heather Blue Long Sleeve Polo — Quick Dry Hiking Shirt, Sun Protection Collared Top</p>
+            <p class="cn">男士花纱蓝长袖Polo衫 速干防晒 户外徒步翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C07.jpeg" data-title="C07 · 红色长袖款">
+          <img src="sr_images/C07.jpeg" alt="C07 红色长袖款" loading="lazy">
+          <span class="no">C07</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>红色长袖款</h4>
+          <p class="colorway">红色 · 长袖</p>
+          <p class="cut">高可见红色，长袖，翻领门襟纽扣</p>
+          <div class="tags"><span class="tag">红色户外高可见</span><span class="tag">救援/领队场景好卖</span><span class="tag">速干耐磨</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Red Long Sleeve Hiking Polo — High Visibility Quick Dry Outdoor Performance Shirt</p>
+            <p class="cn">男士红色长袖户外Polo衫 高可见度 速干耐磨 徒步翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C08.jpeg" data-title="C08 · 军绿长袖款">
+          <img src="sr_images/C08.jpeg" alt="C08 军绿长袖款" loading="lazy">
+          <span class="no">C08</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>军绿长袖款</h4>
+          <p class="colorway">绿色 / 军绿 · 长袖</p>
+          <p class="cut">军绿长袖，翻领，罗纹袖口</p>
+          <div class="tags"><span class="tag">军绿山系最好卖</span><span class="tag">山系穿搭可日常</span><span class="tag">速干抗皱易打理</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Olive Long Sleeve Polo Shirt — Quick Dry Outdoor Hiking Top, Sun Protection Collared Shirt</p>
+            <p class="cn">男士军绿长袖户外Polo衫 山系速干 防晒徒步翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C09.jpeg" data-title="C09 · 深蓝长袖款">
+          <img src="sr_images/C09.jpeg" alt="C09 深蓝长袖款" loading="lazy">
+          <span class="no">C09</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>深蓝长袖款</h4>
+          <p class="colorway">深蓝 · 长袖</p>
+          <p class="cut">深蓝长袖，门襟 3 粒扣，常规户外版型</p>
+          <div class="tags"><span class="tag">深蓝最稳不出错</span><span class="tag">长袖防晒防蚊</span><span class="tag">轻量易收纳</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Navy Long Sleeve Quick Dry Polo — Outdoor Hiking Collared Shirt with Sun Protection</p>
+            <p class="cn">男士深蓝长袖速干Polo衫 户外徒步 防晒翻领上衣</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="C">
+        <div class="thumb" data-img="sr_images/C10.jpeg" data-title="C10 · 浅蓝长袖款">
+          <img src="sr_images/C10.jpeg" alt="C10 浅蓝长袖款" loading="lazy">
+          <span class="no">C10</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>浅蓝长袖款</h4>
+          <p class="colorway">浅蓝 · 长袖</p>
+          <p class="cut">浅蓝长袖，翻领，轻薄速干</p>
+          <div class="tags"><span class="tag">浅色夏季降温</span><span class="tag">轻薄透气</span><span class="tag">可做情侣/团队采购</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Light Blue Long Sleeve Polo — Lightweight Quick Dry Hiking Shirt, UPF Sun Protection</p>
+            <p class="cn">男士浅蓝长袖Polo衫 轻薄速干 户外防晒翻领</p>
+          </div>
+        </div>
+      </article></div>
+    </section>
+    <section class="cat" id="cat-D">
+      <div class="cat-head">
+        <div class="cat-title">
+          <h2><span class="key">D</span>新奇趣味印花款</h2>
+          <span class="badge free">免审</span>
+          <span class="count">10 款示例</span>
+        </div>
+        <p class="sub">节日节点驱动 · 免审类目</p>
+      </div>
+      <div class="cat-meta">
+        <div class="meta-block">
+          <h5>对应上架路径</h5>
+          <ul><li>服装、鞋靴和珠宝饰品 &gt; 新奇物品 &gt; 新奇服装和产品 &gt; 新奇服装 &gt; 男士新奇服装 &gt; 男士新奇T恤、衬衫、polo衫 &gt; 男士新奇Polo 衫</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>面料 / 结构卖点</h5>
+          <ul><li>涤棉混纺印花布 160–180gsm</li><li>数码直喷 / 热转印，色牢度 4 级</li><li>环保水性墨水，无手感发硬</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>类目打法</h5>
+          <p class="scene">万圣节、感恩节、圣诞、父亲节、团建、派对。出单几乎完全由节日节点驱动，必须在节点前 45 天铺货；纯黑打底款常年在线做承接。</p>
+        </div>
+      </div>
+      <div class="grid">
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D01.jpeg" data-title="D01 · 万圣节蝙蝠款">
+          <img src="sr_images/D01.jpeg" alt="D01 万圣节蝙蝠款" loading="lazy">
+          <span class="no">D01</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>万圣节蝙蝠款</h4>
+          <p class="colorway">橙黑 · 短袖</p>
+          <p class="cut">橙黑撞色，万圣节蝙蝠满印，翻领 3 粒扣</p>
+          <div class="tags"><span class="tag">万圣节节点爆款</span><span class="tag">撞色醒目出片</span><span class="tag">印花不裂不掉</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Halloween Bat Print Polo Shirt — Funny Spooky Short Sleeve Collared Party Top</p>
+            <p class="cn">男士万圣节蝙蝠印花Polo衫 搞怪派对 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D02.jpeg" data-title="D02 · 血液喷溅款">
+          <img src="sr_images/D02.jpeg" alt="D02 血液喷溅款" loading="lazy">
+          <span class="no">D02</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>血液喷溅款</h4>
+          <p class="colorway">白底红喷溅 · 短袖</p>
+          <p class="cut">白底血溅印花，万圣节惊悚路线</p>
+          <div class="tags"><span class="tag">惊悚题材转化高</span><span class="tag">白底对比强</span><span class="tag">适合派对/演出</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Blood Splatter Halloween Polo — Scary Print Short Sleeve Collared Costume Shirt</p>
+            <p class="cn">男士血液喷溅印花Polo衫 万圣节惊悚 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D03.jpeg" data-title="D03 · 骷髅萨克斯款">
+          <img src="sr_images/D03.jpeg" alt="D03 骷髅萨克斯款" loading="lazy">
+          <span class="no">D03</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>骷髅萨克斯款</h4>
+          <p class="colorway">黑底彩色骷髅 · 短袖</p>
+          <p class="cut">黑底霓虹骷髅 + 萨克斯图案，亡灵节风格</p>
+          <div class="tags"><span class="tag">亡灵节/骷髅题材常青</span><span class="tag">霓虹色在黑底最跳</span><span class="tag">墨西哥风差异化</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Neon Skull Saxophone Polo Shirt — Day of the Dead Print Short Sleeve Collared Top</p>
+            <p class="cn">男士霓虹骷髅萨克斯印花Polo衫 亡灵节风格 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D04.jpeg" data-title="D04 · 棒球主题款">
+          <img src="sr_images/D04.jpeg" alt="D04 棒球主题款" loading="lazy">
+          <span class="no">D04</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>棒球主题款</h4>
+          <p class="colorway">黑白 · 短袖</p>
+          <p class="cut">棒球元素印花，黑白配色，球迷向</p>
+          <div class="tags"><span class="tag">球迷向复购高</span><span class="tag">黑白最百搭</span><span class="tag">可做球队定制</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Baseball Print Polo Shirt — Funny Sports Graphic Short Sleeve Collared Casual Top</p>
+            <p class="cn">男士棒球主题印花Polo衫 球迷趣味 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D05.jpeg" data-title="D05 · 棒球绿款">
+          <img src="sr_images/D05.jpeg" alt="D05 棒球绿款" loading="lazy">
+          <span class="no">D05</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>棒球绿款</h4>
+          <p class="colorway">绿色 · 短袖</p>
+          <p class="cut">同系列换色，绿色棒球印花</p>
+          <div class="tags"><span class="tag">同系列换色补货</span><span class="tag">绿色球场感强</span><span class="tag">图案不撞款</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Green Baseball Graphic Polo — Fun Sports Print Short Sleeve Collared Shirt</p>
+            <p class="cn">男士绿色棒球印花Polo衫 运动趣味 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D06.jpeg" data-title="D06 · 啤酒杯款">
+          <img src="sr_images/D06.jpeg" alt="D06 啤酒杯款" loading="lazy">
+          <span class="no">D06</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>啤酒杯款</h4>
+          <p class="colorway">蓝底 · 短袖</p>
+          <p class="cut">啤酒杯图案，蓝底，派对/父亲节向</p>
+          <div class="tags"><span class="tag">父亲节礼物属性强</span><span class="tag">啤酒题材接受度高</span><span class="tag">蓝底耐看</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Beer Graphic Polo Shirt — Funny Drinking Print Short Sleeve Collared Party Top</p>
+            <p class="cn">男士啤酒杯印花Polo衫 趣味派对 父亲节礼物 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D07.jpeg" data-title="D07 · 火鸡南瓜款">
+          <img src="sr_images/D07.jpeg" alt="D07 火鸡南瓜款" loading="lazy">
+          <span class="no">D07</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>火鸡南瓜款</h4>
+          <p class="colorway">黑底 · 短袖</p>
+          <p class="cut">感恩节火鸡 + 南瓜元素，黑色打底</p>
+          <div class="tags"><span class="tag">感恩节节点刚需</span><span class="tag">黑底显图案</span><span class="tag">可延展到圣诞</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Thanksgiving Turkey Polo Shirt — Funny Fall Festival Print Short Sleeve Collared Top</p>
+            <p class="cn">男士感恩节火鸡印花Polo衫 节日趣味 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D08.jpeg" data-title="D08 · 幽灵款">
+          <img src="sr_images/D08.jpeg" alt="D08 幽灵款" loading="lazy">
+          <span class="no">D08</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>幽灵款</h4>
+          <p class="colorway">黑底青绿 · 短袖</p>
+          <p class="cut">黑底幽灵图案，青绿冷调，万圣节线</p>
+          <div class="tags"><span class="tag">冷调幽灵更独特</span><span class="tag">黑底百搭</span><span class="tag">万圣节前后都能卖</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Ghost Print Halloween Polo — Spooky Green Ghost Short Sleeve Collared Shirt</p>
+            <p class="cn">男士幽灵印花Polo衫 万圣节冷调 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D09.jpeg" data-title="D09 · 冰淇淋款">
+          <img src="sr_images/D09.jpeg" alt="D09 冰淇淋款" loading="lazy">
+          <span class="no">D09</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>冰淇淋款</h4>
+          <p class="colorway">粉蓝橙 · 短袖</p>
+          <p class="cut">融化冰淇淋搞怪印花，高饱和撞色</p>
+          <div class="tags"><span class="tag">搞怪题材社媒传播好</span><span class="tag">高饱和撞色出片</span><span class="tag">夏季可卖</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Melting Ice Cream Polo Shirt — Funny Food Print Short Sleeve Collared Summer Top</p>
+            <p class="cn">男士融化冰淇淋印花Polo衫 搞怪趣味 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="D">
+        <div class="thumb" data-img="sr_images/D10.jpeg" data-title="D10 · 南瓜蜘蛛款">
+          <img src="sr_images/D10.jpeg" alt="D10 南瓜蜘蛛款" loading="lazy">
+          <span class="no">D10</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>南瓜蜘蛛款</h4>
+          <p class="colorway">紫底 · 短袖</p>
+          <p class="cut">紫色底 + 南瓜 + 蜘蛛，万圣节组合</p>
+          <div class="tags"><span class="tag">紫色万圣节主色</span><span class="tag">组合元素信息量大</span><span class="tag">女款可延展情侣装</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Purple Pumpkin Spider Polo — Halloween Print Short Sleeve Collared Party Shirt</p>
+            <p class="cn">男士紫色南瓜蜘蛛印花Polo衫 万圣节派对 短袖翻领</p>
+          </div>
+        </div>
+      </article></div>
+    </section>
+    <section class="cat" id="cat-E">
+      <div class="cat-head">
+        <div class="cat-title">
+          <h2><span class="key">E</span>网球 / 运动休闲条纹款</h2>
+          <span class="badge">常规审核</span>
+          <span class="count">10 款示例</span>
+        </div>
+        <p class="sub">撞色领 + 复古条纹 · 空位最大</p>
+      </div>
+      <div class="cat-meta">
+        <div class="meta-block">
+          <h5>对应上架路径</h5>
+          <ul><li>服装、鞋靴和珠宝饰品 &gt; 体育专用服装 &gt; 网球服 &gt; 男士网球服 &gt; 男士网球衫 &gt; Polo 衫</li><li>运动与户外用品 &gt; 运动服装和器材 &gt; 网球和短柄墙球运动装备 &gt; 网球用品 &gt; 服装 &gt; 男士网球服 &gt; 男士网球衫 &gt; Polo 衫</li><li>运动与户外用品 &gt; 运动户外服饰 &gt; 男士运动户外服饰 &gt; 男士运动休闲衬衫和 Polo 衫 &gt; Polo 衫</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>面料 / 结构卖点</h5>
+          <ul><li>速干涤氨 / 棉涤混纺 160–180gsm</li><li>撞色罗纹领 + 袖口条纹配色</li><li>侧身弹力拼接，挥拍不绷</li></ul>
+        </div>
+        <div class="meta-block">
+          <h5>类目打法</h5>
+          <p class="scene">网球、羽毛球、乒乓、日常运动休闲。该分类下大量在售品其实是圆领速干 T 恤，真正带翻领门襟的 Polo 反而稀缺——撞击色领、复古条纹是最好切入的空位。</p>
+        </div>
+      </div>
+      <div class="grid">
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E01.jpeg" data-title="E01 · 绿白横条款">
+          <img src="sr_images/E01.jpeg" alt="E01 绿白横条款" loading="lazy">
+          <span class="no">E01</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>绿白横条款</h4>
+          <p class="colorway">绿色横条纹 · 短袖</p>
+          <p class="cut">复古横条纹，撞色罗纹领，常规运动版型</p>
+          <div class="tags"><span class="tag">复古条纹网球场感强</span><span class="tag">横条纹显瘦</span><span class="tag">撞色领提升单价</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Retro Striped Tennis Polo — Vintage Stripe Short Sleeve Collared Sport Shirt</p>
+            <p class="cn">男士复古条纹网球Polo衫 撞色罗纹领 短袖运动翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E02.jpeg" data-title="E02 · 橙黑斜条款">
+          <img src="sr_images/E02.jpeg" alt="E02 橙黑斜条款" loading="lazy">
+          <span class="no">E02</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>橙黑斜条款</h4>
+          <p class="colorway">橙黑斜条纹 · 短袖</p>
+          <p class="cut">斜向撞色条纹，视觉动感，速干面料</p>
+          <div class="tags"><span class="tag">斜条纹更动感</span><span class="tag">橙黑高对比出片</span><span class="tag">速干挥拍不粘身</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Orange Black Diagonal Stripe Polo — Performance Tennis Shirt Short Sleeve Collared</p>
+            <p class="cn">男士橙黑斜条纹Polo衫 速干运动 短袖翻领网球</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E03.jpeg" data-title="E03 · 灰白横条款">
+          <img src="sr_images/E03.jpeg" alt="E03 灰白横条款" loading="lazy">
+          <span class="no">E03</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>灰白横条款</h4>
+          <p class="colorway">灰色横条纹 · 短袖</p>
+          <p class="cut">灰白细横条，低调复古，标准版型</p>
+          <div class="tags"><span class="tag">灰白最好搭</span><span class="tag">细条纹不挑人</span><span class="tag">复古网球经典</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Grey Striped Polo Shirt — Retro Tennis Stripe Short Sleeve Collared Casual Top</p>
+            <p class="cn">男士灰白条纹Polo衫 复古网球风 短袖翻领休闲</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E04.jpeg" data-title="E04 · 黑白条纹领款">
+          <img src="sr_images/E04.jpeg" alt="E04 黑白条纹领款" loading="lazy">
+          <span class="no">E04</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑白条纹领款</h4>
+          <p class="colorway">白色 + 黑白条纹领边 · 短袖</p>
+          <p class="cut">白底 + 领口/袖口黑白条纹撞色，最经典的网球语言</p>
+          <div class="tags"><span class="tag">黑白条纹领最经典</span><span class="tag">白底显干净</span><span class="tag">撞色领是溢价点</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Tennis Polo with Striped Collar — Classic Court Style Short Sleeve Shirt</p>
+            <p class="cn">男士白色网球Polo衫 黑白条纹撞色领 短袖球场经典</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E05.jpeg" data-title="E05 · 黑领边条纹款">
+          <img src="sr_images/E05.jpeg" alt="E05 黑领边条纹款" loading="lazy">
+          <span class="no">E05</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑领边条纹款</h4>
+          <p class="colorway">白色 + 黑领边袖口 · 短袖</p>
+          <p class="cut">白底黑领边 + 袖口条纹，标准网球版型</p>
+          <div class="tags"><span class="tag">黑领边撞白底最利落</span><span class="tag">袖口条纹呼应</span><span class="tag">运动日常两穿</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Polo with Black Trim Collar — Retro Tennis Court Shirt Short Sleeve</p>
+            <p class="cn">男士白底黑领边Polo衫 袖口条纹 复古网球短袖</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E06.jpeg" data-title="E06 · 蓝领边袋口款">
+          <img src="sr_images/E06.jpeg" alt="E06 蓝领边袋口款" loading="lazy">
+          <span class="no">E06</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>蓝领边袋口款</h4>
+          <p class="colorway">白色 + 蓝色领边 · 短袖</p>
+          <p class="cut">白底蓝领边 + 撞色胸袋，复古学院风</p>
+          <div class="tags"><span class="tag">撞色胸袋是差异点</span><span class="tag">蓝色更年轻</span><span class="tag">学院风可日常</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Polo with Blue Trim — Retro Court Style Short Sleeve Shirt with Contrast Pocket</p>
+            <p class="cn">男士白底蓝领边Polo衫 撞色胸袋 复古学院短袖</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E07.jpeg" data-title="E07 · 纯白运动款">
+          <img src="sr_images/E07.jpeg" alt="E07 纯白运动款" loading="lazy">
+          <span class="no">E07</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>纯白运动款</h4>
+          <p class="colorway">纯白 · 短袖</p>
+          <p class="cut">纯白无图案，光滑速干布，标准运动版型</p>
+          <div class="tags"><span class="tag">纯白最易搭配</span><span class="tag">光滑面料风阻小</span><span class="tag">可做队服定制底</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s White Performance Tennis Polo — Lightweight Quick Dry Short Sleeve Collared Shirt</p>
+            <p class="cn">男士纯白运动Polo衫 轻薄速干 短袖翻领网球</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E08.jpeg" data-title="E08 · 黑色印花款">
+          <img src="sr_images/E08.jpeg" alt="E08 黑色印花款" loading="lazy">
+          <span class="no">E08</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>黑色印花款</h4>
+          <p class="colorway">黑底红色印花 · 短袖</p>
+          <p class="cut">黑底红色图案点缀，光滑面料，运动版型</p>
+          <div class="tags"><span class="tag">黑底红图案有张力</span><span class="tag">小众不易撞</span><span class="tag">速干好打理</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Black Print Tennis Polo Shirt — Performance Short Sleeve Collared Active Top</p>
+            <p class="cn">男士黑底印花Polo衫 速干运动 短袖翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E09.jpeg" data-title="E09 · 藏青橙点缀款">
+          <img src="sr_images/E09.jpeg" alt="E09 藏青橙点缀款" loading="lazy">
+          <span class="no">E09</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>藏青橙点缀款</h4>
+          <p class="colorway">藏青 + 橙色领口/袋口 · 短袖</p>
+          <p class="cut">藏青底 + 橙色领口与袋口点缀，撞色细节</p>
+          <div class="tags"><span class="tag">橙点撞藏青最高级</span><span class="tag">细节多单价可拉高</span><span class="tag">藏青耐看</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Navy Polo with Orange Trim — Contrast Detail Short Sleeve Court Shirt</p>
+            <p class="cn">男士藏青Polo衫 橙色领口袋口撞色 短袖运动翻领</p>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-cat="E">
+        <div class="thumb" data-img="sr_images/E10.jpeg" data-title="E10 · 青绿纯色款">
+          <img src="sr_images/E10.jpeg" alt="E10 青绿纯色款" loading="lazy">
+          <span class="no">E10</span>
+          <span class="zoom">点击放大</span>
+        </div>
+        <div class="body">
+          <h4>青绿纯色款</h4>
+          <p class="colorway">青绿 · 短袖</p>
+          <p class="cut">青绿纯色，撞色领，速干运动版型</p>
+          <div class="tags"><span class="tag">青绿当季流行</span><span class="tag">纯色好做组合装</span><span class="tag">速干透气</span></div>
+          <div class="copy">
+            <p class="en">Men&#x27;s Teal Performance Polo Shirt — Solid Color Quick Dry Short Sleeve Collared Sports Top</p>
+            <p class="cn">男士青绿纯色运动Polo衫 速干透气 短袖翻领</p>
+          </div>
+        </div>
+      </article></div>
+    </section>
+
+  <div class="note">
+    <b>使用说明：</b>本页款式图来自公开电商平台在售商品主图，仅作款式结构、配色与肌理的参考；图案与商标均为他人权利，开发时请做安全延改，避免侵权。每个风格块下的「面料 / 结构卖点」与「主图话术」可直接给供应商做打样要求与主图文案初稿，具体克重、成分需按实际打样结果回填。
+  </div>
+</div>
+<div class="disclaimer">⚠️ 图片来自公开电商平台在售商品主图，仅作款式结构与配色参考，图案与商标权利归原权利人，开发请安全延改</div>
+<div class="footer">云岁月 · POLO 衫运营中枢</div>
+
+<div class="lightbox" id="lb">
+  <span class="close" id="lbClose">&times;</span>
+  <img id="lbImg" src="" alt="">
+  <div class="cap" id="lbCap"></div>
+</div>
+
+<script>
+  (function () {
+    var lb = document.getElementById('lb'),
+        lbImg = document.getElementById('lbImg'),
+        lbCap = document.getElementById('lbCap');
+
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest('.thumb');
+      if (t) {
+        lbImg.src = t.getAttribute('data-img');
+        lbCap.textContent = t.getAttribute('data-title');
+        lb.classList.add('on');
+        return;
+      }
+      if (e.target === lb || e.target.id === 'lbClose') {
+        lb.classList.remove('on');
+        lbImg.src = '';
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { lb.classList.remove('on'); lbImg.src = ''; }
+    });
+  })();
+</script>
+</body>
+</html>
